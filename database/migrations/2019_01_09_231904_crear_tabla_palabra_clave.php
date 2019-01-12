@@ -16,6 +16,7 @@ class CrearTablaPalabraClave extends Migration
       Schema::create('palabra_clave', function (Blueprint $table) {
           $table->increments('pk_palabra_clave');
           $table->string('pal_clave', 25);
+          $table->timestamps();
       });
     }
 
