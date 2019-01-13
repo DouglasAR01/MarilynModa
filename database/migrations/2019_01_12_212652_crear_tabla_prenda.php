@@ -23,7 +23,7 @@ class CrearTablaPrenda extends Migration
           $table->string('pre_descripcion', 255)->nullable();
           $table->char('pre_talla', 1)->default('M');
           $table->tinyInteger('pre_cantidad');
-          $table->tinyInteger('pre_precio_sugerido')->nullable();
+          $table->unsignedInteger('pre_precio_sugerido')->nullable();
           $table->date('pre_fecha_compra');
 
           $table->foreign('pre_fk_categoria')

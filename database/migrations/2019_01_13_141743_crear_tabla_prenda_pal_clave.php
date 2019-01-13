@@ -18,10 +18,12 @@ class CrearTablaPrendaPalClave extends Migration
           $table->unsignedInteger('ppc_fk_palabra_clave');
 
           $table->foreign('ppc_fk_prenda')
-                ->references('pk_prenda')->on('prenda');
+                ->references('pk_prenda')->on('prenda')
+                ->onDelete('cascade');
 
           $table->foreign('ppc_fk_palabra_clave')
-                ->references('pk_palabra_clave')->on('palabra_clave');
+                ->references('pk_palabra_clave')->on('palabra_clave')
+                ->onDelete('cascade');
 
           $table->timestamps();
       });
