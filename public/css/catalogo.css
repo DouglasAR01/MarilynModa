@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+
+.content{
+	padding: 2em;
+	text-align: center;
+}
+.container{
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.card{
+	margin: 1em;
+	position: relative;
+	background: #555;
+  border: none;
+}
+
+.card::before, .card::after{
+	content:'';
+	position: absolute;
+	top:.97em;
+	right:.97em;
+	bottom:.97em;
+	left:.97em;
+	transition: transform ease-out 250ms;
+}
+.card::before{
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	transform: scale(0,1);
+}
+.card::after{
+	border-right: 1px solid white;
+	border-left: 1px solid white;
+	transform: scale(1,0);
+}
+.card:hover::before, .card:hover::after{
+	transform: scale(1);
+}
+
+.card__img {
+  max-width: 100%;
+  display: block;
+  transition: opacity ease-out 250ms;
+}
+.card:hover .card__img{
+    opacity: 0.4;
+ }
+.card__title{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -100%);
+  	margin-bottom: 0;
+
+	color: white;
+	text-transform: uppercase;
+	font-family: 'Raleway';
+	font-size: 1.3em;
+	opacity: 0;
+  	transition: opacity ease-out 250ms;
+}
+.card:hover .card__title{
+  opacity: 1;
+}
