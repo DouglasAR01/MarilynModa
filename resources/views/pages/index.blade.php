@@ -12,7 +12,7 @@
     <p class="populares__desc">Mira nuestros artículos más populares</p>
   </div>
 
-  <div class="<!--main-content--> populares__portfolio">
+  <div class="populares__portfolio">
     <div class="portfolio">
       <div class="portfolio-item tall" style="background-image:url('https://picsum.photos/200')">one</div>
       <div class="portfolio-item large" style="background-image:url('https://picsum.photos/201')">two</div>
