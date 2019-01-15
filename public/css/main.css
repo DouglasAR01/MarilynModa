@@ -114,7 +114,14 @@ border-color: var(--fucsia);
   margin-right: 2em;
 }
 
-.content{  padding:4em; 2em;}
+.sticky-top {
+  position: fixed;
+  top: 0;
+  z-index: 80;
+  width: 100%;
+}
+
+.content{  padding: 4em 2em;}
 
 #bootstrap-overrides footer{
   font-weight: 300;

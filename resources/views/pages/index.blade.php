@@ -4,6 +4,17 @@
   <link rel="stylesheet" href="{{asset('css/index.css')}}">
 @endsection
 
+@section('header')
+  <!--HEADER-->
+  <div class="row header">
+    <div class="head__text text-center">
+      <h1 id="head__title">Marylin Moda</h1>
+      <hr id="head__line">
+      <h4 id="head__desc">Lorem ipsum dolor sit amet.</h4>
+    </div>
+  </div>
+@endsection
+
 @section('content')
 <div class="populares">
 
