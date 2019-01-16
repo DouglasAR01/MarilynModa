@@ -26,6 +26,19 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/sticky.js') }}" defer></script>
 
+    <script>
+    function dropdownToggle() {
+      document.getElementById("dropdown").classList.toggle("show");
+    }
+    </script>
+
+    <script>
+    $(function(){
+      $(".dropdown").hover(function(){
+        $(".dropdown-content").toggle('slow');
+      });
+    });
+    </script>
 
     <title>Marilyn Moda</title>
   </head>
@@ -50,7 +63,57 @@
                   <!-- Left Side Of Navbar -->
                   <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav_item"><a href="/" class="nav_link">Inicio</a></li>
-                    <li class="nav_item"><a href="catalogo" class="nav_link">Catálogo</a></li>
+
+                    <!--DROPDOWN-->
+                    <li class="nav_item">
+                      <div class="dropdown">
+                        <a href="catalogo" class="no-after-hover">Catálogo</a>
+
+                        <div id="dropdown" class="dropdown-content">
+                          <div class="drop-wrap">
+                            <div class="drop_column drop_column_first">
+                              <ul class="drop__menu">
+                                <li><a href="#" class="drop__link drop-cat">Mujer</a></li>
+                                <li><a href="#" class="drop__link drop-cat">Hombre</a></li>
+                                <li><a href="#" class="drop__link drop-cat">Popular</a></li>
+                                <li><a href="#" class="drop__link drop-cat">Nuevo</a></li>
+                                <li><a href="#" class="drop__link drop-cat">Ver Todo</a></li>
+                              </ul>
+                            </div>
+                            <div class="drop_column">
+                              <ul class="drop__menu">
+                                <li><a href="#" class="drop__link drop-cat">Ropa</a>
+                                  <ul class="drop__submenu">
+                                    <li><a href="#" class="drop__link">Vestidos</a></li>
+                                    <li><a href="#" class="drop__link">Blusas</a></li>
+                                    <li><a href="#" class="drop__link">Faldas</a></li>
+                                    <li><a href="#" class="drop__link">Pantalones</a></li>
+                                    <li><a href="#" class="drop__link">Chaquetas</a></li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="drop_column">
+                              <ul class="drop__menu">
+                                <li><a href="#" class="drop__link drop-cat">Accesorios</a>
+                                  <ul class="drop__submenu">
+                                    <li><a href="#" class="drop__link">Bufandas</a></li>
+                                    <li><a href="#" class="drop__link">Collares</a></li>
+                                    <li><a href="#" class="drop__link">Bolsos</a></li>
+                                    <li><a href="#" class="drop__link">Otros Accesorios</a></li>
+                                  </ul>
+                                </li>
+                                <li><a href="#" class="drop__link drop-cat">Zapatos</a></li>
+                                <li><a href="#" class="drop__link drop-cat">Nuevo</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                    </li>
+
+
+
+
                   </ul>
                   <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search">
@@ -92,6 +155,46 @@
               </div>
           </div>
       </nav>
+      <!--DROPDOWN-->
+      {{-- <div class="drop-wrap">
+        <div class="drop_column drop_column_first">
+          <ul class="drop__menu">
+            <li><a href="#" class="drop__link subtitulos-cat">Mujer</a></li>
+            <li><a href="#" class="drop__link subtitulos-cat">Hombre</a></li>
+            <li><a href="#" class="drop__link subtitulos-cat">Popular</a></li>
+            <li><a href="#" class="drop__link subtitulos-cat">Nuevo</a></li>
+            <li><a href="#" class="drop__link subtitulos-cat">Ver Todo</a></li>
+          </ul>
+        </div><!--END OF FIRST COLUMN-->
+        <div class="drop_column">
+          <ul class="drop__menu">
+            <li><a href="#" class="drop__link icon-font subtitulos-cat">Ropa</a>
+              <ul class="site-nav__sub-submenu">
+                <li><a href="#" class="drop__link">Vestidos</a></li>
+                <li><a href="#" class="drop__link">Blusas</a></li>
+                <li><a href="#" class="drop__link">Faldas</a></li>
+                <li><a href="#" class="drop__link">Pantalones</a></li>
+                <li><a href="#" class="drop__link"Chaquetas</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--END OF SECOND COLUMN-->
+        <div class="drop_column">
+          <ul class="drop__menu">
+            <li><a href="#" class="drop__link icon-font subtitulos-cat">Accesorios</a>
+              <ul class="site-nav__sub-submenu">
+                <li><a href="#" class="drop__link">Bufandas</a></li>
+                <li><a href="#" class="drop__link">Collares</a></li>
+                <li><a href="#" class="drop__link">Bolsos</a></li>
+                <li><a href="#" class="drop__link">Otros Accesorios</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="drop__link icon-font subtitulos-cat">Zapatos</a></li>
+            <li><a href="#" class="drop__link icon-font subtitulos-cat">Nuevo</a></li>
+          </ul>
+        </div><!--END OF THIRD COLUMN-->
+      </div><!--END OF DROPDOWN--> --}}
+
 
       <!--CONTENT-->
       <div class="row content">
