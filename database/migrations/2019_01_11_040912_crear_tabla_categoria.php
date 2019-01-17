@@ -16,7 +16,7 @@ class CrearTablaCategoria extends Migration
       //se crea la tabla categoria
         Schema::create('categoria', function (Blueprint $table) {
             $table->increments('pk_categoria');
-            $table->char('cat_tipo',1)->default('o'); //['a' alquiler, 'b' baja, 'o' otro]
+            $table->char('cat_tipo',1)->default('o'); //['a' alquiler, 'b' baja, 'g' gasto, 'o' otro]
             $table->string('cat_nombre', 50);
             $table->string('cat_descripcion', 140)->nullable();
             $table->timestamps();

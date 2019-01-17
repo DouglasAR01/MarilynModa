@@ -18,7 +18,7 @@ class CrearTablaBaja extends Migration
           $table->unsignedInteger('bja_fk_categoria');
           $table->unsignedInteger('bja_fk_prenda');
           $table->string('bja_fk_empleado');
-          $table->string('bja_motivo', 100);
+          $table->string('bja_motivo', 255);
           $table->string('bja_cod_factura', 20)->nullable();
           $table->integer('bja_precio_venta')->nullable();
 

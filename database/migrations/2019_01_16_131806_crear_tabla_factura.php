@@ -17,14 +17,14 @@ class CrearTablaFactura extends Migration
           $table->increments('pk_factura');
           $table->string('fac_fk_cliente');
           $table->string('fac_fk_empleado');
-          $table->integer('fac_valor_total');
-          $table->integer('fac_valor_separado');
-          $table->integer('fac_valor_saldo')->nullable();
+          $table->unsignedInteger('fac_valor_total');
+          $table->unsignedInteger('fac_valor_separado');
+          $table->unsignedInteger('fac_valor_saldo')->nullable();
           $table->date('fac_fecha_entrega');
           $table->date('fac_fecha_devolucion');
-          $table->date('fac_fecha_entregado');
-          $table->date('fac_fecha_devuelto');
-          $table->integer('fac_deposito')->nullable();
+          $table->date('fac_fecha_entregado')->nullable();
+          $table->date('fac_fecha_devuelto')->nullable();
+          $table->unsignedInteger('fac_deposito')->nullable();
 
           $table->foreign('fac_fk_cliente')
                 ->references('pk_cli_cedula')->on('cliente')

@@ -17,9 +17,9 @@ class CrearTablaGasto extends Migration
           $table->increments('pk_gasto');
           $table->string('gas_fk_empleado');
           $table->unsignedInteger('gas_fk_categoria');
-          $table->string('gas_nombre', 30);
+          $table->string('gas_nombre', 50);
           $table->string('gas_motivo', 255);
-          $table->integer('gas_precio');
+          $table->unsignedInteger('gas_precio');
 
           $table->foreign('gas_fk_empleado')
                 ->references('pk_emp_cedula')->on('empleado')

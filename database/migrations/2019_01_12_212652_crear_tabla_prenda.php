@@ -17,12 +17,11 @@ class CrearTablaPrenda extends Migration
       Schema::create('prenda', function (Blueprint $table) {
           $table->increments('pk_prenda');
           $table->unsignedInteger('pre_fk_categoria');
-          $table->boolean('pre_robado')->default(false);
           $table->boolean('pre_visible')->default(true);
-          $table->string('pre_nombre', 30);
+          $table->string('pre_nombre', 50);
           $table->string('pre_descripcion', 255)->nullable();
-          $table->char('pre_talla', 1)->default('M');
-          $table->tinyInteger('pre_cantidad');
+          $table->char('pre_talla', 4)->default('M'); // De XS a XXXL
+          $table->tinyInteger('pre_cantidad')->default(0);
           $table->unsignedInteger('pre_precio_sugerido')->nullable();
           $table->date('pre_fecha_compra');
 
