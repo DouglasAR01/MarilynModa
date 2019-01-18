@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class FacturaPrenda extends Model
 {
   protected $table = 'factura_prenda';
-  protected $guarded = [];
+  protected $guarded = ['fpr_cantidad'];
 
 
   protected function setKeysForSaveQuery(Builder $query)
