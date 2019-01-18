@@ -38,12 +38,27 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'empleado',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'empleado',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'empleado'
+        ],
+
+        'gerente' => [
+            'driver' => 'session',
+            'provider' => 'empleado'
+        ],
+
+        'empleado' => [
+            'driver' => 'session',
+            'provider' => 'empleado'
         ],
     ],
 
@@ -69,7 +84,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        'empleado' => [
+            'driver' => 'eloquent',
+            'model' => App\Empleado::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

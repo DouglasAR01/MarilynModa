@@ -15,8 +15,8 @@
 //     return view('welcome');
 // });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('catalogo', 'PagesController@getCatalogo');
 Route::get('/', 'PagesController@getIndex');
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
