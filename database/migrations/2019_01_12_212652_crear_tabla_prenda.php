@@ -24,6 +24,7 @@ class CrearTablaPrenda extends Migration
           $table->tinyInteger('pre_cantidad')->default(0);
           $table->unsignedInteger('pre_precio_sugerido')->nullable();
           $table->date('pre_fecha_compra');
+          $table->unsignedInteger('pre_veces_alquilado')->default(0);
 
           $table->foreign('pre_fk_categoria')
                 ->references('pk_categoria')->on('categoria')
