@@ -17,7 +17,7 @@ class CrearTablaEmpleados extends Migration
           $table->string('pk_emp_cedula',12)->primary();
           $table->string('emp_celular',15)->unique();
           $table->string('emp_email',100)->unique();
-          $table->string('emp_clave',80);
+          $table->string('emp_clave',60);
           $table->char('emp_genero',1)->default('o'); //[m,f,o (otro)]
           $table->string('emp_direccion',255);
           $table->string('emp_nombre',50);
