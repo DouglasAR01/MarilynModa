@@ -43,4 +43,31 @@ class Prenda extends Model
     }
     return $thisPalabrasClave;
   }
+
+  /**
+   * @author Pecons
+   * Métodos de las relaciones que tiene la tabla prenda.
+   */
+
+  public function facturaDePrenda()
+  {
+    return $this->hasMany('App\FacturaPrenda','fpr_fk_prenda','pk_prenda');
+  }
+
+  public function fotoPrenda()
+  {
+    return $this->hasMany('App\FotoPrenda','fop_fk_prenda','pk_prenda');
+  }
+  public function baja()
+  {
+    return $this->hasMany('App\Baja','bja_fk_prenda','pk_prenda');
+  }
+  public function prendaPalClave()
+  {
+    return $this->hasMany('App\PrendaPalClave','ppc_fk_prenda','pk_prenda');
+  }
+  public function categoriaPrenda()
+  {
+    return $this->belongsTo('App\Categoria','pre_fk_categoria','pk_categoria');
+  }
 }

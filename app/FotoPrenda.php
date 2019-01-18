@@ -18,4 +18,14 @@ class FotoPrenda extends Model
             ->where('fop_link', '=', $this->getAttribute('fop_link'));
         return $query;
     }
+
+    /**
+     * @author Pecons
+     * Métodos de las relaciones que tiene la tabla Foto_Prenda.
+     */
+     
+    public function prendaDeFoto()
+    {
+      return $this->belongsTo('App\Prenda','fop_fk_prenda','pk_prenda');
+    }
 }
