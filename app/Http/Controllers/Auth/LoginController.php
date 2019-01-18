@@ -43,7 +43,11 @@ class LoginController extends Controller
         $this->middleware('guest:gerente')->except('logout');
         $this->middleware('guest:empleado')->except('logout');
     }
-
+    /**
+     * @author Douglas R.
+     * Este método está sobrescrito, lo que hace es asignar el guardia necesario
+     * y luego inicia sesión
+     */
     private function attemptLogin(Request $request)
     {
       $usuario = Empleado::find($request->cedula);
@@ -61,19 +65,17 @@ class LoginController extends Controller
           default:
             return false;
         }
-        $auth = Auth::guard($guardia)->attempt([
+        return Auth::guard($guardia)->attempt([
           'pk_emp_cedula' => $request->cedula,
           'emp_celular' => $request->celular,
           'password' => $request->password
         ], $request->filled('remember'));
-        if ($auth) {
-          //Aquí puede ir más código
-          return true;
-        }
       }
       return false;
     }
-
+    /**
+     * Método sobrescrito
+     */
     protected function validateLogin(Request $request)
     {
         $request->validate([
@@ -82,7 +84,9 @@ class LoginController extends Controller
             'celular' => 'required|numeric|digits_between:1,15'
         ]);
     }
-
+    /**
+     * Método sobrescrito
+     */
     protected function credentials(Request $request)
     {
         return [
@@ -91,9 +95,21 @@ class LoginController extends Controller
           'emp_celular' => $request->celular
         ];
     }
-
+    /**
+     * Método sobrescrito
+     */
     public function username()
     {
         return 'cedula';
+    }
+    /**
+     * Método sobrescrito. Es el que se ejecuta después de haber autenticado con
+     * éxito.
+     */
+    protected function authenticated(Request $request, $user)
+    {
+      //Acá se puede poner todo lo que se quiera luego de autenticar
+      session(['usuario' => Empleado::find($request->cedula)]);
+      return redirect()->intended($this->redirectPath());
     }
 }
