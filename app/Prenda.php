@@ -16,8 +16,14 @@ class Prenda extends Model
   ];
   protected $palabrasClave;
 
-  function __construct()
+  /**
+   * @author Douglas R.
+   * El constructor heredado es sobrescrito, por lo tanto, se llama al constructor
+   * padre también, por favor, no tocar.
+   */
+  function __construct(array $attributes = [])
   {
+    parent::__construct($attributes);
     $this->palabrasClave = $this->getPalabrasClave();
   }
 
