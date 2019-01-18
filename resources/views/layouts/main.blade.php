@@ -27,17 +27,28 @@
     <script src="{{ asset('js/sticky.js') }}" defer></script>
 
     <script>
-    function dropdownToggle() {
-      document.getElementById("dropdown").classList.toggle("show");
-    }
-    </script>
-
-    <script>
     $(function(){
       $(".dropdown").hover(function(){
         $(".dropdown-content").toggle('slow');
       });
     });
+
+    $(function(){
+      $(".has-tab").hover(function(){
+        $(this).toggleClass('has-tab-active');
+      });
+    });
+    </script>
+
+    <script>
+    function openTab(tabName) {
+      var i;
+      var x = document.getElementsByClassName("tab");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      document.getElementById(tabName).style.display = "flex";
+    }
     </script>
 
     <title>Marilyn Moda</title>
@@ -50,150 +61,206 @@
 
       <!--NAVIGATION-->
       <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-laravel">
-          <div class="container">
-              <a class="navbar-brand" href="{{ url('/') }}">
-                  {{-- {{ config('app.name', 'Laravel') }} --}}
-                  MarilynModa
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
+        <div class="container">
+          <a class="navbar-brand" href="{{ url('/') }}">
+              {{-- {{ config('app.name', 'Laravel') }} --}}
+              MarilynModa
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+              <span class="navbar-toggler-icon"></span>
+          </button>
 
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <!-- Left Side Of Navbar -->
-                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav_item"><a href="/" class="nav_link">Inicio</a></li>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav_item"><a href="/" class="nav_link">Inicio</a></li>
 
-                    <!--DROPDOWN-->
-                    <li class="nav_item">
-                      <div class="dropdown">
-                        <a href="catalogo" class="no-after-hover">Catálogo</a>
+              <!--DROPDOWN-->
+              <li class="nav_item">
+                <div class="dropdown">
+                  <a href="catalogo" class="no-after-hover">Catálogo</a>
 
-                        <div id="dropdown" class="dropdown-content">
-                          <div class="drop-wrap">
-                            <div class="drop_column drop_column_first">
-                              <ul class="drop__menu">
-                                <li><a href="#" class="drop__link drop-cat">Mujer</a></li>
-                                <li><a href="#" class="drop__link drop-cat">Hombre</a></li>
-                                <li><a href="#" class="drop__link drop-cat">Popular</a></li>
-                                <li><a href="#" class="drop__link drop-cat">Nuevo</a></li>
-                                <li><a href="#" class="drop__link drop-cat">Ver Todo</a></li>
-                              </ul>
-                            </div>
-                            <div class="drop_column">
-                              <ul class="drop__menu">
-                                <li><a href="#" class="drop__link drop-cat">Ropa</a>
-                                  <ul class="drop__submenu">
-                                    <li><a href="#" class="drop__link">Vestidos</a></li>
-                                    <li><a href="#" class="drop__link">Blusas</a></li>
-                                    <li><a href="#" class="drop__link">Faldas</a></li>
-                                    <li><a href="#" class="drop__link">Pantalones</a></li>
-                                    <li><a href="#" class="drop__link">Chaquetas</a></li>
-                                  </ul>
-                                </li>
-                              </ul>
-                            </div>
-                            <div class="drop_column">
-                              <ul class="drop__menu">
-                                <li><a href="#" class="drop__link drop-cat">Accesorios</a>
-                                  <ul class="drop__submenu">
-                                    <li><a href="#" class="drop__link">Bufandas</a></li>
-                                    <li><a href="#" class="drop__link">Collares</a></li>
-                                    <li><a href="#" class="drop__link">Bolsos</a></li>
-                                    <li><a href="#" class="drop__link">Otros Accesorios</a></li>
-                                  </ul>
-                                </li>
-                                <li><a href="#" class="drop__link drop-cat">Zapatos</a></li>
-                                <li><a href="#" class="drop__link drop-cat">Nuevo</a></li>
-                              </ul>
-                            </div>
+                  <div class="dropdown-content">
+                    <div class="drop-wrap">
+
+                      <div class="drop_column drop_column_first">
+                        <ul class="drop__menu">
+                          <li><a href="#" class="drop__link drop-cat has-tab">Mujer</a></li>
+                          <li><a href="#" class="drop__link drop-cat has-tab">Hombre</a></li>
+                          <li><a href="#" class="drop__link drop-cat has-tab">Niña</a></li>
+                          <li><a href="#" class="drop__link drop-cat has-tab">Niño</a></li>
+                          <li><a href="#" class="drop__link drop-cat">Popular</a></li>
+                          <li><a href="#" class="drop__link drop-cat">Nuevo</a></li>
+                          <li><a href="#" class="drop__link drop-cat">Ver Todo</a></li>
+                        </ul>
+                      </div>
+
+                      <div class="drop-right">
+
+                        <!--TABS TEST-->
+
+                        <div class="drop-cat-nav">
+                          <button class="drop-cat-btn" onclick="openTab('fiesta')">Fiesta</button>
+                          <button class="drop-cat-btn" onclick="openTab('boda')">Boda</button>
+                          <button class="drop-cat-btn dc-last-btn" onclick="openTab('formal')">Formal</button>
+                        </div>
+
+                        <div id="fiesta" class="tab">
+                          <div class="drop_column">
+                            <ul class="drop__menu">
+                              <li><a href="#" class="drop__link drop-cat">Ropa</a>
+                                <ul class="drop__submenu">
+                                  <li><a href="#" class="drop__link">Vestidos</a></li>
+                                  <li><a href="#" class="drop__link">Blusas</a></li>
+                                  <li><a href="#" class="drop__link">Faldas</a></li>
+                                  <li><a href="#" class="drop__link">Pantalones</a></li>
+                                  <li><a href="#" class="drop__link">Chaquetas</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="drop_column">
+                            <ul class="drop__menu">
+                              <li><a href="#" class="drop__link drop-cat">Accesorios</a>
+                                <ul class="drop__submenu">
+                                  <li><a href="#" class="drop__link">Bufandas</a></li>
+                                  <li><a href="#" class="drop__link">Collares</a></li>
+                                  <li><a href="#" class="drop__link">Bolsos</a></li>
+                                  <li><a href="#" class="drop__link">Otros Accesorios</a></li>
+                                </ul>
+                              </li>
+                              <li><a href="#" class="drop__link drop-cat">Zapatos</a></li>
+                              <li><a href="#" class="drop__link drop-cat">Nuevo</a></li>
+                            </ul>
+                          </div>
+                          <div class="drop_column drop_img">
+                            <img src="https://picsum.photos/170/200/?random" alt="">
+                            <button type="button" name="img-btn">Fiesta</button>
                           </div>
                         </div>
-                    </li>
 
-
-
-
-                  </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
-
-                  <!-- Right Side Of Navbar -->
-                  <ul id="nav-right" class="navbar-nav mt-2 mt-lg-0">
-                      <!-- Authentication Links -->
-                      @guest
-                          <li class="nav_item">
-                              <a class="nav_link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                          </li>
-                          @if (Route::has('register'))
-                              <li class="nav_item">
-                                  <a class="nav_link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <div id="boda" class="tab" style="display:none">
+                          <div class="drop_column">
+                            <ul class="drop__menu">
+                              <li><a href="#" class="drop__link drop-cat">Ropa</a>
+                                <ul class="drop__submenu">
+                                  <li><a href="#" class="drop__link">Vestidos</a></li>
+                                  <li><a href="#" class="drop__link">Blusas</a></li>
+                                  <li><a href="#" class="drop__link">Faldas</a></li>
+                                  <li><a href="#" class="drop__link">Pantalones</a></li>
+                                  <li><a href="#" class="drop__link">Chaquetas</a></li>
+                                </ul>
                               </li>
-                          @endif
-                      @else
-                          <li class="nav_item dropdown">
-                              <a id="navbarDropdown" class="nav_link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                  {{ Auth::user()->name }} <span class="caret"></span>
-                              </a>
+                            </ul>
+                          </div>
+                          <div class="drop_column">
+                            <ul class="drop__menu">
+                              <li><a href="#" class="drop__link drop-cat">Accesorios</a>
+                                <ul class="drop__submenu">
+                                  <li><a href="#" class="drop__link">Bufandas</a></li>
+                                  <li><a href="#" class="drop__link">Collares</a></li>
+                                  <li><a href="#" class="drop__link">Bolsos</a></li>
+                                  <li><a href="#" class="drop__link">Otros Accesorios</a></li>
+                                </ul>
+                              </li>
+                              <li><a href="#" class="drop__link drop-cat">Zapatos</a></li>
+                              <li><a href="#" class="drop__link drop-cat">Nuevo</a></li>
+                            </ul>
+                          </div>
+                          <div class="drop_column drop_img">
+                            <img src="https://picsum.photos/170/201/?random" alt="">
+                            <button type="button" name="img-btn">Boda</button>
+                          </div>
+                        </div>
 
-                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{ route('logout') }}"
-                                     onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
-                                      {{ __('Logout') }}
-                                  </a>
+                        <div id="formal" class="tab" style="display:none">
+                          <div class="drop_column">
+                            <ul class="drop__menu">
+                              <li><a href="#" class="drop__link drop-cat">Ropa</a>
+                                <ul class="drop__submenu">
+                                  <li><a href="#" class="drop__link">Vestidos</a></li>
+                                  <li><a href="#" class="drop__link">Blusas</a></li>
+                                  <li><a href="#" class="drop__link">Faldas</a></li>
+                                  <li><a href="#" class="drop__link">Pantalones</a></li>
+                                  <li><a href="#" class="drop__link">Chaquetas</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="drop_column">
+                            <ul class="drop__menu">
+                              <li><a href="#" class="drop__link drop-cat">Accesorios</a>
+                                <ul class="drop__submenu">
+                                  <li><a href="#" class="drop__link">Bufandas</a></li>
+                                  <li><a href="#" class="drop__link">Collares</a></li>
+                                  <li><a href="#" class="drop__link">Bolsos</a></li>
+                                  <li><a href="#" class="drop__link">Otros Accesorios</a></li>
+                                </ul>
+                              </li>
+                              <li><a href="#" class="drop__link drop-cat">Zapatos</a></li>
+                              <li><a href="#" class="drop__link drop-cat">Nuevo</a></li>
+                            </ul>
+                          </div>
+                          <div class="drop_column drop_img">
+                            <img src="https://picsum.photos/170/199/?random" alt="">
+                            <button type="button" name="img-btn">Formal</button>
+                          </div>
+                        </div>
 
-                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                      @csrf
-                                  </form>
-                              </div>
-                          </li>
-                      @endguest
-                  </ul>
-              </div>
-          </div>
-      </nav>
-      <!--DROPDOWN-->
-      {{-- <div class="drop-wrap">
-        <div class="drop_column drop_column_first">
-          <ul class="drop__menu">
-            <li><a href="#" class="drop__link subtitulos-cat">Mujer</a></li>
-            <li><a href="#" class="drop__link subtitulos-cat">Hombre</a></li>
-            <li><a href="#" class="drop__link subtitulos-cat">Popular</a></li>
-            <li><a href="#" class="drop__link subtitulos-cat">Nuevo</a></li>
-            <li><a href="#" class="drop__link subtitulos-cat">Ver Todo</a></li>
+
+                        <!--END TABS TEST-->
+
+
+
+                      </div><!--END OF DROP-RIGHT-->
+
+                    </div><!--END OF DROP-WRAP-->
+                  </div><!--END OF DROPDOWN-CONTENT-->
+                </div> <!--END OF DROPDOWN-->
+              </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+              <!-- Right Side Of Navbar -->
+            <ul id="nav-right" class="navbar-nav mt-2 mt-lg-0">
+                <!-- Authentication Links -->
+                @guest
+                    <li class="nav_item">
+                        <a class="nav_link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav_item">
+                            <a class="nav_link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav_item dropdown">
+                        <a id="navbarDropdown" class="nav_link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
           </ul>
-        </div><!--END OF FIRST COLUMN-->
-        <div class="drop_column">
-          <ul class="drop__menu">
-            <li><a href="#" class="drop__link icon-font subtitulos-cat">Ropa</a>
-              <ul class="site-nav__sub-submenu">
-                <li><a href="#" class="drop__link">Vestidos</a></li>
-                <li><a href="#" class="drop__link">Blusas</a></li>
-                <li><a href="#" class="drop__link">Faldas</a></li>
-                <li><a href="#" class="drop__link">Pantalones</a></li>
-                <li><a href="#" class="drop__link"Chaquetas</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--END OF SECOND COLUMN-->
-        <div class="drop_column">
-          <ul class="drop__menu">
-            <li><a href="#" class="drop__link icon-font subtitulos-cat">Accesorios</a>
-              <ul class="site-nav__sub-submenu">
-                <li><a href="#" class="drop__link">Bufandas</a></li>
-                <li><a href="#" class="drop__link">Collares</a></li>
-                <li><a href="#" class="drop__link">Bolsos</a></li>
-                <li><a href="#" class="drop__link">Otros Accesorios</a></li>
-              </ul>
-            </li>
-            <li><a href="#" class="drop__link icon-font subtitulos-cat">Zapatos</a></li>
-            <li><a href="#" class="drop__link icon-font subtitulos-cat">Nuevo</a></li>
-          </ul>
-        </div><!--END OF THIRD COLUMN-->
-      </div><!--END OF DROPDOWN--> --}}
+          </div><!--END OF COLLAPSE-->
+        </div><!--END OF CONTAINER-->
+      </nav><!--END OF NAVIGATION-->
+
 
 
       <!--CONTENT-->
