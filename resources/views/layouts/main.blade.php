@@ -28,8 +28,8 @@
 
     <script>
     $(function(){
-      $(".dropdown").hover(function(){
-        $(".dropdown-content").toggle('slow');
+      $(".dpdwn").hover(function(){
+        $(".dpdwn-content").toggle('slow');
       });
     });
 
@@ -60,6 +60,7 @@
       @yield('header')
 
       <!--NAVIGATION-->
+      <div class="alert text-center">Este sitio está en construcción &nbsp<i class="fas fa-clipboard-list"></i></div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-laravel">
         <div class="container">
           <a class="navbar-brand" href="{{ url('/') }}">
@@ -77,10 +78,10 @@
 
               <!--DROPDOWN-->
               <li class="nav_item">
-                <div class="dropdown">
-                  <a href="catalogo" class="no-after-hover">Catálogo</a>
+                <div class="dpdwn">
+                  <a href="#" class="no-after-hover">Catálogo</a>
 
-                  <div class="dropdown-content">
+                  <div class="dpdwn-content">
                     <div class="drop-wrap">
 
                       <div class="drop_column drop_column_first">
@@ -297,8 +298,8 @@
 
           <div class="footer-nav footer-grid__item f_middle">
             <h6 class="footer-nav__title">Encuéntranos</h6>
-            <pre>Cll 00 #0-00, local #0
-CC STUFF, Bucaramanga</pre>
+            <pre>Cra 17 No. 36-41 CC Omnicentro
+Piso 2 Local 1B-14, Bucaramanga</pre>
             <a href="#" class="footer-misc__tiendas">
               <i class="fas fa-map-marker-alt"></i>
               <span> Localiza nuestra tienda</span>
