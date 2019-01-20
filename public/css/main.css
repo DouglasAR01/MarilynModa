@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:200,300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,300,400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:300,600,800');
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700');
 
@@ -64,8 +64,11 @@ body{
 background-color: var(--fucsia);
 border-color: var(--fucsia);
 }
+button:focus{
+  display: none;
+}
 
-.alert{
+.alerta{
   background-color: #444;
   color: var(--white);
   padding: 1em;
@@ -75,6 +78,8 @@ border-color: var(--fucsia);
 }
 
 .navbar{ box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);}
+
+.navbar-brand>span{color:#555;font-weight: 700;}
 
 .nav_item{
   display: inline-block;
@@ -274,6 +279,11 @@ footer pre{
   font-weight: 700;
   margin-bottom: .8em;
 
+}
+
+.highlight{
+  text-transform: uppercase;
+  color: var(--orange);
 }
 
 .has-tab-active::after{

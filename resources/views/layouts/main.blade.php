@@ -11,45 +11,22 @@
 
     <!-- Bootstrap CSS and other CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
     @yield('stylesheets')
 
     <!-- Scripts -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> --}}
+    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> --}}
 
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/sticky.js') }}" defer></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
 
-    <script>
-    $(function(){
-      $(".dpdwn").hover(function(){
-        $(".dpdwn-content").toggle('slow');
-      });
-    });
-
-    $(function(){
-      $(".has-tab").hover(function(){
-        $(this).toggleClass('has-tab-active');
-      });
-    });
-    </script>
-
-    <script>
-    function openTab(tabName) {
-      var i;
-      var x = document.getElementsByClassName("tab");
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      document.getElementById(tabName).style.display = "flex";
-    }
-    </script>
 
     <title>Marilyn Moda</title>
   </head>
@@ -60,12 +37,12 @@
       @yield('header')
 
       <!--NAVIGATION-->
-      <div class="alert text-center">Este sitio está en construcción &nbsp<i class="fas fa-clipboard-list"></i></div>
+      <div class="alerta text-center">Este sitio está en construcción &nbsp<i class="fas fa-clipboard-list"></i></div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-laravel">
         <div class="container">
           <a class="navbar-brand" href="{{ url('/') }}">
               {{-- {{ config('app.name', 'Laravel') }} --}}
-              MarilynModa
+              Marilyn<span>Moda</span>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
               <span class="navbar-toggler-icon"></span>
@@ -79,7 +56,7 @@
               <!--DROPDOWN-->
               <li class="nav_item">
                 <div class="dpdwn">
-                  <a href="#" class="no-after-hover">Catálogo</a>
+                  <a href="catalogo" class="no-after-hover">Catálogo</a>
 
                   <div class="dpdwn-content">
                     <div class="drop-wrap">
@@ -88,11 +65,10 @@
                         <ul class="drop__menu">
                           <li><a href="#" class="drop__link drop-cat has-tab">Mujer</a></li>
                           <li><a href="#" class="drop__link drop-cat has-tab">Hombre</a></li>
-                          <li><a href="#" class="drop__link drop-cat has-tab">Niña</a></li>
                           <li><a href="#" class="drop__link drop-cat has-tab">Niño</a></li>
                           <li><a href="#" class="drop__link drop-cat">Popular</a></li>
                           <li><a href="#" class="drop__link drop-cat">Nuevo</a></li>
-                          <li><a href="#" class="drop__link drop-cat">Ver Todo</a></li>
+                          <li><a href="catalogo" class="drop__link drop-cat highlight">Ver Todo</a></li>
                         </ul>
                       </div>
 
@@ -229,19 +205,14 @@
               <!-- Right Side Of Navbar -->
             <ul id="nav-right" class="navbar-nav mt-2 mt-lg-0">
                 <!-- Authentication Links -->
-                @guest
-                    <li class="nav_item">
-                        <a class="nav_link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                @if(empty(session('usuario')))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
-                    @if (Route::has('register'))
-                        <li class="nav_item">
-                            <a class="nav_link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
                 @else
-                    <li class="nav_item dropdown">
-                        <a id="navbarDropdown" class="nav_link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                          {{session('usuario')['emp_nombre'] }}<span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -275,7 +246,7 @@
         <div class="footer-grid">
           <ul class="footer-grid__item f_row f_row_ul">
             <li><a href="#" >Volver Arriba</a></li>
-            <li><a href="#" class="fa fa-facebook"></a><a href="#" class="fa fa-twitter"></a><a href="#" class="fa fa-google"></a><a href="#" class="fa fa-youtube"></a></li>
+            <li><a href="#" class="fa fa-facebook"></a><a href="#" class="fa fa-twitter"></a><a href="#" class="fa fa-instagram"></a></li>
           </ul>
 
           <div class="footer-nav footer-grid__item f_middle">
@@ -298,8 +269,9 @@
 
           <div class="footer-nav footer-grid__item f_middle">
             <h6 class="footer-nav__title">Encuéntranos</h6>
-            <pre>Cra 17 No. 36-41 CC Omnicentro
-Piso 2 Local 1B-14, Bucaramanga</pre>
+            <pre>Cra 17 No. 36-41
+CC Omnicentro, Piso 2
+Local 1B-14, B/manga</pre>
             <a href="#" class="footer-misc__tiendas">
               <i class="fas fa-map-marker-alt"></i>
               <span> Localiza nuestra tienda</span>
