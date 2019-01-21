@@ -109,7 +109,15 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
       //Acá se puede poner todo lo que se quiera luego de autenticar
-      session(['usuario' => Empleado::find($request->cedula)]);
+      $usuario = Empleado::select(
+        'pk_emp_cedula',
+        'emp_celular',
+        'emp_email',
+        'emp_nombre',
+        'emp_apellido',
+        'emp_privilegio'
+        )->where('pk_emp_cedula',$request->cedula)->first();
+      session(['usuario' => $usuario]);
       return redirect()->intended($this->redirectPath());
     }
 }

@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Empleado;
 
 class EmpleadoController extends Controller
 {
+    function __construct()
+    {
+      $this->middleware('entran:admin,gerente,empleados')->
+        except(['create','store','destroy']);
+      $this->middleware('entran:admin')->only(['create','store','destroy']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        //
+        return Empleado::all();
     }
 
     /**
@@ -23,7 +30,7 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        //
+        return 'crear';
     }
 
     /**
@@ -34,7 +41,7 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -43,9 +50,16 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($pk_emp_cedula)
     {
-        //
+        if ($this->verificarEmpleado($pk_emp_cedula)) {
+          $empleado = Empleado::find($pk_emp_cedula);
+          if ($empleado) {
+            return $empleado;
+          }
+          return 'Usuario no encontrado';
+        }
+        return redirect('home');
     }
 
     /**
@@ -56,7 +70,7 @@ class EmpleadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'editar';
     }
 
     /**
@@ -77,8 +91,26 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($pk_emp_cedula)
     {
-        //
+        if ($pk_emp_cedula==session('usuario')->pk_emp_cedula) {
+          return 'No es posible eliminarse a sí mismo.';
+        }
+        $empleado = Empleado::find($pk_emp_cedula);
+        if($empleado){
+          $empleado->delete();
+          return 'Empleado eliminado';
+        }
+        return 'Empleado no encontrado';
+    }
+
+    private function verificarEmpleado($pk_emp_cedula)
+    {
+        $usuario = session('usuario');
+        if ($pk_emp_cedula==$usuario->pk_emp_cedula
+             or $usuario->emp_privilegio=='a') {
+          return 1;
+        }
+        return 0;
     }
 }

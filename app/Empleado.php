@@ -23,7 +23,7 @@ class Empleado extends Authenticatable
   {
       return $this->emp_clave;
   }
-  
+
   public function bajas()
   {
     return $this->hasMany('App\Baja','bja_fk_empleado','pk_emp_cedula');
@@ -31,7 +31,7 @@ class Empleado extends Authenticatable
 
   public function facturas()
   {
-    return $this->hasMany('App\Factura','fac_fk_empelado','pk_emp_cedula');
+    return $this->hasMany('App\Factura','fac_fk_empleado','pk_emp_cedula');
   }
 
   public function gastos()

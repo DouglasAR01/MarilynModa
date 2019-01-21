@@ -75,6 +75,7 @@ class SupraController
    * Es el nombre del input que contiene el archivo a subir
    * @param String $directorio
    * Es el nombre de la subcarpeta a la que se guardará, NO puede ser nulo
+   * @return $ruta retorna la ruta en la que se guardó el archivo.
    * @author Douglas R
    * @version 2.0
    */

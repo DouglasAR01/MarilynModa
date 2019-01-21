@@ -23,7 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //dd(session('usuario'));
-        return view('home');
+        $empleado = session('usuario');
+        $hoy = ['created_at','>=',date('Y-m-d')];
+        $panel = [
+          'facturasDeHoy' => $empleado->facturas()->whereDate($hoy[0],$hoy[1],$hoy[2])->get(),
+          'gastosDeHoy' => $empleado->gastos()->whereDate($hoy[0],$hoy[1],$hoy[2])->get(),
+        ];
+        return view('home',['panel' => $panel]);
     }
 }
