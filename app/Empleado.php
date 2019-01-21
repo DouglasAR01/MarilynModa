@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 
 class Empleado extends Authenticatable
 {
@@ -15,6 +16,7 @@ class Empleado extends Authenticatable
   protected $guard = 'empleado';
   protected $guarded = ['pk_emp_cedula','emp_clave','emp_celular','emp_email'];
   protected $hidden = ['emp_clave'];
+  protected $email; //Solución cutre a un problema del reset passwords de laravel
 
   /**
    * NO TOCAR
@@ -22,6 +24,14 @@ class Empleado extends Authenticatable
   public function getAuthPassword()
   {
       return $this->emp_clave;
+  }
+  /**
+   * NO TOCAR
+   */
+  public function getEmailForPasswordReset()
+  {
+      $this->email = $this->emp_email;
+      return $this->email;
   }
 
   public function bajas()
