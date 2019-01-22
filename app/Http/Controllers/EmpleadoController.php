@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empleado;
+use App\Http\Requests\EmpleadoRequest;
 
 class EmpleadoController extends Controller
 {
     function __construct()
     {
-      $this->middleware('entran:admin,gerente,empleados')->
+      $this->middleware('entran:admin,gerente,empleado')->
         except(['create','store','destroy']);
       $this->middleware('entran:admin')->only(['create','store','destroy']);
     }
@@ -20,7 +21,12 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        return Empleado::all();
+        return view('empleados.verEmpleado',[
+          'empleados' => Empleado::all(),
+          'infoAdicional' => [
+            'priv' => $this->privilegioParser(),
+          ]
+        ]);
     }
 
     /**
@@ -30,7 +36,7 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        return 'crear';
+        return view('empleados.crearEmpleado');
     }
 
     /**
@@ -39,9 +45,9 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpleadoRequest $request)
     {
-
+        return 'confirmado';
     }
 
     /**
@@ -55,7 +61,12 @@ class EmpleadoController extends Controller
         if ($this->verificarEmpleado($pk_emp_cedula)) {
           $empleado = Empleado::find($pk_emp_cedula);
           if ($empleado) {
-            return $empleado;
+            return view('empleados.verEmpleado',[
+              'empleados' => [$empleado],
+              'infoAdicional' => [
+                'priv' => $this->privilegioParser(),
+              ]
+            ]);
           }
           return 'Usuario no encontrado';
         }
@@ -112,5 +123,18 @@ class EmpleadoController extends Controller
           return 1;
         }
         return 0;
+    }
+
+    private function privilegioParser()
+    {
+        $emp_privilegio = session('usuario')->emp_privilegio;
+        switch ($emp_privilegio) {
+          case 'a':
+            return 2;
+          case 'g':
+            return 1;
+          default:
+            return 0;
+        }
     }
 }
