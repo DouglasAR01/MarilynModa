@@ -51,20 +51,11 @@ class LoginController extends Controller
     private function attemptLogin(Request $request)
     {
       $usuario = Empleado::find($request->cedula);
+      if (Auth::viaRemember()) {
+        dd(1);
+      }
       if (!empty($usuario)) {
-        switch ($usuario->emp_privilegio) {
-          case 'a':
-            $guardia = 'admin';
-            break;
-          case 'g':
-            $guardia = 'gerente';
-            break;
-          case 'e':
-            $guardia = 'empleado';
-            break;
-          default:
-            return false;
-        }
+        $guardia = $this->getGuardia($usuario->emp_privilegio);
         return Auth::guard($guardia)->attempt([
           'pk_emp_cedula' => $request->cedula,
           'emp_celular' => $request->celular,
@@ -119,5 +110,28 @@ class LoginController extends Controller
         )->where('pk_emp_cedula',$request->cedula)->first();
       session(['usuario' => $usuario]);
       return redirect()->intended($this->redirectPath());
+    }
+
+    public function logout(Request $request)
+    {
+        $guardia = $this->getGuardia(session('usuario')->emp_privilegio);
+        Auth::guard($guardia)->logout();
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/');
+    }
+
+    private function getGuardia($privilegio)
+    {
+        switch ($privilegio) {
+          case 'a':
+            return 'admin';
+          case 'g':
+            return 'gerente';
+          case 'e':
+            return 'empleado';
+          default:
+            return '';
+        }
     }
 }

@@ -23,6 +23,7 @@ class CrearTablaEmpleados extends Migration
           $table->string('emp_nombre',50);
           $table->string('emp_apellido',50);
           $table->char('emp_privilegio',1)->default('e'); //[a (administrador), g (gerente), e (empleado)]
+          $table->string('remember_token',100)->default('')->nullabe();
           $table->timestamps();
           $table->softDeletes();
       });
