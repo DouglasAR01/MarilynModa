@@ -15,6 +15,8 @@ class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
+    private $tupla;
+
     /**
      * Create a new controller instance.
      *
@@ -33,9 +35,15 @@ class ResetPasswordController extends Controller
         if (!($request->password===$request->password_confirmation)) {
           return $this->sendResetFailedResponse($request,'passwords.password');
         }
+        $credenciales = $this->credentials($request);
+
+        //Verifica que el correo de la petición exista
+        if (!$this->verificarEmail($credenciales)) {
+          return $this->sendResetFailedResponse($request,'passwords.user');
+        }
 
         //Verifica que el token exista para ese correo y además que no haya expirado
-        if (!$this->verificarEmailToken($request)) {
+        if (!$this->verificarToken($credenciales)) {
           return $this->sendResetFailedResponse($request,'passwords.token');
         }
 
@@ -44,7 +52,7 @@ class ResetPasswordController extends Controller
         $empleado->emp_clave = Hash::make($request->password);
         $empleado->setRememberToken(Str::random(60));
         $empleado->save();
-        $this->destruirToken($request);
+        $this->destruirToken($credenciales['emp_email']);
         return redirect('/login');
     }
 
@@ -55,30 +63,33 @@ class ResetPasswordController extends Controller
                     ->withErrors(['email' => trans($response)]);
     }
 
-    private function destruirToken(Request $request)
+    private function destruirToken($email)
     {
-      $credenciales = $this->credentials($request);
-      DB::statement("DELETE FROM password_resets WHERE email='".$credenciales['emp_email']."';");
+      DB::statement("DELETE FROM password_resets WHERE email='".$email."';");
     }
 
-    private function verificarEmailToken(Request $request)
+    private function verificarEmail(array $credenciales)
     {
-        $credenciales = $this->credentials($request);
-        $tupla = $this->getTupla($credenciales);
+        $this->tupla = $this->getTupla($credenciales);
 
         //Verifica que exista la tupla
-        if (!$tupla) {
+        if (!$this->tupla) {
           return 0;
         }
 
+        return 1;
+    }
+
+    private function verificarToken(array $credenciales)
+    {
         //Verifica que el token no haya expirado
-        if ($this->verificarExpirado($tupla->created_at)) {
-          $this->destruirToken($request);
+        if ($this->verificarExpirado($this->tupla->created_at)) {
+          $this->destruirToken($credenciales['emp_email']);
           return 0;
         }
 
         //Verifica que el token corresponda
-        if (!Hash::check($credenciales['token'],$tupla->token)) {
+        if (!Hash::check($credenciales['token'],$this->tupla->token)) {
           return 0;
         }
 
