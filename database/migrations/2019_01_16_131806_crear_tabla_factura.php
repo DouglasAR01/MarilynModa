@@ -33,7 +33,7 @@ class CrearTablaFactura extends Migration
 
           $table->foreign('fac_fk_empleado')
                 ->references('pk_emp_cedula')->on('empleado')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
 
           $table->timestamps();
       });

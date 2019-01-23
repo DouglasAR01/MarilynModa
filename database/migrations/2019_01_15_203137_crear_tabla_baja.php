@@ -32,7 +32,7 @@ class CrearTablaBaja extends Migration
 
           $table->foreign('bja_fk_empleado')
                 ->references('pk_emp_cedula')->on('empleado')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
 
           $table->timestamps();
       });

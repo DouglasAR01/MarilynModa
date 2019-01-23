@@ -23,7 +23,7 @@ class CrearTablaGasto extends Migration
 
           $table->foreign('gas_fk_empleado')
                 ->references('pk_emp_cedula')->on('empleado')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
 
           $table->foreign('gas_fk_categoria')
                 ->references('pk_categoria')->on('categoria')
