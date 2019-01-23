@@ -9,7 +9,7 @@
     <form class="" action="/empleados" method="post">
       {{ csrf_field() }}
       <label for="cedula">Cédula del empleado</label><br>
-      <input type="text" name="cedula" value="{{old('cedula')}}"><br>
+      <input type="number" name="cedula" value="{{old('cedula')}}"><br>
       <label for="celular">Celular del empleado</label><br>
       <input type="text" name="celular" value="{{old('celular')}}"><br>
       <label for="email">Email del empleado</label><br>

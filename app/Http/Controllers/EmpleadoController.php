@@ -11,9 +11,9 @@ class EmpleadoController extends Controller
 {
     function __construct()
     {
-      $this->middleware('entran:admin,gerente,empleado')->
-        except(['create','store','destroy']);
-      $this->middleware('entran:admin')->only(['create','store','destroy']);
+        $this->middleware('entran:admin,gerente,empleado')->
+          except(['create','store','destroy']);
+        $this->middleware('entran:admin')->only(['create','store','destroy']);
     }
     /**
      * Display a listing of the resource.

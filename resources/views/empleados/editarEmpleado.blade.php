@@ -31,7 +31,7 @@
       <input type="text" name="nombre" value="{{$empleado->emp_nombre}}"><br>
       <label for="apellido">Apellido del empleado</label><br>
       <input type="text" name="apellido" value="{{$empleado->emp_apellido}}"><br>
-      @if ($empleado->emp_privilegio==='a')
+      @if (auth()->user()->emp_privilegio==='a')
         <label for="privilegio">Cargo</label><br>
         <select class="" name="privilegio">
           <option value="a"
@@ -48,7 +48,7 @@
             @endif>Empleado</option>
         </select><br>
       @else
-        <input type="hidden" name="privilegio" value="{{$empleado->emp_privilegio}}">  
+        <input type="hidden" name="privilegio" value="{{$empleado->emp_privilegio}}">
       @endif
       <input type="submit" name="" value="Enviar">
     </form>

@@ -30,14 +30,14 @@
       <!-- Right Side Of Navbar -->
     <ul id="nav-right" class="navbar-nav mt-2 mt-lg-0">
         <!-- Authentication Links -->
-        @guest
+        @if(empty(auth(session('cargo'))->user()))
             <li class="nav-item">
                 <a class="nav_link" href="{{ route('login') }}">{{ __('Login') }}</a>
             </li>
         @else
             <li class="nav_item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  {{auth()->user()->emp_nombre }}<span class="caret"></span>
+                  {{auth(session('cargo'))->user()->emp_nombre }}<span class="caret"></span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -52,7 +52,7 @@
                     </form>
                 </div>
             </li>
-        @endguest
+        @endif
   </ul>
   </div><!--END OF COLLAPSE-->
 </div><!--END OF CONTAINER-->
