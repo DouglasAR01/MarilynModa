@@ -133,12 +133,12 @@ class EmpleadoController extends Controller
         $empleado->emp_apellido = $request->apellido;
         //Con esto se evita un escalado de privilegios indeseado mediante
         //modificación del campo oculto en la vista.
-        if (session('usuario')->emp_privilegio==='a') {
+        if (auth()->user()->emp_privilegio==='a') {
           $empleado->emp_privilegio = $request->privilegio;
         }
         if ($empleado->save()) {
           //Verifica si el usuario a modificar era el usuario logeado
-          if (session('usuario')->pk_emp_cedula==$pk_emp_cedula) {
+          if (auth()->user()->pk_emp_cedula==$pk_emp_cedula) {
             session()->flush();
             return redirect('login');
           }
@@ -155,7 +155,7 @@ class EmpleadoController extends Controller
      */
     public function destroy($pk_emp_cedula)
     {
-        if ($pk_emp_cedula==session('usuario')->pk_emp_cedula) {
+        if ($pk_emp_cedula==auth()->user()->pk_emp_cedula) {
           return 'No es posible eliminarse a sí mismo.';
         }
         $empleado = Empleado::find($pk_emp_cedula);
@@ -168,7 +168,7 @@ class EmpleadoController extends Controller
 
     private function verificarEmpleado($pk_emp_cedula)
     {
-        $usuario = session('usuario');
+        $usuario = auth()->user();
         if ($pk_emp_cedula==$usuario->pk_emp_cedula
              or $usuario->emp_privilegio=='a') {
           return 1;
@@ -178,7 +178,7 @@ class EmpleadoController extends Controller
 
     private function privilegioParser()
     {
-        $emp_privilegio = session('usuario')->emp_privilegio;
+        $emp_privilegio = auth()->user()->emp_privilegio;
         switch ($emp_privilegio) {
           case 'a':
             return 2;

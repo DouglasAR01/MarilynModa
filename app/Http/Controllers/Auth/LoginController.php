@@ -30,6 +30,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+    private $guardia;
 
     /**
      * Create a new controller instance.
@@ -51,12 +52,9 @@ class LoginController extends Controller
     private function attemptLogin(Request $request)
     {
       $usuario = Empleado::find($request->cedula);
-      if (Auth::viaRemember()) {
-        dd(1);
-      }
       if (!empty($usuario)) {
-        $guardia = $this->getGuardia($usuario->emp_privilegio);
-        return Auth::guard($guardia)->attempt([
+        $this->guardia = $this->getGuardia($usuario->emp_privilegio);
+        return Auth::guard($this->guardia)->attempt([
           'pk_emp_cedula' => $request->cedula,
           'emp_celular' => $request->celular,
           'password' => $request->password
@@ -100,15 +98,13 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
       //Acá se puede poner todo lo que se quiera luego de autenticar
-      $usuario = Empleado::find($request->cedula);
-      session(['usuario' => $usuario]);
+      session(['cargo' => $this->guardia]);
       return redirect()->intended($this->redirectPath());
     }
 
     public function logout(Request $request)
     {
-        $guardia = $this->getGuardia(session('usuario')->emp_privilegio);
-        Auth::guard($guardia)->logout();
+        auth(session('cargo'))->logout();
         $request->session()->invalidate();
 
         return $this->loggedOut($request) ?: redirect('/');
@@ -126,5 +122,10 @@ class LoginController extends Controller
           default:
             return '';
         }
+    }
+
+    protected function guard()
+    {
+        return Auth::guard($this->guardia);
     }
 }

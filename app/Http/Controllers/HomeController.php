@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $empleado = session('usuario');
+        $empleado = auth()->user();
         $hoy = ['created_at','>=',date('Y-m-d')];
         $panel = [
           'facturasDeHoy' => $empleado->facturas()->whereDate($hoy[0],$hoy[1],$hoy[2])->get(),

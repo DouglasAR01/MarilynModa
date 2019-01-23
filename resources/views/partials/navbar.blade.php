@@ -30,14 +30,14 @@
       <!-- Right Side Of Navbar -->
     <ul id="nav-right" class="navbar-nav mt-2 mt-lg-0">
         <!-- Authentication Links -->
-        @if(empty(session('usuario')))
+        @guest
             <li class="nav-item">
                 <a class="nav_link" href="{{ route('login') }}">{{ __('Login') }}</a>
             </li>
         @else
             <li class="nav_item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  {{session('usuario')['emp_nombre'] }}<span class="caret"></span>
+                  {{auth()->user()->emp_nombre }}<span class="caret"></span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
