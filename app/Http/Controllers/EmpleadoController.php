@@ -168,9 +168,9 @@ class EmpleadoController extends Controller
 
     private function verificarEmpleado($pk_emp_cedula)
     {
-        $usuario = auth()->user();
-        if ($pk_emp_cedula==$usuario->pk_emp_cedula
-             or $usuario->emp_privilegio=='a') {
+        $empleado = auth()->user();
+        if ($pk_emp_cedula==$empleado->pk_emp_cedula
+             or $empleado->emp_privilegio=='a') {
           return 1;
         }
         return 0;
@@ -178,8 +178,7 @@ class EmpleadoController extends Controller
 
     private function privilegioParser()
     {
-        $emp_privilegio = auth()->user()->emp_privilegio;
-        switch ($emp_privilegio) {
+        switch (auth()->user()->emp_privilegio) {
           case 'a':
             return 2;
           case 'g':
