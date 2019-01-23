@@ -22,7 +22,7 @@ class prendaController extends Controller
     public function index()
     {
       // $prendas= Prenda::all();
-      return view('prendas.verPrenda');
+      return view('prendas.indexPrendas');
     }
 
     /**
@@ -90,6 +90,6 @@ class prendaController extends Controller
     public function destroy(Prenda $prenda)
     {
        $prenda->delete();
-       return redirect->route('home')->with('status','Prenda Eliminada Exitosamente')
+       return 'eliminado';
     }
 }
