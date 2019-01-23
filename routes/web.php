@@ -23,8 +23,12 @@ Auth::routes(['register' => false]);
 /**
  * Miscelanea
  */
-Route::get('catalogo', 'PagesController@getCatalogo');
-Route::get('/', 'PagesController@getIndex');
+Route::get('catalogo', function(){
+  return view('pages.catalogo');
+});
+Route::get('/', function (){
+  return view('pages.index');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
 /**
