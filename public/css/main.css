@@ -64,9 +64,8 @@ body{
 background-color: var(--fucsia);
 border-color: var(--fucsia);
 }
-button:focus{
-  display: none;
-}
+
+button:focus{  outline-color: rgba(0,0,0,0);}
 
 .alerta{
   background-color: #444;
