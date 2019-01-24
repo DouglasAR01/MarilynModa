@@ -41,7 +41,7 @@
 }
 
 .portfolio-item {
-  background: var(--orange);
+  background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #7a6ff0 100%);
   color: var(--light-blue);
   /* color: #c4c4c4; */
   font-weight: 700;
@@ -96,7 +96,8 @@
 .portfolio-item::before {
   content: '';
   display: block;
-  background: rgba(249, 104, 85, 0.5);
+  background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #f0cb6e 100%);
+  opacity: .5;
   /* background: #353535; */
   position: absolute;
   top: 0;
@@ -125,4 +126,8 @@
       height: 50vw;
     }
     .portfolio-item{font-size: 3.4vw}
+  }
+
+  @media screen and (max-width:500px) {
+    .populares__text{margin-top: 0; max-width: 200px;}
   }

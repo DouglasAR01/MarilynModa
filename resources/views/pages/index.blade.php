@@ -10,7 +10,7 @@
     <div class="head__text text-center">
       <h1 id="head__title">Marylin Moda</h1>
       <hr id="head__line">
-      <h4 id="head__desc">Lorem ipsum dolor sit amet.</h4>
+      <h4 id="head__desc">Venta y alquiler de trajes.</h4>
     </div>
   </div>
 @endsection

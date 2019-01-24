@@ -7,7 +7,7 @@ $(document).ready(function() {
 
     if (scrollTop > stickyNavTop) {
         $('.navbar').addClass('sticky-top');
-        $('.content').css('margin-top','3.5em');
+        $('.content').css('margin-top','3em');
     } else {
         $('.navbar').removeClass('sticky-top');
         $('.content').css('margin-top','0em');
@@ -23,10 +23,37 @@ $(document).ready(function() {
 
 //Catálogo Dropdown
 $(function(){
-  $(".dpdwn").hover(function(){
-    $(".dpdwn-content").toggle();
-  });
+    $('.dropdown-toggle').dropdown();
 });
+
+//Dropdown en pantallas pequeñas
+// $(function(){
+//
+//   var showVpWidth = function(){
+//     $('#vp-width').html($(window).width());
+//     $(".dpdwn-content").hide();
+//
+//     if($(window).width() < 975){
+//       $(".dpdwn-content").css({'top': '0','position': 'relative'});
+//
+//     }
+//     else{
+//       $(".dpdwn-content").css({'top': '40px','position': 'absolute'});
+//     }
+//     $(".dpdwn").click(function(){
+//       $(".dpdwn-content").toggle();
+//     });
+//
+//   };
+//
+//   showVpWidth();
+//
+//   $(window).resize(function() {
+//
+//
+//     showVpWidth();
+//   });
+// });
 
 //Efecto de flecha en las tabs de género del dropdown en catálogo
 $(function(){

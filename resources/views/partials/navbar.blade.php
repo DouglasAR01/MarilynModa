@@ -10,14 +10,28 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <!-- Left Side Of Navbar -->
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav_item"><a href="/" class="nav_link">Inicio</a></li>
+      <li class="nav_item"><a href="/" class="nav_link">Inicio</a><div class="square"></div></li>
       <!--DROPDOWN-->
       <li class="nav_item">
-        <div class="dpdwn">
-          <a href="catalogo" class="nav_link">Catálogo</a>
+
+        <div class="dropdown">
+          <button class=" dropdown-toggle nav_btn_link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Catálogo</span>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item drop__link" href="catalogo">Vestidos de Boda</a>
+            <a class="dropdown-item drop__link" href="catalogo">Vestidos de Fiesta</a>
+            <a class="dropdown-item drop__link" href="catalogo">Vestidos de Gala</a>
+            <a class="dropdown-item drop__link" href="catalogo">Trajes de Caballero</a>
+            <a class="dropdown-item drop__link" href="catalogo">Trajes de Niño</a>
+            <a class="dropdown-item drop__link" href="catalogo">Ver todo</a>
+          </div>
+        </div>
+        {{-- <div class="dpdwn">
+          <button class="nav_link">Catálogo</button>
           @include('partials.navbarDropdown')
 
-        </div> <!--END OF DROPDOWN-->
+        </div> <!--END OF DROPDOWN--> --}}
       </li>
 
     </ul>
