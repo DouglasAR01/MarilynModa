@@ -29,6 +29,6 @@ class HomeController extends Controller
           'facturasDeHoy' => $empleado->facturas()->whereDate($hoy[0],$hoy[1],$hoy[2])->get(),
           'gastosDeHoy' => $empleado->gastos()->whereDate($hoy[0],$hoy[1],$hoy[2])->get(),
         ];
-        return view('home',['panel' => $panel]);
+        return view('pages.home',['panel' => $panel]);
     }
 }

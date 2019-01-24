@@ -14,7 +14,7 @@
       <!--DROPDOWN-->
       <li class="nav_item">
         <div class="dpdwn">
-          <a href="catalogo" class="no-after-hover">Catálogo</a>
+          <a href="catalogo" class="nav_link">Catálogo</a>
           @include('partials.navbarDropdown')
 
         </div> <!--END OF DROPDOWN-->

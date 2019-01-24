@@ -91,7 +91,7 @@ button:focus{
 #nav-right .nav_item{
   margin-right: 0;
 }
-.nav_link, .drop__link, .no-after-hover{
+.nav_link, .drop__link{
   color: var(--gray-op-07);
   text-decoration: none;
   font-family: 'Raleway', sans-serif;
@@ -99,13 +99,14 @@ button:focus{
   position: relative;
 }
 
-.nav_link:hover, .drop__link:hover, .no-after-hover:hover{
+
+.nav_link:hover, .drop__link:hover{
   color: rgba(56, 60, 66, 1);
   text-emphasis: bold;
   text-decoration: none;
 }
 
-.nav_link::after, .dpdwn::after{
+.nav_link::after{
   content: '';
   display: block;
   height: 4px;
@@ -117,11 +118,16 @@ button:focus{
   z-index: 6;
   transition: all ease-in-out 200ms;
 }
-.dpdwn::after{
-  bottom: 21px;
-}
 
-.nav_link:hover::after, .dpdwn:hover::after{  width: 100%;}
+.nav_link:hover::after{  width: 100%;}
+
+.dpdwn__markup{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom:-20px;
+  display: block;
+}
 
 
 @media (min-width: 1200px){
@@ -166,25 +172,46 @@ footer a:hover{
 .footer-grid{
   display: grid;
   height: 100%;
-  grid-template-rows: repeat(4, 1fr);
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr);
   grid-gap: 5px;
+  grid-template-areas:
+  "top"
+  "left"
+  "center"
+  "right"
+  "bottom"
 }
 
-.f_row {
-  grid-row: span 1;
-  grid-column: span 3;
+@media only screen and (min-width: 743px){
+  .footer-grid{
+    max-width: 800px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+    "top top top"
+    "left center right"
+    "bottom bottom bottom"
+  }
+  .footer-nav{
+    text-align: left!important;
+  }
+}
+
+.f_top {
+  grid-area: top;
   display: flex;
   align-items: center;
 }
 
-.f_middle {
-  grid-row: span 2;
-  grid-column: span 1;
-  /* border-right: 1px var(--orange) solid; */
+.f_left {grid-area: left;}
+
+.f_center {
+  grid-area: center;
 }
 
-.footer-grid__item{
+.f_right {grid-area:right;}
+.f_bottom {grid-area:bottom;}
+
+ .footer-grid__item{
   /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); */
   padding: 0.5em 2em;
   justify-content: center;
@@ -202,7 +229,7 @@ footer a:hover{
 
 
 .footer-nav{
-  text-align: left;
+  text-align: center;
   padding-top: 2em;
 }
 
@@ -231,12 +258,16 @@ footer pre{
 .fa{ margin:0 10px;}
 .fas{margin-right: 2px;}
 
-.dpdwn {
-  height: 50px;
+
+/* .dpdwn::before {
+  content: '';
+  display: block;
+  height: 40px;
+  width: 100%;
   position: absolute;
-  display: inline-block;
+  background-color: rgba(73, 45, 244, 0.48);
   z-index: 5;
-}
+} */
 
 .dpdwn-content {
   display: none;
