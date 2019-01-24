@@ -84,7 +84,7 @@ class SupraController
     String $nombreInput,
     String $directorio
   ){
-    $ruta = $request->file($nombreInput)->store($directorio);
+    $ruta = $request->file($nombreInput)->store($directorio,'public');
     return $ruta;
   }
 }

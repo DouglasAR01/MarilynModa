@@ -19,19 +19,30 @@
      --}}
     <div class="">
       <table border="2">
-
         <tr>
-          <th>id</th>
-          <th>categoria</th>
-          <th>nombre</th>
-          <th>descripción</th>
-          <th>talla</th>
-          <th>cantidad disp</th>
-          <th>Precio unidad</th>
-          <th>Adquirido (fecha) </th>
-          <th>Veces Alquilado</th>
-
+          <th>Foto</th>
+          <th>Categoría</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Talla</th>
+          <th>Cantidad disponible</th>
+          <th>Veces alquilado</th>
+          @if (auth()->user()->emp_privilegio==='a' || auth()->user()->emp_privilegio==='g')
+            <th>Opciones</th>
+          @endif
         </tr>
+        @foreach ($prendas as $prenda)
+          <tr>
+            <td><img src="{{asset('storage/'.$prenda->getFotoPrincipal())}}" alt=""></td>
+            <td>{{$prenda->getNombreCategoria()}}</td>
+            <td>{{$prenda->pre_nombre}}</td>
+            <td>{{$prenda->pre_descripcion}}</td>
+            <td>{{$prenda->pre_talla}}</td>
+            <td>{{$prenda->pre_cantidad}}</td>
+            <td>{{$prenda->pre_veces_alquilado}}</td>
+            <td>Opiones RUD</td>
+          </tr>
+        @endforeach
       </table>
     </div>
   </body>

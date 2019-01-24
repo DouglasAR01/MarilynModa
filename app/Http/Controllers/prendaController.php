@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Prenda;
+use App\Categoria;
+use App\FotoPrenda;
+use App\Http\Controllers\SupraController as SC;
 
 class prendaController extends Controller
 {
 
     function __construct()
     {
-      $this->middleware('entran:admin,gerente,empleado')->
-        except(['create','store','destroy']);
-      $this->middleware('entran:admin')->only(['create','store','destroy']);
+        $this->middleware('entran:admin,gerente,empleado')
+             ->only(['index','show']);
+        $this->middleware('entran:admin,gerente')->except(['index','show','destroy']);
+        $this->middleware('entran:admin')->only('destroy');
     }
     /**
      * Display a listing of the resource.
@@ -21,8 +25,7 @@ class prendaController extends Controller
      */
     public function index()
     {
-      // $prendas= Prenda::all();
-      return view('prendas.indexPrendas');
+        return view('prendas.indexPrendas', ['prendas' => Prenda::all()]);
     }
 
     /**
@@ -32,7 +35,8 @@ class prendaController extends Controller
      */
     public function create()
     {
-      return view('prendas.crearPrenda');
+        $categorias = Categoria::all()->where('cat_tipo','a');
+        return view('prendas.crearPrenda',['categorias' => $categorias]);
     }
 
     /**
@@ -43,7 +47,28 @@ class prendaController extends Controller
      */
     public function store(Request $request)
     {
-        return 'Guardado';
+        $nuevaPrenda = new Prenda();
+        $nuevaPrenda->pre_fk_categoria = $request->categoria;
+        $nuevaPrenda->pre_visible = $request->visible; //verificar que sea booleano
+        $nuevaPrenda->pre_nombre = $request->nombre;
+        $nuevaPrenda->pre_descripcion = $request->descripcion;
+        $nuevaPrenda->pre_cantidad = $request->cantidad;
+        $nuevaPrenda->pre_precio_sugerido = $request->precio;
+        $nuevaPrenda->pre_fecha_compra = $request->fecha;
+        $nuevaPrenda->pre_talla = $request->talla;
+        if (!$nuevaPrenda->save()) {
+          return 'Error al guardar la prenda';
+        }
+        $linkFotoSubida = SC::subirArchivo($request,'foto','prendas');
+        if (!$linkFotoSubida) {
+          return 'Error al guardar la foto';
+        }
+        FotoPrenda::create([
+          'fop_fk_prenda' => $nuevaPrenda->pk_prenda,
+          'fop_link' => $linkFotoSubida,
+          'fop_principal' => true
+        ]);
+        return 'Prenda guardada con exito';
     }
 
     /**
@@ -54,8 +79,11 @@ class prendaController extends Controller
      */
     public function show($id)
     {
-      $prenda = Prenda::find($id);
-      return view(prendas.verPrenda,compact('prenda'));
+        $prenda = Prenda::find($id);
+        if (!$prenda) {
+          return 'Prenda no encontrada';
+        }
+        return view('prendas.verPrenda',compact('prenda'));
     }
 
     /**
@@ -66,7 +94,7 @@ class prendaController extends Controller
      */
     public function edit(Prenda $prenda)
     {
-       return view('prendas.editarPrenda',compact('prenda'));
+        return view('prendas.editarPrenda',compact('prenda'));
     }
 
     /**
@@ -89,7 +117,7 @@ class prendaController extends Controller
      */
     public function destroy(Prenda $prenda)
     {
-       $prenda->delete();
-       return 'eliminado';
+        $prenda->delete();
+        return 'eliminado';
     }
 }

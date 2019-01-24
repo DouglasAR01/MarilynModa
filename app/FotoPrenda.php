@@ -3,27 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use CoenJacobs\EloquentCompositePrimaryKeys\HasCompositePrimaryKey;
 
 class FotoPrenda extends Model
 {
+    use HasCompositePrimaryKey;
 
-  protected $table = 'foto_prenda';
-  protected $guarded = [];
-
-
-  protected function setKeysForSaveQuery(Builder $query)
-    {
-        $query
-            ->where('fop_fk_prenda', '=', $this->getAttribute('fop_fk_prenda'))
-            ->where('fop_link', '=', $this->getAttribute('fop_link'));
-        return $query;
-    }
+    protected $table = 'foto_prenda';
+    protected $primaryKey = ['fop_fk_prenda','fop_link'];
+    protected $guarded = [];
 
     /**
      * @author Pecons
      * Métodos de las relaciones que tiene la tabla Foto_Prenda.
      */
-     
+
     public function prendaDeFoto()
     {
       return $this->belongsTo('App\Prenda','fop_fk_prenda','pk_prenda');

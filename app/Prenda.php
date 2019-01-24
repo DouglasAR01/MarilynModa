@@ -15,33 +15,66 @@ class Prenda extends Model
     'pre_talla'
   ];
   protected $palabrasClave;
+  protected $fotos;
 
-  /**
-   * @author Douglas R.
-   * El constructor heredado es sobrescrito, por lo tanto, se llama al constructor
-   * padre también, por favor, no tocar.
-   */
-  function __construct(array $attributes = [])
-  {
-    parent::__construct($attributes);
-    $this->palabrasClave = $this->getPalabrasClave();
-  }
 
   /**
    * @author Douglas R.
    * Este método retorna todas las palabras clave que correspondan a esta prenda.
    * @return Array
    */
-  private function getPalabrasClave()
+  private function setPalabrasClave()
   {
-    $thisPrendaPalClave =
-      $this->hasMany('App\PrendaPalClave','ppc_fk_prenda','pk_prenda')->get();
-    $thisPalabrasClave = [];
-    foreach ($thisPrendaPalClave as $PPC)
-    {
-      array_push($thisPalabrasClave,$PPC->palabraClave()->first()->pal_clave);
-    }
-    return $thisPalabrasClave;
+      $thisPrendaPalClave =
+        $this->palabrasClave()->get();
+      $thisPalabrasClave = [];
+      foreach ($thisPrendaPalClave as $PPC){
+        array_push($thisPalabrasClave,$PPC->palabraClave()->first()->pal_clave);
+      }
+      $this->palabrasClave = $thisPalabrasClave;
+  }
+
+  /**
+   * @author Douglas R.
+   * Éste método retorna todas las fotos que tiene asignadas la prenda.
+   * @return Array
+   */
+  private function setFotos()
+  {
+      $this->fotos = $this->fotos()->get()->toArray();
+  }
+
+  public function getNombreCategoria()
+  {
+      return $this->categoria()->first()->cat_nombre;
+  }
+
+  public function getPalabrasClave()
+  {
+      if (!$this->palabrasClave) {
+        $this->setPalabrasClave();
+      }
+      return $this->palabrasClave;
+  }
+
+  public function getFotos()
+  {
+      if (!$this->fotos) {
+        $this->setFotos();
+      }
+      return $this->fotos;
+  }
+
+  public function getFotoPrincipal()
+  {
+      if (!$this->fotos) {
+        $this->setFotos();
+      }
+      foreach ($this->fotos as $foto) {
+        if ($foto['fop_principal']==1) {
+          return $foto['fop_link'];
+        }
+      }
   }
 
   /**
@@ -49,25 +82,28 @@ class Prenda extends Model
    * Métodos de las relaciones que tiene la tabla prenda.
    */
 
-  public function facturaDePrenda()
+  public function facturas()
   {
-    return $this->hasMany('App\FacturaPrenda','fpr_fk_prenda','pk_prenda');
+      return $this->hasMany('App\FacturaPrenda','fpr_fk_prenda','pk_prenda');
   }
 
-  public function fotoPrenda()
+  public function fotos()
   {
-    return $this->hasMany('App\FotoPrenda','fop_fk_prenda','pk_prenda');
+      return $this->hasMany('App\FotoPrenda','fop_fk_prenda','pk_prenda');
   }
-  public function baja()
+
+  public function bajas()
   {
-    return $this->hasMany('App\Baja','bja_fk_prenda','pk_prenda');
+      return $this->hasMany('App\Baja','bja_fk_prenda','pk_prenda');
   }
-  public function prendaPalClave()
+
+  public function palabrasClave()
   {
-    return $this->hasMany('App\PrendaPalClave','ppc_fk_prenda','pk_prenda');
+      return $this->hasMany('App\PrendaPalClave','ppc_fk_prenda','pk_prenda');
   }
-  public function categoriaPrenda()
+
+  public function categoria()
   {
-    return $this->belongsTo('App\Categoria','pre_fk_categoria','pk_categoria');
+      return $this->belongsTo('App\Categoria','pre_fk_categoria','pk_categoria');
   }
 }

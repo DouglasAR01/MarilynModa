@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         el dato exista antes de ser asignado.
       */
       $this->call(EmpleadoSeeder::class);
+      $this->call(CategoriaSeeder::class);
     }
 }
