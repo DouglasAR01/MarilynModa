@@ -21,26 +21,26 @@
       <table border="2">
         <tr>
           <th>Foto</th>
+          <th>Código</th>
           <th>Categoría</th>
           <th>Nombre</th>
           <th>Descripción</th>
           <th>Talla</th>
           <th>Cantidad disponible</th>
           <th>Veces alquilado</th>
-          @if (auth()->user()->emp_privilegio==='a' || auth()->user()->emp_privilegio==='g')
-            <th>Opciones</th>
-          @endif
+          <th>Ver</th>
         </tr>
         @foreach ($prendas as $prenda)
           <tr>
-            <td><img src="{{asset('storage/'.$prenda->getFotoPrincipal())}}" alt=""></td>
+            <td><img src="{{asset('storage/'.$prenda->getFotoPrincipal())}}" alt="" height="84" width="84"></td>
+            <td>{{$prenda->pk_prenda}}</td>
             <td>{{$prenda->getNombreCategoria()}}</td>
             <td>{{$prenda->pre_nombre}}</td>
             <td>{{$prenda->pre_descripcion}}</td>
             <td>{{$prenda->pre_talla}}</td>
             <td>{{$prenda->pre_cantidad}}</td>
             <td>{{$prenda->pre_veces_alquilado}}</td>
-            <td>Opiones RUD</td>
+            <td><a href="/prendas/{{$prenda->pk_prenda}}">Ver</a></td>
           </tr>
         @endforeach
       </table>

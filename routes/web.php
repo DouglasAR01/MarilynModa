@@ -99,4 +99,5 @@ Route::resource('/fotosprenda','FotoPrendaController');
  * Palabra clave
  * @author Douglas R
  */
+ //Probablemente toque añadir endpoints adicionales para añadir palabras clave a un vestido
 Route::resource('/palabrasclave','PalabraClaveController');

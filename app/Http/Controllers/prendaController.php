@@ -14,7 +14,7 @@ class prendaController extends Controller
     function __construct()
     {
         $this->middleware('entran:admin,gerente,empleado')
-             ->only(['index','show']);
+             ->only(['index']);
         $this->middleware('entran:admin,gerente')->except(['index','show','destroy']);
         $this->middleware('entran:admin')->only('destroy');
     }
@@ -82,6 +82,10 @@ class prendaController extends Controller
         $prenda = Prenda::find($id);
         if (!$prenda) {
           return 'Prenda no encontrada';
+        }
+        //Si no es un empleado y la prenda no es visible al publico, retrocede
+        if (empty(auth(session('cargo'))->user()) && $prenda->pre_visible==false) {
+          return back();
         }
         return view('prendas.verPrenda',compact('prenda'));
     }
