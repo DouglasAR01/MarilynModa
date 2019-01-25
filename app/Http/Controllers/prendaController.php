@@ -7,8 +7,9 @@ use App\Prenda;
 use App\Categoria;
 use App\FotoPrenda;
 use App\Http\Controllers\SupraController as SC;
+use App\Http\Requests\PrendaRequest;
 
-class prendaController extends Controller
+class PrendaController extends Controller
 {
 
     function __construct()
@@ -45,7 +46,7 @@ class prendaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PrendaRequest $request)
     {
         $nuevaPrenda = new Prenda();
         $nuevaPrenda->pre_fk_categoria = $request->categoria;
@@ -98,7 +99,9 @@ class prendaController extends Controller
      */
     public function edit(Prenda $prenda)
     {
-        return view('prendas.editarPrenda',compact('prenda'));
+        $categorias = Categoria::all()->where('cat_tipo','a');
+        $fotoPrenda= FotoPrenda::all()->where('fop_fk_prenda',$prenda->pk_prenda);        
+        return view('prendas.editarPrenda',['categorias' => $categorias,'prenda' => $prenda, 'fotoPrenda' => $fotoPrenda]);
     }
 
     /**

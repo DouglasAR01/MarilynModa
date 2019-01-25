@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
+use App\Prenda;
+use App\Categoria;
 class PrendaRequest extends FormRequest
 {
     /**
@@ -16,17 +18,32 @@ class PrendaRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    // $table->increments('pk_prenda');
+    // $table->unsignedInteger('pre_fk_categoria');
+    // $table->boolean('pre_visible')->default(true);
+    // $table->string('pre_nombre', 50);
+    // $table->string('pre_descripcion', 255)->nullable();
+    // $table->char('pre_talla', 4)->default('M'); // De XS a XXXL
+    // $table->tinyInteger('pre_cantidad')->default(0);
+    // $table->unsignedInteger('pre_precio_sugerido')->nullable();
+    // $table->date('pre_fecha_compra');
+    // $table->unsignedInteger('pre_veces_alquilado')->default(0);
+
     public function rules()
     {
       switch ($this->method()) {
         case 'POST':
           return [
-            '',
+            'nombre' => 'string|required|max:50',
+            'descripcion' => 'string|required|max:255',
+            'cantidad' => 'numeric|required',
+            'precio' => 'numeric|nullable',
+            'fecha' => 'date|required',
+            'talla' => ['required',Rule::in(['XS','XL','M','L'])],
+            'categoria' => ['required','exists:categoria,pk_categoria'],
+            'visible' => 'boolean|required',
+            'foto' => 'image|required'
+
           ];
 
         case 'PUT':

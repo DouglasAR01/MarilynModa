@@ -31,5 +31,6 @@
       <input type="file" name="foto" value=""><br>
       <input type="submit" name="" value="Enviar">
     </form>
+    @extends('layouts.errors')
   </body>
 </html>
