@@ -52,11 +52,14 @@
             @endforeach
           </td>
         </tr>
-        <tr>
-          <td colspan="2"><a href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a></td>
-          <td colspan="2">Añadir más fotos</td>
-          <td colspan="2">Añadir palabras clave</td>
-        </tr>
+          @if (auth(session('cargo'))->user()->emp_privilegio == 'a' ||
+               auth(session('cargo'))->user()->emp_privilegio == 'g')
+             <tr>
+               <td colspan="2"><a href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a></td>
+               <td colspan="2">Añadir más fotos</td>
+               <td colspan="2">Añadir palabras clave</td>
+             </tr>
+          @endif
       </table>
     @endif
   </body>
