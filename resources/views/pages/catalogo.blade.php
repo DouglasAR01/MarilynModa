@@ -6,7 +6,66 @@
 @endsection
 
 @section('content')
-  <div class="container">
+
+  <form class="key-search">
+      <input class="form-control" type="search" placeholder="Busca por palabra clave...">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+
+  <div class="filters">
+    <div class="filters-hidden">Filtrar</div>
+    <div class="filters-container">
+      <span><i class="fas fa-times fa-lg"></i></span>
+      <div class="filter__column">
+        <h3 class="filter__title">Género</h3>
+
+        <div class="checkbox"><label><input type="checkbox" rel=""/> Mujer</label></div>
+        <div class="checkbox"><label><input type="checkbox" rel=""/> Hombre</label></div>
+        <div class="checkbox"><label><input type="checkbox" rel=""/> NIño</label></div>
+
+      </div>
+      <div class="filter__column">
+        <h3 class="filter__title">Tipo de prenda</h3>
+
+        <div class="two-column">
+          <div class="checkbox"><label><input type="checkbox" rel=""/> Vestido</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> Falda</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> Blusa</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> Pantalón</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> Camisa</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> Traje</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> Accesorios</label></div>
+        </div>
+
+      </div>
+      <div class="filter__column">
+        <h3 class="filter__title">Talla</h3>
+
+        <div class="two-column">
+          <div class="checkbox"><label><input type="checkbox" rel=""/> XS</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> S</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> M</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> L</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> XL</label></div>
+          <div class="checkbox"><label><input type="checkbox" rel=""/> XXL</label></div>
+        </div>
+
+      </div>
+      <div class="filter__column">
+        <h3 class="filter__title">Filtrar por</h3>
+
+        <div class="checkbox"><label><input type="checkbox" rel=""/> Popular</label></div>
+        <div class="checkbox"><label><input type="checkbox" rel=""/> Nuevo</label></div>
+        <div class="checkbox"><label><input type="checkbox" rel=""/> Ver Todo</label></div>
+
+        <button type="button" name="button">Desmarcar todo</button>
+
+      </div>
+
+    </div><!--END OF FILTERS-CONTAINER-->
+  </div><!--END OF FILTERS-->
+
+  <div class="card-container">
     <div class="card">
       <img src="https://picsum.photos/500/500" alt="" class="card__img">
       <h3 class="card__title">Vestidos de Novia</h3>
@@ -24,8 +83,12 @@
       <h3 class="card__title">Trajes de Caballero</h3>
     </div>
     <div class="card">
-      <img src="https://picsum.photos/250/252" alt="" class="card__img">
+      <img src="https://picsum.photos/502/500" alt="" class="card__img">
       <h3 class="card__title">Trajes de Niño</h3>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/502/501" alt="" class="card__img">
+      <h3 class="card__title">Accesorios</h3>
     </div>
 
   </div>

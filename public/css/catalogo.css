@@ -1,15 +1,110 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 
-.content{
-	padding: 2em;
-	text-align: center;
+.content{ padding: 2em;}
+
+.key-search{
+	width: 70vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem auto;
+	max-width: 980px;
 }
-.container{
+
+.key-search input{
+	margin-right: .5rem;
+	padding: .5rem .8rem;
+}
+
+.filters{
+	position: relative;
+	display: block;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	font-family: 'Merriweather Sans';
+	font-size: .9rem;
+}
+
+.filters-container{
+	display: block;
+	width: 70vw;
+	padding: 2rem;
+	background-color: var(--white); /*rgba(151, 91, 249, 0.54); */
+	margin-bottom: 1rem;
+	box-shadow: 0 0 10px rgba(0,0,0,.4);
+	display: inherit;
+	align-items: flex-start;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	max-width: 980px;
+	max-height: 100vh;
+}
+
+.filters-container span{ display:none; position: absolute;}
+.filter__column{ padding: 1rem; margin: 5px;}
+.filter__column h3{ color: var(--fucsia);}
+.two-column{ column-count: 2;}
+.checkbox input{ width: 17px; height: 17px;}
+
+.filters-hidden{
+	position: fixed;
+	display: none;
+	top: 50%;
+	left: -15px;
+	padding: 1rem;
+	cursor: pointer;
+	transform: rotate(-90deg);
+	font-size: 1rem;
+	font-family: 'Merriweather Sans';
+	border-radius: 0 0 10% 10%;
+	color: var(--white);
+	background-color: var(--fucsia);
+	z-index: 10;
+}
+
+@media screen and (max-width: 1185px) {
+	.filters-container{
+		display: none;
+		position: fixed;
+		float: left;
+		left: 0;
+		top: 0;
+		z-index: 100;
+		flex-direction: column nowrap;
+		justify-content: flex-start;
+		max-width: 320px;
+		padding: 2rem 1rem;
+		height: 100vh;
+		overflow: scroll;
+	}
+	.filters-hidden{ display: block;}
+
+	.filters-container span{
+		cursor: pointer;
+		display: block;
+		right: 25px;
+		top: 25px;
+	}
+
+	.filter__column h3{ font-size: 1.3rem;}
+	.filter__column{ margin: 0 10px;}
+
+
+
+	@media screen and (max-height:850px) {
+		.filter__column{ margin: 0 5px;}
+	}
+}
+
+.card-container{
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	text-align: center;
+
 }
 .card{
 	margin: 1em;

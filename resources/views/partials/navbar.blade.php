@@ -19,12 +19,13 @@
             <span>Catálogo</span>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item drop__link" href="catalogo">Ver todo</a>
             <a class="dropdown-item drop__link" href="catalogo">Vestidos de Boda</a>
             <a class="dropdown-item drop__link" href="catalogo">Vestidos de Fiesta</a>
             <a class="dropdown-item drop__link" href="catalogo">Vestidos de Gala</a>
             <a class="dropdown-item drop__link" href="catalogo">Trajes de Caballero</a>
             <a class="dropdown-item drop__link" href="catalogo">Trajes de Niño</a>
-            <a class="dropdown-item drop__link" href="catalogo">Ver todo</a>
+            <a class="dropdown-item drop__link" href="catalogo">Accesorios</a>
           </div>
         </div>
         {{-- <div class="dpdwn">

@@ -41,6 +41,8 @@
 }
 
 .portfolio-item {
+  background: -webkit-linear-gradient(bottom left, #ff5263 0%, #ff7381 35%, #7a6ff0 100%);
+  background: -o-linear-gradient(bottom left, #ff5263 0%, #ff7381 35%, #7a6ff0 100%);
   background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #7a6ff0 100%);
   color: var(--light-blue);
   /* color: #c4c4c4; */

@@ -26,6 +26,33 @@ $(function(){
     $('.dropdown-toggle').dropdown();
 });
 
+//Filtros en Catálogo
+
+$(function(){
+
+  var showFilters = function(){
+    if($('.filters-hidden').is(':visible')){
+      $(".filters-container").hide();
+    }
+    else{
+      $(".filters-container").css('display', 'flex');
+    }
+    $(".filters-hidden").click(function(){
+      $(".filters-container").show();
+    });
+    $(".fa-times").click(function(){
+      $(".filters-container").hide();
+    });
+  };
+
+  showFilters();
+
+  $(window).resize(function() {
+    showFilters();
+  });
+});
+
+
 //Dropdown en pantallas pequeñas
 // $(function(){
 //
