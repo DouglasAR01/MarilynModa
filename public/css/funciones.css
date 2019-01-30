@@ -1,0 +1,141 @@
+.funciones-container{
+	display: flex;
+	position: fixed;
+	background-color: #333;
+	float: left;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 16vw;
+	max-width: 320px;
+	padding: 1rem;
+	height: 100vh;
+	color: var(--white);
+}
+
+.navbar-brand{
+	padding-top: 5px;
+	font-size: 1rem;
+	color: var(--white);
+}
+.navbar-brand span{ color: var(--white);}
+
+.navbar-brand:hover{text-decoration: none; color:var(--white);}
+
+
+.funciones-container .dropdown{display: inherit;}
+
+.nueva-funcion{
+	border: none;
+	border-radius: 0%;
+	font-size: .8rem;
+	background-color: rgb(228, 43, 93);
+	width: 140px;
+	margin: 1rem auto;
+	padding: 1em 2em;
+	color: var(--white);
+}
+
+.nueva-funcion:hover{
+	background-color: rgb(228, 43, 93);
+	border-color: rgb(228, 43, 93);
+	color: var(--white);
+}
+
+.funciones{
+	margin: 1rem;
+	display: inherit;
+	flex-direction: column;
+	/* border: 1px solid rgba(149, 155, 166, 1); */
+}
+
+.funcion{
+	display: block;
+	margin: .5rem 0;
+	color: inherit;
+	font-weight: 200;
+	text-decoration: none
+	font-size: 2rem;
+	padding: .25rem 0;
+}
+
+.funcion:hover{
+	background: rgba(227, 210, 214, 0.27);
+	color: #fff;
+	text-decoration: none;
+	/* font-weight: 400; */
+}
+
+/* .funciones{
+	display: flex;
+	position: fixed;
+	float: left;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	flex-direction: column nowrap;
+	justify-content: flex-start;
+	max-width: 320px;
+	padding: 2rem 1rem;
+	height: 100vh;
+	overflow: scroll;
+}
+
+.filters-container span{ display:none; position: absolute;}
+.filter__column{ padding: 1rem; margin: 5px;}
+.filter__column h3{ color: var(--fucsia);}
+.two-column{ column-count: 2;}
+.checkbox input{ width: 17px; height: 17px;}
+
+.filters-hidden{
+	position: fixed;
+	display: none;
+	top: 50%;
+	left: -15px;
+	padding: 1rem;
+	cursor: pointer;
+	transform: rotate(-90deg);
+	font-size: 1rem;
+	font-family: 'Merriweather Sans';
+	border-radius: 0 0 10% 10%;
+	color: var(--white);
+	background-color: var(--fucsia);
+	z-index: 10;
+}
+
+@media screen and (max-width: 1185px) {
+	.filters-container{
+		display: none;
+		position: fixed;
+		float: left;
+		left: 0;
+		top: 0;
+		z-index: 100;
+		flex-direction: column nowrap;
+		justify-content: flex-start;
+		max-width: 320px;
+		padding: 2rem 1rem;
+		height: 100vh;
+		overflow: scroll;
+	}
+	.filters-hidden{ display: block;}
+
+	.filters-container span{
+		cursor: pointer;
+		display: block;
+		right: 25px;
+		top: 25px;
+	}
+
+	.filter__column h3{ font-size: 1.3rem;}
+	.filter__column{ margin: 0 10px;}
+
+
+
+	@media screen and (max-height:850px) {
+		.filter__column{ margin: 0 5px;}
+	}
+} */
