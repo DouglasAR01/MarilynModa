@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('stylesheets')
-  <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/index.css')}}">
 @endsection
 
@@ -34,17 +33,5 @@
   </div>
 
 </div>
-
-<div class="Populares">
-
-  <div class="Populares__text">
-    <h1 class="Populares__title">Los más alquilados</h1>
-    <p class="Populares__desc">Mira nuestros artículos más populares</p>
-  </div>
-
-  @include('partials.carousel')
-
-</div>
-
 
 @endsection
