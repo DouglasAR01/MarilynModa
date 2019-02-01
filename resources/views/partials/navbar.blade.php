@@ -1,5 +1,8 @@
 <div class="container">
-  <a class="navbar-brand" href="{{ url('/') }}">
+  @if(auth(session('cargo'))->user())
+    <span><i class="fas fa-grip-horizontal fa-lg"></i></span>
+  @endif
+  <a id="nav-brand" class="navbar-brand" href="{{ url('/') }}">
       {{-- {{ config('app.name', 'Laravel') }} --}}
       Marilyn<span>Moda</span>
   </a>
@@ -56,6 +59,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/home">Home</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">

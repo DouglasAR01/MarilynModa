@@ -1,5 +1,5 @@
 .funciones-container{
-	display: flex;
+	display: none;
 	position: fixed;
 	background-color: #333;
 	float: left;
@@ -11,22 +11,40 @@
 	justify-content: flex-start;
 	width: 16vw;
 	max-width: 320px;
-	padding: 1rem;
+	min-width: 200px;
+	padding: .5rem 1rem 1rem;
 	height: 100vh;
 	color: var(--white);
 }
+@media screen and (min-width: 992px) {
+	.funciones-container{padding: 1rem;}
+}
+
+.funciones-container #x-icon{
+	position: absolute;
+	cursor: pointer;
+	display: block;
+	right: 25px;
+	top: 25px;
+}
+.funciones-container .navbar-brand span{ color: var(--white);}
+
+/* .navbar{width: 84vw; margin-left: 16vw;} */
+
+.fa-grip-horizontal{cursor: pointer; margin-right: 1rem;}
+.fa-grip-horizontal:hover{color: var(--fucsia);}
+
+.navbar .navbar-brand{}
 
 .navbar-brand{
 	padding-top: 5px;
-	font-size: 1rem;
 	color: var(--white);
 }
-.navbar-brand span{ color: var(--white);}
 
 .navbar-brand:hover{text-decoration: none; color:var(--white);}
 
 
-.funciones-container .dropdown{display: inherit;}
+.funciones-container .dropdown{display: inherit;margin-top: 1.6rem;}
 
 .nueva-funcion{
 	border: none;
@@ -45,6 +63,8 @@
 	color: var(--white);
 }
 
+.func-drop .dropdown-item:hover{ background-color: var(--fucsia);}
+
 .funciones{
 	margin: 1rem;
 	display: inherit;
@@ -57,9 +77,9 @@
 	margin: .5rem 0;
 	color: inherit;
 	font-weight: 200;
-	text-decoration: none
-	font-size: 2rem;
-	padding: .25rem 0;
+	text-decoration: none;
+	font-size: 1rem;
+	padding: .25rem 0 .25rem .4rem;
 }
 
 .funcion:hover{

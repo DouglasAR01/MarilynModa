@@ -27,7 +27,6 @@ $(function(){
 });
 
 //Filtros en Catálogo
-
 $(function(){
 
   var showFilters = function(){
@@ -52,6 +51,20 @@ $(function(){
   });
 });
 
+//Barra de funciones de empleado
+$(function(){
+    $(".fa-grip-horizontal").click(function(){
+      $(".funciones-container").css('display', 'flex');
+      $('#nav-brand, .fa-grip-horizontal').hide();
+      $('.navbar').css({'width': '84vw', 'margin-left': '16vw'});
+    });
+
+    $("#x-icon").click(function(){
+      $(".funciones-container").hide();
+      $('#nav-brand, .fa-grip-horizontal').css('display', 'inline-block');
+      $('.navbar').css({'width': '100vw', 'margin-left': '0'});
+    });
+});
 
 //Dropdown en pantallas pequeñas
 // $(function(){

@@ -31,7 +31,10 @@
         @include('partials.navbar')
       </nav><!--END OF NAVIGATION-->
 
-
+        @if(auth(session('cargo'))->user())
+          <link rel="stylesheet" href="{{asset('css/funciones.css')}}">
+          @include('partials.funcionesEmpleado')
+        @endif
 
       <!--CONTENT-->
       <div class="row content">
