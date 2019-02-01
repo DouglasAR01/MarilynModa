@@ -17,6 +17,7 @@
 @endsection
 
 @section('content')
+<!--
 <div class="populares">
 
   <div class=" populares__text">
@@ -34,7 +35,7 @@
   </div>
 
 </div>
-
+-->
 <div class="Populares">
 
   <div class="Populares__text">
