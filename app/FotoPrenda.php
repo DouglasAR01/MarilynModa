@@ -18,6 +18,25 @@ class FotoPrenda extends Model
      * Métodos de las relaciones que tiene la tabla Foto_Prenda.
      */
 
+    public function cambiarLinkFoto(String $LinkFotoNueva)
+    {
+      $this->fop_link=$LinkFotoNueva;
+      dd($this->save());
+    }
+
+    public function cambiarFotoPrincipal(String $linkFotoPrincipal)
+    {
+           $foto = FotoPrenda::where('fop_link',$linkFotoPrincipal)->first();
+           if (!$foto) {
+             return 0;
+           }
+           $this->fop_principal = 0;
+           $foto->fop_principal = 1;
+           $foto->save();
+           $this->save();
+           return 1;
+    }
+
     public function prendaDeFoto()
     {
       return $this->belongsTo('App\Prenda','fop_fk_prenda','pk_prenda');

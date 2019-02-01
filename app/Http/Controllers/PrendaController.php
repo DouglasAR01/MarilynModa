@@ -100,8 +100,7 @@ class PrendaController extends Controller
     public function edit(Prenda $prenda)
     {
         $categorias = Categoria::all()->where('cat_tipo','a');
-        $fotoPrenda= FotoPrenda::all()->where('fop_fk_prenda',$prenda->pk_prenda);        
-        return view('prendas.editarPrenda',['categorias' => $categorias,'prenda' => $prenda, 'fotoPrenda' => $fotoPrenda]);
+        return view('prendas.editarPrenda',['categorias' => $categorias,'prenda' => $prenda]);
     }
 
     /**
@@ -113,8 +112,52 @@ class PrendaController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $prendaActualizada= Prenda::find($id);
+      $prendaActualizada->pre_fk_categoria = $request->categoria;
+      $prendaActualizada->pre_visible = $request->visible; //verificar que sea booleano
+      $prendaActualizada->pre_nombre = $request->nombre;
+      $prendaActualizada->pre_descripcion = $request->descripcion;
+      $prendaActualizada->pre_cantidad = $request->cantidad;
+      $prendaActualizada->pre_precio_sugerido = $request->precio;
+      $prendaActualizada->pre_fecha_compra = $request->fecha;
+      $prendaActualizada->pre_talla = $request->talla;
+      if (!$prendaActualizada->save()) {
+        return 'Error al guardar la prenda';
+      }
+
+
+      // foreach ($request->fotos as $llave => $foto) {
+      //   if(!empty($foto)){
+      //     $linkFotoSubida = $request->fotos[$llave]->store('prendas','public');
+      //     if (!$linkFotoSubida) {
+      //       return 'Error al guardar la foto';
+      //     }
+      //     $fotoACambiar= FotoPrenda::where('fop_link',$request->links[$llave])->first();
+      //     //dd($fotoACambiar);
+      //     $fotoACambiar->cambiarLinkFoto($linkFotoSubida);
+      //
+      //   }
+      // }
+
+
+      $fotoPrendaPrincipalActual = FotoPrenda::where([
+        ['fop_link', $prendaActualizada->getFotoPrincipal()],
+        ['fop_principal', 1]
+        ])->first();
+
+      if (!$fotoPrendaPrincipalActual->cambiarFotoPrincipal($request->fotoPrincipal)) {
+        return 'No se pudo Cambiar Foto Principal';
+      }
+
+
+
         return 'actualizado';
     }
+
+    /** Funciones para Actualizar una Prenda
+    */
+
+
 
     /**
      * Remove the specified resource from storage.

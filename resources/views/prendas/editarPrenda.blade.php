@@ -7,7 +7,7 @@
   <body>
   <h1>Editar prenda {{$prenda->pk_prenda}}</h1>
   <div class="">
-    <form class="" action="{{route('prendas.update',$prenda->pk_prenda)}}" method="post">
+    <form class="" action="{{route('prendas.update',$prenda->pk_prenda)}}" enctype="multipart/form-data" method="post">
       {{ csrf_field() }}
       {{ method_field('PUT')}}
       <label for="nombre">Nombre de la prenda</label><br>
@@ -30,8 +30,34 @@
       </select><br>
       <label for="visible">La prenda será visible al público</label><br>
       <input type="checkbox" name="visible" value="{{$prenda->pre_visible}}"><br>
-      <label for="foto">Foto principal</label><br>
-      <input type="file" name="foto" value=""><br>
+      <label for="foto">Fotos</label><br>
+      {{-- <img src="/storage/{{$prenda->getFotoPrincipal()}}" alt=""><br> --}}
+      <table border="1">
+
+
+          @foreach ($prenda->getFotos() as $tupla)
+            <tr>
+              <td>
+                <img src="/storage/{{$tupla['fop_link']}}" alt="" height="200" width="200"><br>
+              </td>
+              <td>
+                <input type="file" name="fotos[]"> </input>
+                <input type="hidden" name="links[]" value="{{$tupla['fop_link']}}">
+              </td>
+              <td>
+                <input type="radio" @if ($tupla['fop_principal'])                 checked
+                @endif name="fotoPrincipal" value="{{$tupla['fop_link']}}">
+              </td>
+            </tr>
+          @endforeach
+
+
+
+
+
+
+      </table>
+
       <input type="submit" name="" value="Enviar">
     </form>
 
