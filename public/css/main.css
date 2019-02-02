@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:200,300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,300,500,400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:300,600,800');
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
@@ -9,13 +9,14 @@
      --light-gray:#e0dddd;
      --light-blue: #ced4da;
      --white: #f8f9fa;
-     --pink: rgb(244, 110, 111); /*rgb(255, 0, 126)*/
+     --pink: #f46e6f; /*rgb(255, 0, 126)*/
      --fucsia: #e42b5d;
      --gray:#383c42;
      --gray-op-07: rgba(56, 60, 66, 0.7);
      --purple: #7a6ff0;
      --dark-purple: #111;/*#1b0028; #001628*/
      --yellow:#fcbd01;
+     --fairy: #ebecf0;
 }
 
 
@@ -36,6 +37,20 @@ body{
   /* background-color: var(--light-gray); */
   color: #555;
   font-family: 'Raleway', sans-serif;
+}
+
+*::-webkit-scrollbar {
+    width: .5rem;
+    height: .5rem;
+}
+
+*::-webkit-scrollbar-track {
+    -webkit-background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.42);
+  outline: 0;
 }
 
 .container-fluid{ padding: 0;}

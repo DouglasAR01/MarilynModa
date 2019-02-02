@@ -1,0 +1,28 @@
+.db-table{
+  margin:  0 auto;
+  width: 100%
+}
+
+.db-table th, td{
+  padding: 0 5px;
+}
+
+.db-table th{
+  background-color: var(--pink);
+  color: white;
+}
+
+.db-table td{
+  position: relative;
+  font-weight: 500;
+}
+
+.db-more{
+  outline: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  float: center;
+  margin: 0 auto;
+  box-shadow: 0;
+}

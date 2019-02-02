@@ -1,9 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.tabs')
 
-@section('content')
+@section('styles')
+  <link rel="stylesheet" href="/css/db-tables.css">
+@endsection
 
+@section('db-tab')
   <h2>Lista de empleados en {{env('APP_NAME')}}</h2>
-  <table border="1">
+  <table class="db-table" border="1">
     <tr>
       <th>Cédula</th>
       <th>Nombre</th>
@@ -45,7 +48,7 @@
               @endswitch
             </td>
           @case(1)
-          <td><button><i class="fas fa-ellipsis-v"></i></button></td>
+          <td style="text-align:center"><button class="db-more"><i class="fas fa-ellipsis-v"></i></button></td>
             @break
         @endswitch
       </tr>
