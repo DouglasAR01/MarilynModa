@@ -40,4 +40,8 @@ return [
         ],
     ],
 
+    'tinypng' => [
+        'key' => env('TINYPNG_KEY'),
+    ],
+
 ];

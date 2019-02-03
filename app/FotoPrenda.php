@@ -38,7 +38,7 @@ class FotoPrenda extends Model
         if (!$this->fop_principal) {
           return 0;
         }
-        $foto = FotoPrenda::find($linkFotoPrincipal)->first();
+        $foto = FotoPrenda::find($linkFotoPrincipal);
         if (!$foto) {
           return 0;
         }

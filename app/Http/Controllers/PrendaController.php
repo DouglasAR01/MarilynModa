@@ -11,6 +11,7 @@ use App\Http\Requests\PrendaRequest;
 
 class PrendaController extends Controller
 {
+    protected $optimizacionActivada;
 
     function __construct()
     {
@@ -18,6 +19,7 @@ class PrendaController extends Controller
              ->only(['index']);
         $this->middleware('entran:admin,gerente')->except(['index','show','destroy']);
         $this->middleware('entran:admin')->only('destroy');
+        $this->optimizacionActivada = 1;
     }
     /**
      * Display a listing of the resource.
@@ -69,6 +71,7 @@ class PrendaController extends Controller
           'fop_link' => $linkFotoSubida,
           'fop_principal' => true
         ]);
+        $this->optimizar($linkFotoSubida);
         return 'Prenda guardada con exito';
     }
 
@@ -141,9 +144,10 @@ class PrendaController extends Controller
             }
             $fotoACambiar= FotoPrenda::find($request->links[$llave]);
             $fotoACambiar->cambiarLinkFoto($linkFotoSubida);
+            $this->optimizar($fotoACambiar->fop_link);
           }
         }
-        return 'actualizado';
+        return 'Prenda actualizada con éxito';
     }
 
     /**
@@ -158,4 +162,22 @@ class PrendaController extends Controller
         return 'eliminado';
     }
 
+    private function optimizacionActivada()
+    {
+        return $this->optimizacionActivada;
+    }
+
+    private function optimizarImagen(String $imagen)
+    {
+        \Tinify\setKey(config('services.tinypng.key'));
+        $source = \Tinify\fromFile(SC::obtenerArchivo($imagen,'public'));
+        $source->toFile(SC::obtenerArchivo($imagen,'public'));
+    }
+
+    private function optimizar(String $imagen)
+    {
+        if ($this->optimizacionActivada()) {
+          $this->optimizarImagen($imagen);
+        }
+    }
 }

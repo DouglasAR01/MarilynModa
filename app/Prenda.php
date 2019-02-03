@@ -17,7 +17,7 @@ class Prenda extends Model
 
   public function getNombreCategoria()
   {
-      return $this->categoria()->first()->cat_nombre;
+      return $this->categoria->cat_nombre;
   }
 
   //Retorna el objeto tipo FotoPrenda

@@ -117,4 +117,17 @@ class SupraController
   {
       Storage::disk($disco)->delete($archivo);
   }
+
+  /**
+   * Este método devuelve la ruta hacia el archivo solicitado
+   * @author Douglas R.
+   * @param String $archivo Es la ruta JUNTO con el nombre del archivo, ejemplo:
+   * 'ruta/rutita/nombreArchivo.txt'
+   * @param String $disco Es el disco del filesystem de Laravel.
+   * @version 0.5
+   */
+  public static function obtenerArchivo(String $archivo, String $disco)
+  {
+      return Storage::disk($disco)->path($archivo);
+  }
 }
