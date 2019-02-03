@@ -32,7 +32,7 @@
         </tr>
         @foreach ($prendas as $prenda)
           <tr>
-            <td><img src="{{asset('storage/'.$prenda->getFotoPrincipal())}}" alt="" height="84" width="84"></td>
+            <td><img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="" height="84" width="84"></td>
             <td>{{$prenda->pk_prenda}}</td>
             <td>{{$prenda->getNombreCategoria()}}</td>
             <td>{{$prenda->pre_nombre}}</td>

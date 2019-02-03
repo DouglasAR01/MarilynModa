@@ -87,4 +87,19 @@ class SupraController
     $ruta = $request->file($nombreInput)->store($directorio,'public');
     return $ruta;
   }
+
+  /**
+   * Éste método se encarga de chequear que la variable que se le envía sea un booleano.
+   * La forma en la que realiza la opreación es verificando que la variable contenga algo,
+   * en caso de contener algo, se asume que es una variable de tipo booleano y devolverá true.
+   * @author Douglas R.
+   * @param $var Variable a verificar que sea booleano, lógicamente, se debería envíar un booleano.
+   */
+  public static function chequearBooleano($var)
+  {
+      if ($var) {
+        return 1;
+      }
+      return 0;
+  }
 }

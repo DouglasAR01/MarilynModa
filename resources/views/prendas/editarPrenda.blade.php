@@ -35,18 +35,18 @@
       <table border="1">
 
 
-          @foreach ($prenda->getFotos() as $tupla)
+          @foreach ($prenda->getFotos() as $foto)
             <tr>
               <td>
-                <img src="/storage/{{$tupla['fop_link']}}" alt="" height="200" width="200"><br>
+                <img src="/storage/{{$foto->fop_link}}" alt="" height="200" width="200"><br>
               </td>
               <td>
                 <input type="file" name="fotos[]"> </input>
-                <input type="hidden" name="links[]" value="{{$tupla['fop_link']}}">
+                <input type="hidden" name="links[]" value="{{$foto->fop_link}}">
               </td>
               <td>
-                <input type="radio" @if ($tupla['fop_principal'])                 checked
-                @endif name="fotoPrincipal" value="{{$tupla['fop_link']}}">
+                <input type="radio" @if ($foto['fop_principal'])                 checked
+                @endif name="fotoPrincipal" value="{{$foto->fop_link}}">
               </td>
             </tr>
           @endforeach

@@ -6,7 +6,7 @@
   </head>
   <body>
     <h2>{{$prenda->pre_nombre}}</h2><br>
-    <img src="{{asset('storage/'.$prenda->getFotoPrincipal())}}" alt="" height="512" width="512"><br>
+    <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="" height="512" width="512"><br>
     @if (count($prenda->getFotos())>1)
         <h4>Fotos adicionales</h4><br>
         @foreach ($prenda->getFotos() as $foto)

@@ -50,7 +50,7 @@ class PrendaController extends Controller
     {
         $nuevaPrenda = new Prenda();
         $nuevaPrenda->pre_fk_categoria = $request->categoria;
-        $nuevaPrenda->pre_visible = $request->visible; //verificar que sea booleano
+        $nuevaPrenda->pre_visible = SC::chequearBooleano($request->pre_visible);
         $nuevaPrenda->pre_nombre = $request->nombre;
         $nuevaPrenda->pre_descripcion = $request->descripcion;
         $nuevaPrenda->pre_cantidad = $request->cantidad;
@@ -112,52 +112,39 @@ class PrendaController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $prendaActualizada= Prenda::find($id);
-      $prendaActualizada->pre_fk_categoria = $request->categoria;
-      $prendaActualizada->pre_visible = $request->visible; //verificar que sea booleano
-      $prendaActualizada->pre_nombre = $request->nombre;
-      $prendaActualizada->pre_descripcion = $request->descripcion;
-      $prendaActualizada->pre_cantidad = $request->cantidad;
-      $prendaActualizada->pre_precio_sugerido = $request->precio;
-      $prendaActualizada->pre_fecha_compra = $request->fecha;
-      $prendaActualizada->pre_talla = $request->talla;
-      if (!$prendaActualizada->save()) {
-        return 'Error al guardar la prenda';
-      }
+        $prendaActualizada= Prenda::find($id);
+        $prendaActualizada->pre_fk_categoria = $request->categoria;
+        $prendaActualizada->pre_visible = SC::chequearBooleano($request->pre_visible);
+        $prendaActualizada->pre_nombre = $request->nombre;
+        $prendaActualizada->pre_descripcion = $request->descripcion;
+        $prendaActualizada->pre_cantidad = $request->cantidad;
+        $prendaActualizada->pre_precio_sugerido = $request->precio;
+        $prendaActualizada->pre_fecha_compra = $request->fecha;
+        $prendaActualizada->pre_talla = $request->talla;
+        if (!$prendaActualizada->save()) {
+          return 'Error al guardar la prenda';
+        }
+        //Cambia la foto principal
+        $fotoPrendaPrincipalActual = $prendaActualizada->getFotoPrincipal();
+        if (!($fotoPrendaPrincipalActual->fop_link===$request->fotoPrincipal)) {
+          if (!$fotoPrendaPrincipalActual->cambiarFotoPrincipal($request->fotoPrincipal)) {
+            return 'No se pudo cambiar la foto principal';
+          }
+        }
 
-
-      // foreach ($request->fotos as $llave => $foto) {
-      //   if(!empty($foto)){
-      //     $linkFotoSubida = $request->fotos[$llave]->store('prendas','public');
-      //     if (!$linkFotoSubida) {
-      //       return 'Error al guardar la foto';
-      //     }
-      //     $fotoACambiar= FotoPrenda::where('fop_link',$request->links[$llave])->first();
-      //     //dd($fotoACambiar);
-      //     $fotoACambiar->cambiarLinkFoto($linkFotoSubida);
-      //
-      //   }
-      // }
-
-
-      $fotoPrendaPrincipalActual = FotoPrenda::where([
-        ['fop_link', $prendaActualizada->getFotoPrincipal()],
-        ['fop_principal', 1]
-        ])->first();
-
-      if (!$fotoPrendaPrincipalActual->cambiarFotoPrincipal($request->fotoPrincipal)) {
-        return 'No se pudo Cambiar Foto Principal';
-      }
-
-
-
+        //Cambia las demás fotos (incluída la principal) si se subió un archivo
+        foreach ($request->fotos as $llave => $foto) {
+          if(!empty($foto)){
+            $linkFotoSubida = $request->fotos[$llave]->store('prendas','public');
+            if (!$linkFotoSubida) {
+              return 'Error al guardar la foto';
+            }
+            $fotoACambiar= FotoPrenda::where('fop_link',$request->links[$llave])->first();
+            $fotoACambiar->cambiarLinkFoto($linkFotoSubida);
+          }
+        }
         return 'actualizado';
     }
-
-    /** Funciones para Actualizar una Prenda
-    */
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -170,4 +157,5 @@ class PrendaController extends Controller
         $prenda->delete();
         return 'eliminado';
     }
+
 }

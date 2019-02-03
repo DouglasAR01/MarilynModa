@@ -41,7 +41,7 @@ class Prenda extends Model
    */
   private function setFotos()
   {
-      $this->fotos = $this->fotos()->get()->toArray();
+      $this->fotos = $this->fotos()->get();
   }
 
   public function getNombreCategoria()
@@ -65,6 +65,7 @@ class Prenda extends Model
       return $this->fotos;
   }
 
+  //Retorna el objeto tipo FotoPrenda
   public function getFotoPrincipal()
   {
       if (!$this->fotos) {
@@ -72,7 +73,7 @@ class Prenda extends Model
       }
       foreach ($this->fotos as $foto) {
         if ($foto['fop_principal']==1) {
-          return $foto['fop_link'];
+          return $foto;
         }
       }
   }

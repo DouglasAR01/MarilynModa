@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use CoenJacobs\EloquentCompositePrimaryKeys\HasCompositePrimaryKey;
 
 class FotoPrenda extends Model
@@ -20,8 +21,7 @@ class FotoPrenda extends Model
 
     public function cambiarLinkFoto(String $LinkFotoNueva)
     {
-      $this->fop_link=$LinkFotoNueva;
-      dd($this->save());
+      DB::statement("UPDATE foto_prenda SET fop_link = '$LinkFotoNueva' WHERE fop_link = '$this->fop_link';");
     }
 
     public function cambiarFotoPrincipal(String $linkFotoPrincipal)
