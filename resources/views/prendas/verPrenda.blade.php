@@ -7,9 +7,9 @@
   <body>
     <h2>{{$prenda->pre_nombre}}</h2><br>
     <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="" height="512" width="512"><br>
-    @if (count($prenda->getFotos())>1)
+    @if (count($prenda->fotos)>1)
         <h4>Fotos adicionales</h4><br>
-        @foreach ($prenda->getFotos() as $foto)
+        @foreach ($prenda->fotos as $foto)
           @if (!$foto['fop_principal'])
             <img src="{{asset('storage/'.$foto['fop_link'])}}" alt="" height="256" width="256">
           @endif
@@ -47,8 +47,8 @@
         <tr>
           <td><b>Palabras clave:</b></td>
           <td colspan="5">
-            @foreach ($prenda->getPalabrasClave() as $palabra)
-              {{$palabra}}
+            @foreach ($prenda->palabrasClave as $palabra)
+              {{$palabra->pivot->pal_clave}}
             @endforeach
           </td>
         </tr>

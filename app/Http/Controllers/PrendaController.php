@@ -139,7 +139,7 @@ class PrendaController extends Controller
             if (!$linkFotoSubida) {
               return 'Error al guardar la foto';
             }
-            $fotoACambiar= FotoPrenda::where('fop_link',$request->links[$llave])->first();
+            $fotoACambiar= FotoPrenda::find($request->links[$llave]);
             $fotoACambiar->cambiarLinkFoto($linkFotoSubida);
           }
         }

@@ -14,63 +14,15 @@ class Prenda extends Model
     'pre_fecha_compra',
     'pre_talla'
   ];
-  protected $palabrasClave;
-  protected $fotos;
-
-
-  /**
-   * @author Douglas R.
-   * Este método retorna todas las palabras clave que correspondan a esta prenda.
-   * @return Array
-   */
-  private function setPalabrasClave()
-  {
-      $thisPrendaPalClave =
-        $this->palabrasClave()->get();
-      $thisPalabrasClave = [];
-      foreach ($thisPrendaPalClave as $PPC){
-        array_push($thisPalabrasClave,$PPC->palabraClave()->first()->pal_clave);
-      }
-      $this->palabrasClave = $thisPalabrasClave;
-  }
-
-  /**
-   * @author Douglas R.
-   * Éste método retorna todas las fotos que tiene asignadas la prenda.
-   * @return Array
-   */
-  private function setFotos()
-  {
-      $this->fotos = $this->fotos()->get();
-  }
 
   public function getNombreCategoria()
   {
       return $this->categoria()->first()->cat_nombre;
   }
 
-  public function getPalabrasClave()
-  {
-      if (!$this->palabrasClave) {
-        $this->setPalabrasClave();
-      }
-      return $this->palabrasClave;
-  }
-
-  public function getFotos()
-  {
-      if (!$this->fotos) {
-        $this->setFotos();
-      }
-      return $this->fotos;
-  }
-
   //Retorna el objeto tipo FotoPrenda
   public function getFotoPrincipal()
   {
-      if (!$this->fotos) {
-        $this->setFotos();
-      }
       foreach ($this->fotos as $foto) {
         if ($foto['fop_principal']==1) {
           return $foto;
@@ -100,7 +52,8 @@ class Prenda extends Model
 
   public function palabrasClave()
   {
-      return $this->hasMany('App\PrendaPalClave','ppc_fk_prenda','pk_prenda');
+      return $this->belongsToMany('App\PalabraClave','prenda_pal_clave',
+                                  'ppc_fk_prenda','ppc_fk_palabra_clave');
   }
 
   public function categoria()

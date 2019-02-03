@@ -12,6 +12,7 @@ class PalabraClave extends Model
 
   public function prendasConEstaPalClave()
   {
-    return $this->hasMany('App\FotoPrenda','ppc_fk_palabra_clave','pk_palabra_clave');
+    return $this->belongsToMany('App\Prenda','prenda_pal_clave',
+                                'ppc_fk_palabra_clave','pk_palabra_clave');
   }
 }

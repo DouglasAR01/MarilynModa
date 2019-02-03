@@ -3,12 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use CoenJacobs\EloquentCompositePrimaryKeys\HasCompositePrimaryKey;
 
 class PrendaPalClave extends Model
 {
   protected $table = 'prenda_pal_clave';
-  protected $primaryKey = ['ppc_fk_prenda','ppc_fk_palabra_clave'];
   protected $guarded = [];
 
   public function prenda()

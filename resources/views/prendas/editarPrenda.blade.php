@@ -31,11 +31,8 @@
       <label for="visible">La prenda será visible al público</label><br>
       <input type="checkbox" name="visible" value="{{$prenda->pre_visible}}"><br>
       <label for="foto">Fotos</label><br>
-      {{-- <img src="/storage/{{$prenda->getFotoPrincipal()}}" alt=""><br> --}}
       <table border="1">
-
-
-          @foreach ($prenda->getFotos() as $foto)
+          @foreach ($prenda->fotos as $foto)
             <tr>
               <td>
                 <img src="/storage/{{$foto->fop_link}}" alt="" height="200" width="200"><br>
@@ -45,22 +42,14 @@
                 <input type="hidden" name="links[]" value="{{$foto->fop_link}}">
               </td>
               <td>
-                <input type="radio" @if ($foto['fop_principal'])                 checked
+                <input type="radio" @if ($foto->fop_principal)                 checked
                 @endif name="fotoPrincipal" value="{{$foto->fop_link}}">
               </td>
             </tr>
           @endforeach
-
-
-
-
-
-
       </table>
-
       <input type="submit" name="" value="Enviar">
     </form>
-
   </div>
   @extends('layouts.errors')
   </body>

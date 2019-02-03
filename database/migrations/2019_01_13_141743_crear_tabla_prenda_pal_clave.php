@@ -17,8 +17,6 @@ class CrearTablaPrendaPalClave extends Migration
           $table->unsignedInteger('ppc_fk_prenda');
           $table->unsignedInteger('ppc_fk_palabra_clave');
 
-          $table->primary(['ppc_fk_prenda','ppc_fk_palabra_clave']);
-
           $table->foreign('ppc_fk_prenda')
                 ->references('pk_prenda')->on('prenda')
                 ->onDelete('cascade');
