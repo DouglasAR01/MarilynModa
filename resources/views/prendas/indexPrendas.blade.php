@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Vista de Prendas (Provisional)</title>
-  </head>
-  <body>
+@extends('layouts.tabs')
+
+@section('styles')
+  <link rel="stylesheet" href="/css/db-tables.css">
+@endsection
+
+@section('search-head')
+  <form class="key-search search-right">
+    <input class="form-control" type="search" placeholder="Buscar...">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+@endsection
+
+@section('db-tab')
     {{-- Atributos
     -llave primaria -> pk_prenda
     -categoria -> pre_fk_categoria
@@ -17,8 +24,7 @@
     -fecha compra -> pre_fecha_compra
     -veces alquilado -> pre_veces_alquilado
      --}}
-    <div class="">
-      <table border="2">
+      <table class="db-table" border="1">
         <tr>
           <th>Foto</th>
           <th>Código</th>
@@ -44,6 +50,4 @@
           </tr>
         @endforeach
       </table>
-    </div>
-  </body>
-</html>
+@endsection

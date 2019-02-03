@@ -1,11 +1,16 @@
 @extends('layouts.main')
 
 @section('stylesheets')
+  <link rel="stylesheet" href="/css/search-head.css">
   <link rel="stylesheet" href="/css/tabs.css">
   @yield('styles')
 @endsection
 
 @section('content')
+  <div class="row" id="sh-row">
+    @yield('search-head')
+  </div>
+
   <div class="tab-container">
 
     <div class="tab">

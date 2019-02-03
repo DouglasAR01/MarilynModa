@@ -1,0 +1,27 @@
+#sh-row{
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.search-right{
+  display: flex;
+  align-items: baseline;
+}
+
+.search-right button{
+  margin-left: .4rem;
+}
+
+.orden-drop-btn{
+  margin: 0 5px 0 0;
+  padding: 0 5px;
+  height: 100%;
+}
+
+.orden-alfabeto{
+  border:0;
+  background-color: transparent;
+  outline: 0;
+  box-shadow: 0;
+}

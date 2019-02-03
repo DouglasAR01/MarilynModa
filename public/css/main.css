@@ -55,7 +55,7 @@ body{
 
 .container-fluid{ padding: 0;}
 
-.row{margin-left: 0; margin-right: 0;}
+.row{margin-left: 0; margin-right: 0; width: 100%;}
 
 .header{
   /* background: linear-gradient(135deg, rgb(157, 0, 255) 0%, rgb(125, 66, 235) 50%, rgb(87, 238, 255) 100%); */

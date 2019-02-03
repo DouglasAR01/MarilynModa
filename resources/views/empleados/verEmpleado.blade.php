@@ -4,6 +4,10 @@
   <link rel="stylesheet" href="/css/db-tables.css">
 @endsection
 
+@section('search-head')
+  @include('partials.SearchHeadSimple')
+@endsection
+
 @section('db-tab')
   <h2>Lista de empleados en {{env('APP_NAME')}}</h2>
   <table class="db-table" border="1">
