@@ -5,7 +5,7 @@
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <button class="dropdown-item drop__link orden-alfabeto AZ">A-Z</button>
-    <button class="dropdown-item drop__link orden-alfabeto ZA">Z_A</button>
+    <button class="dropdown-item drop__link orden-alfabeto ZA">Z-A</button>
     <a class="dropdown-item drop__link" href="catalogo">Ver todo</a>
   </div>
 </div>

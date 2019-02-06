@@ -52,7 +52,7 @@
               @endswitch
             </td>
           @case(1)
-          <td style="text-align:center"><button class="db-more"><i class="fas fa-ellipsis-v"></i></button></td>
+          <td style="text-align:center">@include('partials.elipseOptions')</td>
             @break
         @endswitch
       </tr>

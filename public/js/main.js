@@ -51,6 +51,30 @@ $(function(){
   });
 });
 
+//Responsive tabs
+
+$(document).ready(function() {
+  var stickyNavTop = $('.navbar').offset().top;
+
+  var stickyNav = function(){
+    var scrollTop = $(window).scrollTop();
+
+    if (scrollTop > stickyNavTop) {
+        $('.navbar').addClass('sticky-top');
+        $('.content').css('margin-top','3em');
+    } else {
+        $('.navbar').removeClass('sticky-top');
+        $('.content').css('margin-top','0em');
+    }
+  };
+
+  stickyNav();
+
+  $(window).scroll(function() {
+      stickyNav();
+  });
+});
+
 //Barra de funciones de empleado
 $(function(){
     $(".fa-grip-horizontal").click(function(){
@@ -69,34 +93,36 @@ $(function(){
     });
 });
 
-//Dropdown en pantallas pequeñas
-// $(function(){
-//
-//   var showVpWidth = function(){
-//     $('#vp-width').html($(window).width());
-//     $(".dpdwn-content").hide();
-//
-//     if($(window).width() < 975){
-//       $(".dpdwn-content").css({'top': '0','position': 'relative'});
-//
-//     }
-//     else{
-//       $(".dpdwn-content").css({'top': '40px','position': 'absolute'});
-//     }
-//     $(".dpdwn").click(function(){
-//       $(".dpdwn-content").toggle();
-//     });
-//
-//   };
-//
-//   showVpWidth();
-//
-//   $(window).resize(function() {
-//
-//
-//     showVpWidth();
-//   });
-// });
+//Tabs en pantallas pequeñas
+$(function(){
+
+  var showAccordion = function(){
+    // $('#vp-width').html($(window).width());
+    $(".accordion").hide();
+
+    if($(window).width() < 500){
+      $(".tab-container").hide();
+      $(".accordion").show();
+
+    }
+    else{
+      $(".tab-container").show();
+      $(".accordion").hide();
+    }
+    // $(".dpdwn").click(function(){
+    //   $(".dpdwn-content").toggle();
+    // });
+
+  };
+
+  showAccordion();
+
+  $(window).resize(function() {
+
+
+    showAccordion();
+  });
+});
 
 //Efecto de flecha en las tabs de género del dropdown en catálogo
 $(function(){

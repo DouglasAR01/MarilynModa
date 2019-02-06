@@ -2,7 +2,9 @@
 	<span id="x-icon"><i class="fas fa-times fa-lg"></i></span>
 	<a href="{{ url('/') }}" class="navbar-brand">Marilyn<span>Moda</span></a>
 	<div class="dropdown func-drop">
-		<button class="btn dropdown-toggle nueva-funcion" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nuevo</button>
+		<button class="btn dropdown-toggle nueva-funcion" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Nuevo
+		</button>
 
 	  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 	    <a class="dropdown-item" href="facturas/crear">Factura</a>
