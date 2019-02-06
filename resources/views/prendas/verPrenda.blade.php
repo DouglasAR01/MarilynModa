@@ -16,8 +16,8 @@
         </div>
         <div class="card-body">
           <div class="view-foto">
-            {{-- <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt=""> --}}
-            <img src="https://picsum.photos/301/600/?random" alt="">
+            <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="">
+            {{-- <img src="https://picsum.photos/301/600/?random" alt=""> --}}
           </div>
           <ul class="prenda-info">
             <li><b>Nombre:</b> {{$prenda->pre_nombre}}</li>
@@ -43,32 +43,32 @@
             </li>
           </ul>
           <div class="fotos">
-            <img src="https://picsum.photos/300/600/?random" alt="" class="miniature">
+            {{-- <img src="https://picsum.photos/300/600/?random" alt="" class="miniature">
             <img src="https://picsum.photos/300/601/?random" alt="" class="miniature">
             <img src="https://picsum.photos/300/602/?random" alt="" class="miniature">
             <img src="https://picsum.photos/301/600/?random" alt="" class="miniature">
-            <img src="https://picsum.photos/301/601/?random" alt="" class="miniature">
-            <img src="https://picsum.photos/301/602/?random" alt="" class="miniature">
-            <img src="https://picsum.photos/302/600/?random" alt="" class="miniature">
-            {{-- <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="Foto_principal" class="miniature">
+            <img src="https://picsum.photos/301/601/?random" alt="" class="miniature"> --}}
+            <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="Foto_principal" class="miniature">
             @if (count($prenda->fotos)>1)
               @foreach ($prenda->fotos as $foto)
                 @if (!$foto['fop_principal'])
                   <img src="{{asset('storage/'.$foto['fop_link'])}}" alt="Foto_secundaria" class="miniature">
                 @endif
               @endforeach
-            @endif --}}
+            @endif
+            <img src="https://picsum.photos/301/602/?random" alt="" class="miniature">
+            <img src="https://picsum.photos/302/600/?random" alt="" class="miniature">
           </div>
         </div>
       </div>
 
       @if (auth(session('cargo'))->user()->emp_privilegio == 'a' ||
            auth(session('cargo'))->user()->emp_privilegio == 'g')
-
-           <td colspan="2"><a href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a></td>
-           <td colspan="2">Añadir más fotos</td>
-           <td colspan="2">Añadir palabras clave</td>
-         </tr>
+        <div class="card-btns">
+           <a class="btn btn-info" href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a>
+           <button class="btn btn-warning" href="#">Dar de baja</button>
+           <button class="btn btn-danger" href="#">Eliminar</button>
+         </div>
       @endif
     </div>
   </div>

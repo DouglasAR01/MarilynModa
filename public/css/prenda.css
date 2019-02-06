@@ -37,6 +37,11 @@
   width: 300px;
   margin: 0 auto;
 }
+.view-foto img{
+  max-width: 300px;
+  max-height: 600px;
+  clip: rect(0px,300px,600px,300px);
+}
 
 .prenda-info{
  list-style: none;
@@ -53,7 +58,16 @@
 }
 .miniature{
   margin-right: .5rem;
+  min-width: 150px;
   width: 150px;
   height: 300px;
+}
 
+.card-btns{
+  margin: 1rem 0;
+  text-align: right;
+}
+
+.card-btns *{
+  margin-right: .5rem;
 }

@@ -7,19 +7,19 @@
 		</button>
 
 	  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-	    <a class="dropdown-item" href="facturas/crear">Factura</a>
-	    <a class="dropdown-item" href="gastos/crear">Gasto</a>
+	    <a class="dropdown-item" href="/facturas/crear">Factura</a>
+	    <a class="dropdown-item" href="/gastos/crear">Gasto</a>
 			@if ((auth(session('cargo'))->user()->emp_privilegio == 'g') || (auth(session('cargo'))->user()->emp_privilegio == 'a'))
-				<a class="dropdown-item" href="prendas/crear">Prenda</a>
-				<a class="dropdown-item" href="empleados/crear">Empleado</a>
+				<a class="dropdown-item" href="/prendas/crear">Prenda</a>
+				<a class="dropdown-item" href="/empleados/crear">Empleado</a>
 			@endif
 	  </div>
 	</div>
 	<div class="funciones">
-		<a href="facturas" class="funcion">Facturas</a>
-		<a href="gastos" class="funcion">Gastos</a>
-		<a href="clientes" class="funcion">Clientes</a>
-		<a href="prendas" class="funcion">Prendas</a>
-		<a href="empleados" class="funcion">Empleados</a>
+		<a href="/facturas" class="funcion">Facturas</a>
+		<a href="/gastos" class="funcion">Gastos</a>
+		<a href="/clientes" class="funcion">Clientes</a>
+		<a href="/prendas" class="funcion">Prendas</a>
+		<a href="/empleados" class="funcion">Empleados</a>
 	</div>
 </div>
