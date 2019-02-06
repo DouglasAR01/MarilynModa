@@ -20,8 +20,6 @@
 		<a href="gastos" class="funcion">Gastos</a>
 		<a href="clientes" class="funcion">Clientes</a>
 		<a href="prendas" class="funcion">Prendas</a>
-		@if ((auth(session('cargo'))->user()->emp_privilegio == 'g') || (auth(session('cargo'))->user()->emp_privilegio == 'a'))
-			<a href="empleados" class="funcion">Empleados</a>
-		@endif
+		<a href="empleados" class="funcion">Empleados</a>
 	</div>
 </div>

@@ -1,3 +1,83 @@
+@extends('layouts.main')
+@extends('layouts.errors')
+
+@section('stylesheets')
+  <link rel="stylesheet" href="/css/prenda.css">
+@endsection
+
+@section('content')
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-header">
+          <span>Creado: {{$prenda->updated_at}}</span><br>
+          <span>Mod. última vez: {{$prenda->updated_at}}</span>
+          <h2>#{{$prenda->pk_prenda}}</h2>
+        </div>
+        <div class="card-body">
+          <div class="view-foto">
+            {{-- <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt=""> --}}
+            <img src="https://picsum.photos/301/600/?random" alt="">
+          </div>
+          <ul class="prenda-info">
+            <li><b>Nombre:</b> {{$prenda->pre_nombre}}</li>
+            <li><b>Descripción:</b> {{$prenda->pre_descripcion}}</li>
+            <li><b>Talla:</b> {{$prenda->pre_talla}}</li>
+            <li><b>Categoría:</b> {{$prenda->pre_fk_categoria}}</li>
+            <li><b>Precio Sugerido:</b> {{$prenda->pre_precio}}</li>
+            <li><b>Veces Alquilado:</b> {{$prenda->pre_veces_alquilado}}</li>
+            <li>
+              <b>Visible al público:</b>
+              @if (!$prenda->pre_visible)
+                NO
+              @else
+                SÍ
+              @endif
+            </li>
+            <li><b>Cantidad disponible:</b> {{$prenda->pre_cantidad}}</li>
+            <li><b>Fecha de Compra:</b> {{$prenda->pre_fecha_compra}}</li>
+            <li><b>Palabras Clave:</b>
+              @foreach ($prenda->palabrasClave as $palabra)
+                {{$palabra->pivot->pal_clave}}
+              @endforeach
+            </li>
+          </ul>
+          <div class="fotos">
+            <img src="https://picsum.photos/300/600/?random" alt="" class="miniature">
+            <img src="https://picsum.photos/300/601/?random" alt="" class="miniature">
+            <img src="https://picsum.photos/300/602/?random" alt="" class="miniature">
+            <img src="https://picsum.photos/301/600/?random" alt="" class="miniature">
+            <img src="https://picsum.photos/301/601/?random" alt="" class="miniature">
+            <img src="https://picsum.photos/301/602/?random" alt="" class="miniature">
+            <img src="https://picsum.photos/302/600/?random" alt="" class="miniature">
+            {{-- <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="Foto_principal" class="miniature">
+            @if (count($prenda->fotos)>1)
+              @foreach ($prenda->fotos as $foto)
+                @if (!$foto['fop_principal'])
+                  <img src="{{asset('storage/'.$foto['fop_link'])}}" alt="Foto_secundaria" class="miniature">
+                @endif
+              @endforeach
+            @endif --}}
+          </div>
+        </div>
+      </div>
+
+      @if (auth(session('cargo'))->user()->emp_privilegio == 'a' ||
+           auth(session('cargo'))->user()->emp_privilegio == 'g')
+
+           <td colspan="2"><a href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a></td>
+           <td colspan="2">Añadir más fotos</td>
+           <td colspan="2">Añadir palabras clave</td>
+         </tr>
+      @endif
+    </div>
+  </div>
+
+@endsection
+
+
+{{--
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -21,7 +101,7 @@
     <p>{{$prenda->pre_descripcion}}</p><br>
     <h3>Categoría:</h3>
     {{$prenda->getNombreCategoria()}}
-    {{-- A partir de aquí solo lo ven los empleados --}}
+    <!-- A partir de aquí solo lo ven los empleados -->
     @if(!empty(auth(session('cargo'))->user()))
       <hr>
       @if (!$prenda->pre_visible)
@@ -63,4 +143,4 @@
       </table>
     @endif
   </body>
-</html>
+</html> --}}

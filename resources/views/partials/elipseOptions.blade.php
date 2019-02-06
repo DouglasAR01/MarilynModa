@@ -4,7 +4,7 @@
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="facturas/crear">Expandir</a>
-    @if ((auth(session('cargo'))->user()->emp_privilegio == 'g') || (auth(session('cargo'))->user()->emp_privilegio == 'a'))
+    @if (auth(session('cargo'))->user()->emp_privilegio == 'a')
       <a class="dropdown-item" href="#">Editar</a>
       <a class="dropdown-item" href="#">Eliminar</a>
     @endif

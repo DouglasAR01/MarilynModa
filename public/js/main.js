@@ -150,6 +150,15 @@ function openTab(evt, tabName) {
 
 }
 
+//Target image in prenda
+
+$(function(){
+  $(".miniature").click(function(){
+    let min = $(this).attr("src");
+    $(".view-foto").html('<img src="' + min +'">');
+  });
+});
+
 //Tabs de prueba
 // function openCity(evt, cityName) {
 //   // Declare all variables

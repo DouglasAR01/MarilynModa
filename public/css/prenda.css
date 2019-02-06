@@ -1,0 +1,59 @@
+.carf-header{position: relative;}
+.card-header h2{
+  position: absolute;
+  top:1rem;
+  right: 3rem;
+}
+
+.card-body{
+  font-size: 1rem;
+  display: grid;
+  position: relative;
+  padding: 2rem;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  grid-template-areas:
+  "view"
+  "info"
+  "fotos"
+}
+
+@media screen and (min-width: 930px) {
+  .card-body{
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 150px;
+    grid-gap: .5rem;
+    grid-template-areas:
+    "view info"
+    "view fotos"
+  }
+}
+.view-foto{
+  grid-area: view;
+  height: 100%;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.prenda-info{
+ list-style: none;
+ grid-area: info;
+}
+
+.fotos{
+  grid-area: fotos;
+  display: flex;
+  height: 150px;
+  flex-direction: row;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.miniature{
+  margin-right: .5rem;
+  width: 150px;
+  height: 300px;
+
+}
