@@ -102,26 +102,6 @@
 .carousel-container > .row{margin: 0 auto;}
 .carousel-wrap{margin: 0 auto;}
 
-.car-item{
-	position: relative;}
-
-.car__cap{
-	position: absolute;
-	top:50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	color: white;
-	font-weight: 700;
-}
-
-.card-container{
-	margin: 0 auto;
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	text-align: center;
-
-}
 .card{
 	/* margin: 1em; */
 	position: relative;
@@ -166,20 +146,17 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-  	margin-bottom: 0;
-
+  margin-bottom: 0;
 	color: white;
 	text-transform: uppercase;
 	font-family: 'Raleway';
 	font-size: 1.3em;
 	opacity: 0;
-  	transition: opacity ease-out 250ms;
+  transition: opacity ease-out 250ms;
 }
 .card:hover .card__title{
   opacity: 1;
 }
-
-.slide{position: relative;}
 
 .ctrl-right, .ctrl-left{
 	background-color: var(--pink);
