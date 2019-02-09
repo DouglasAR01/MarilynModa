@@ -22,7 +22,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        return view('empleados.verEmpleado',[
+        return view('empleados.indexEmpleado',[
           'empleados' => Empleado::all(),
           'infoAdicional' => [
             'priv' => $this->privilegioParser(),
