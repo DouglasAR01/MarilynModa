@@ -64,13 +64,6 @@
             </div>
 
             <div class="form-group row">
-              <label for="precio" class="col-md-4 col-form-label text-md-right">Precio Sugerido Alquilado</label>
-              <div class="col-md-6">
-                <input type="text" class="form-control" name="precio" value="{{$prenda->pre_precio_sugerido}}" autofocus>
-              </div>
-            </div>
-
-            <div class="form-group row">
               <label for="precio" class="col-md-4 col-form-label text-md-right">Precio Sugerido</label>
               <div class="col-md-6">
                 <input type="text" class="form-control" name="precio" value="{{$prenda->pre_precio}}" autofocus>
@@ -111,7 +104,8 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-mod btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-danger"><a href="javascript:history.back()" class="btn-link-2">Cancelar</a></button>
                 </div>
             </div>
 

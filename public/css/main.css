@@ -111,10 +111,13 @@ body{
 }
 
 .btn:hover{
-  background-color: var(--pink);
   background-image: -webkit-linear-gradient(bottom left, rgba(0,0,0,0) 10%, rgba(0,0,0,.3) 100%);
   background-image: -o-linear-gradient(bottom left, rgba(0,0,0,0) 10%, rgba(0,0,0,.3) 100%);
   background-image: linear-gradient(to top right, rgba(0,0,0,0) 10%, rgba(0,0,0,.3) 100%);
+}
+
+.btn-mod:hover{
+  background-color: var(--pink);
   border-color: var(--pink);
 }
 
@@ -133,12 +136,17 @@ body{
   border: 0;
 }
 
-.btn-link:hover{
+.btn-link:hover, .btn-link-2:hover{
   background: transparent;
   color:  var(--gray);
   border: 0;
   text-decoration: none;
 }
+
+.btn-link-2{ color: var(--white); border: 0;}
+.btn-link-2:hover{ color: var(--white);}
+
+.btn-primary, .btn-info, .btn-warning, .btn-danger{height: 35px;}
 
 button:focus{  outline:0;}
 

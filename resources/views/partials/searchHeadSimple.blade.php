@@ -1,6 +1,6 @@
 
 <div class="dropdown">
-  <button class=" dropdown-toggle orden-drop-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="dropdown-toggle orden-drop-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span>Orden</span>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -12,5 +12,5 @@
 
 <form class="key-search search-right">
     <input class="form-control" type="search" placeholder="Buscar...">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn btn-mod btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>

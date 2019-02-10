@@ -1,7 +1,7 @@
 @extends('layouts.tabs')
 
 @section('styles')
-  <link rel="stylesheet" href="/css/db-tables.css">
+  <link rel="stylesheet" href="/css/prenda.css">
 @endsection
 
 @section('search-head')
@@ -12,6 +12,36 @@
 @endsection
 
 @section('db-tab')
+<div class="prendas-container">
+  @foreach ($prendas as $prenda)
+    <div class="prenda">
+
+      <div class="prenda__head center">
+        <span>#{{$prenda->pk_prenda}}</span>
+        <span>@include('partials.elipseOptions')</span>
+
+        <p>{{$prenda->pre_nombre}}</p>
+      </div>
+
+      <ul class="prenda__info">
+        <div class="foto-prinicipal">
+          <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="" height="160" width="84">
+        </div>
+        <li><b>Talla:</b> {{$prenda->pre_talla}}</li>
+        <li><b>Categoría:</b> {{$prenda->pre_fk_categoria}}</li>
+        <li><b>Cantidad:</b> {{$prenda->pre_cantidad}}</li>
+        <li><b>Precio Sugerido:</b> {{$prenda->pre_precio_sugerido}}</li>
+        <li><b>Palabras Clave:</b>
+          @foreach ($prenda->palabrasClave as $palabra)
+            {{$palabra->pivot->pal_clave}}
+          @endforeach
+        </li>
+      </ul>
+    </div>
+  @endforeach
+
+</div>
+
     {{-- Atributos
     -llave primaria -> pk_prenda
     -categoria -> pre_fk_categoria
@@ -24,7 +54,7 @@
     -fecha compra -> pre_fecha_compra
     -veces alquilado -> pre_veces_alquilado
      --}}
-      <table class="db-table" border="1">
+      {{-- <table class="db-table" border="1">
         <tr>
           <th>Foto</th>
           <th>Código</th>
@@ -49,5 +79,5 @@
             <td><a href="/prendas/{{$prenda->pk_prenda}}">Ver</a></td>
           </tr>
         @endforeach
-      </table>
+      </table> --}}
 @endsection

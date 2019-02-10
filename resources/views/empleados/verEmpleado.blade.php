@@ -1,16 +1,75 @@
-@extends('layouts.tabs')
+@extends('layouts.main')
 
-@section('styles')
-  <link rel="stylesheet" href="/css/db-tables.css">
+@section('stylesheets')
+  <link rel="stylesheet" href="/css/empleados.css">
 @endsection
 
-@section('search-head')
-  @include('partials.SearchHeadSimple')
-@endsection
 
-@section('db-tab')
-  <h2>Lista de empleados en {{env('APP_NAME')}}</h2>
-  <table class="db-table" border="1">
+@section('content')
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-header">
+          <span>Creado: {{$empleados[0]->created_at}}</span><br>
+          <span>Mod. última vez: {{$empleados[0]->updated_at}}</span>
+        </div>
+        <div class="card-body">
+          <ul class="empleado-info">
+            <li><b>CC:</b> {{$empleados[0]->pk_emp_cedula}}</li>
+            <li><b>Nombre:</b> {{$empleados[0]->emp_nombre}}</li>
+            <li>
+              <b>Genero:</b>
+              @switch($empleados[0]->emp_genero)
+                @case('m')
+                  Masculino
+                  @break
+                @case('f')
+                  Femenino
+                  @break
+                @case('o')
+                  Otro
+                  @break
+                @default
+                  Otro
+              @endswitch
+            </li>
+            <li><b>Celular:</b> {{$empleados[0]->emp_celular}}</li>
+            <li><b>Dirección:</b> {{$empleados[0]->emp_direccion}}</li>
+            <li>
+              <b>Privilegio:</b>
+              @switch($empleados[0]->emp_privilegio)
+                @case('a')
+                  Administrador
+                  @break
+                @case('g')
+                  Gerente
+                  @break
+                @case('e')
+                  Empleado
+                  @break
+                @default
+                  Hacker
+              @endswitch
+            </li>
+            <li><b>Última Factura:</b></li>
+
+          </ul>
+
+        </div>
+      </div>
+
+      @if (auth(session('cargo'))->user()->emp_privilegio == 'a' ||
+           auth(session('cargo'))->user()->emp_privilegio == 'g')
+        <div class="card-btns">
+           <a class="btn btn-info" href="/empleados/{{$empleados[0]->pk_emp_cedula}}/editar">Editar</a>
+           <button class="btn btn-danger" href="#">Eliminar</button>
+         </div>
+      @endif
+    </div>
+  </div>
+
+  {{-- <h2>Lista de empleados en {{env('APP_NAME')}}</h2> --}}
+  {{-- <table class="db-table" border="1">
     <tr>
       <th>Cédula</th>
       <th>Nombre</th>
@@ -57,5 +116,5 @@
         @endswitch
       </tr>
     @endforeach
-  </table>
+  </table> --}}
 @endsection

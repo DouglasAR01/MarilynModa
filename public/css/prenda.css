@@ -1,4 +1,58 @@
-.carf-header{position: relative;}
+.prendas-container{
+  margin: .5rem;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); */
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  overflow-y: scroll;
+}
+
+.prenda{
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  flex: 1 0 200px;
+  margin: .5rem;
+  padding: 1rem;
+}
+
+.prenda__head{
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.prenda__head > p{ text-transform: uppercase;}
+
+.prenda__info{
+  columns: 2;
+  list-style: none;
+}
+
+.db-more{
+  position: absolute;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  right: 0;
+  top: -1rem;
+  box-shadow: 0;
+}
+
+.db-more::after{
+  outline: 0;
+  border: 0;
+  background: transparent;
+}
+
+.foto-prinicipal{
+  text-align: center;
+}
+
+
+.card-header{position: relative;}
 .card-header h2{
   position: absolute;
   top:1rem;

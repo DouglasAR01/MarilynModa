@@ -39,7 +39,7 @@ class PrendaRequest extends FormRequest
             'cantidad' => 'numeric|required',
             'precio' => 'numeric|nullable',
             'fecha' => 'date|required',
-            'talla' => ['required',Rule::in(['XS','XL','M','L'])],
+            'talla' => ['required',Rule::in(['XS','S','M','L','XL','XXL'])],
             'categoria' => ['required','exists:categoria,pk_categoria'],
             'visible' => 'boolean',
             'foto' => 'image|required'

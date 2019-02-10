@@ -1,0 +1,21 @@
+.card-header{position: relative;}
+
+.card-body{
+  font-size: 1.2rem;
+  position: relative;
+  padding: 2rem;
+  height: 100%;
+}
+
+.empleado-info{
+ list-style: none;
+}
+
+.card-btns{
+  margin: 1rem 0;
+  text-align: right;
+}
+
+.card-btns *{
+  margin-right: .5rem;
+}
