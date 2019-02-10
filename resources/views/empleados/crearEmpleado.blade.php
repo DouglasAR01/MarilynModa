@@ -30,23 +30,16 @@
             </div>
 
             <div class="form-group row">
-              <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+              <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required autofocus>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="clave" class="col-md-4 col-form-label text-md-right">Contraseña</label>
+              <label for="apellido" class="col-md-4 col-form-label text-md-right">Apellido</label>
               <div class="col-md-6">
-                <input type="password" class="form-control" name="clave" value="" required autofocus>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="clave" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
-              <div class="col-md-6">
-                <input type="password" class="form-control" name="clave_confirmation" value="" required autofocus>
+                <input type="text" class="form-control" name="apellido" value="{{ old('apellido') }}" required autofocus>
               </div>
             </div>
 
@@ -69,16 +62,23 @@
             </div>
 
             <div class="form-group row">
-              <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
+              <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required autofocus>
+                <input type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="apellido" class="col-md-4 col-form-label text-md-right">Apellido</label>
+              <label for="clave" class="col-md-4 col-form-label text-md-right">Contraseña</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="apellido" value="{{ old('apellido') }}" required autofocus>
+                <input type="password" class="form-control" name="clave" value="" required autofocus>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="clave" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
+              <div class="col-md-6">
+                <input type="password" class="form-control" name="clave_confirmation" value="" required autofocus>
               </div>
             </div>
 
@@ -96,7 +96,7 @@
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
                     <button type="submit" class="btn btn-mod btn-primary">Enviar</button>
-                    <button type="submit" class="btn btn-danger"><a href="javascript:history.back()" class="btn-link-2">Cancelar</a></button>
+                    <button class="btn btn-danger"><a href="javascript:history.back()" class="btn-link-2">Cancelar</a></button>
                 </div>
             </div>
 

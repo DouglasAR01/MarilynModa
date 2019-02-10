@@ -17,24 +17,6 @@
             @csrf
 
             <div class="form-group row">
-              <label for="categoria" class="col-md-4 col-form-label text-md-right">Categoría</label>
-              <div class="col-md-6">
-                <select class="custom-select" name="categoria">
-                  @foreach ($categorias as $categoria)
-                    <option value="{{$categoria->pk_categoria}}">{{$categoria->cat_nombre}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="visible" class="col-md-4 col-form-label text-md-right">Disponible al público</label>
-              <div class="col-md-6">
-                <input type="checkbox" class="form-check" name="visible" value="1" autofocus>
-              </div>
-            </div>
-
-            <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
               <div class="col-md-6">
                 <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required autofocus>
@@ -51,7 +33,18 @@
             <div class="form-group row">
               <label for="talla" class="col-md-4 col-form-label text-md-right">Talla</label>
               <div class="col-md-6">
-                  <input type="text" class="form-control" name="talla" value="{{ old('talla') }}" required autofocus>
+                <input type="text" class="form-control" name="talla" value="{{ old('talla') }}" required autofocus>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="categoria" class="col-md-4 col-form-label text-md-right">Categoría</label>
+              <div class="col-md-6">
+                <select class="custom-select" name="categoria">
+                  @foreach ($categorias as $categoria)
+                    <option value="{{$categoria->pk_categoria}}">{{$categoria->cat_nombre}}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
 
@@ -74,6 +67,13 @@
               <label for="fecha" class="col-md-4 col-form-label text-md-right">Fecha de Compra</label>
               <div class="col-md-6">
                 <input type="date" class="form-control" name="fecha" value="{{old('fecha')}}" required autofocus>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="visible" class="col-md-4 col-form-label text-md-right">Disponible al público</label>
+              <div class="col-md-6">
+                <input type="checkbox" class="form-check" name="visible" value="1" autofocus>
               </div>
             </div>
 

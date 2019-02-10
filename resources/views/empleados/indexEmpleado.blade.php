@@ -59,3 +59,10 @@
     @endforeach
   </table>
 @endsection
+
+@section('bottom')
+  <div class="bottom-container">
+    <a class="btn btn-mod btn-primary" href="/empleados/crear">Nuevo Empleado</a>
+    <span> resultados</span>
+  </div>
+@endsection

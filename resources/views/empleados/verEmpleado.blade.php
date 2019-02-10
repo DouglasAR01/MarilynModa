@@ -16,7 +16,8 @@
         <div class="card-body">
           <ul class="empleado-info">
             <li><b>CC:</b> {{$empleados[0]->pk_emp_cedula}}</li>
-            <li><b>Nombre:</b> {{$empleados[0]->emp_nombre}}</li>
+            <li><b>Celular:</b> {{$empleados[0]->emp_celular}}</li>
+            <li><b>Nombre:</b> {{$empleados[0]->emp_nombre.' '.$empleados[0]->emp_apellido}}</li>
             <li>
               <b>Genero:</b>
               @switch($empleados[0]->emp_genero)
@@ -33,8 +34,8 @@
                   Otro
               @endswitch
             </li>
-            <li><b>Celular:</b> {{$empleados[0]->emp_celular}}</li>
             <li><b>Dirección:</b> {{$empleados[0]->emp_direccion}}</li>
+            <li><b>Email:</b> {{$empleados[0]->emp_email}}</li>
             <li>
               <b>Privilegio:</b>
               @switch($empleados[0]->emp_privilegio)

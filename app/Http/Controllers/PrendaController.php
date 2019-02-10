@@ -8,6 +8,7 @@ use App\Categoria;
 use App\FotoPrenda;
 use App\Http\Controllers\SupraController as SC;
 use App\Http\Requests\PrendaRequest;
+use Illuminate\Support\Facades\Route;
 
 class PrendaController extends Controller
 {
@@ -28,7 +29,10 @@ class PrendaController extends Controller
      */
     public function index()
     {
-        return view('prendas.indexPrendas', ['prendas' => Prenda::all()]);
+        return view('prendas.indexPrendas', [
+          'currentRouteName' => Route::currentRouteName(),
+          'prendas' => Prenda::all()
+        ]);
     }
 
     /**

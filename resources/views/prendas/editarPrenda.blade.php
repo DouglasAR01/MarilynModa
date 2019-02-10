@@ -2,7 +2,68 @@
 @extends('layouts.errors')
 
 @section('stylesheets')
-  <link rel="stylesheet" href="/css/db-tables.css">
+<style>
+  .empty-fotos{
+    width: 100%;
+    /* background-color: rgba(231, 192, 81, 0.52); */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .miniature, .empty-miniature{
+    display: block;
+    height: 150px;
+    width: 150px;
+    margin: 5px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+  }
+
+  .empty-miniature{
+    /* background-color: rgba(4, 128, 142, 0.41); */
+    border: 3px dashed #777;
+  }
+
+  .min__img{
+    min-width: 150px;
+    width: 150px;
+    height: 300px;
+  }
+
+  .min__text{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+  .min__text p{
+    margin: 0;
+  }
+
+  #bootstrap-overrides input[type="file" i]{
+
+    cursor: pointer !important;
+    -webkit-cursor: pointer !important;
+    align-self: stretch;
+    display: block;
+    /* -webkit-writing-mode: horizontal-tb !important; */
+    position: absolute;
+    line-height: 150px;
+    max-width: 150px;
+    height: 100%;
+    opacity: 0;
+    z-index: 105;
+  }
+
+  #bootstrap-overrides input[type="button" i], input[type="file" i]::-webkit-file-upload-button, button { cursor: pointer !important;}
+
+</style>
 @endsection
 
 @section('content')
@@ -16,24 +77,6 @@
             {{-- {{ csrf_field() }} --}}
             @csrf
             {{ method_field('PUT')}}
-
-            <div class="form-group row">
-              <label for="categoria" class="col-md-4 col-form-label text-md-right">Categoría</label>
-              <div class="col-md-6">
-                <select class="custom-select" value="{{$prenda->pre_fk_categoria}}" name="categoria">
-                  @foreach ($categorias as $categoria)
-                    <option value="{{$categoria->pk_categoria}}" selected>{{$categoria->cat_nombre}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="visible" class="col-md-4 col-form-label text-md-right">Disponible al público</label>
-              <div class="col-md-6">
-                <input type="checkbox" class="form-check" name="visible" value="{{$prenda->pre_visible}}" autofocus>
-              </div>
-            </div>
 
             <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
@@ -53,6 +96,17 @@
               <label for="talla" class="col-md-4 col-form-label text-md-right">Talla</label>
               <div class="col-md-6">
                 <input type="text" class="form-control" name="talla" value="{{$prenda->pre_talla}}" required autofocus>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="categoria" class="col-md-4 col-form-label text-md-right">Categoría</label>
+              <div class="col-md-6">
+                <select class="custom-select" value="{{$prenda->pre_fk_categoria}}" name="categoria">
+                  @foreach ($categorias as $categoria)
+                    <option value="{{$categoria->pk_categoria}}" selected>{{$categoria->cat_nombre}}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
 
@@ -77,11 +131,41 @@
               </div>
             </div>
 
-
+            <div class="form-group row">
+              <label for="visible" class="col-md-4 col-form-label text-md-right">Disponible al público</label>
+              <div class="col-md-6">
+                <input type="checkbox" class="form-check" name="visible" value="{{$prenda->pre_visible}}" autofocus>
+              </div>
+            </div>
 
             <div class="form-group row">
+              <label for="foto" class="col-md-3 col-form-label text-md-right">Fotos</label>
+              <div class="col-md-8 empty-fotos">
+                @if(count($prenda->fotos) < 6)
+                  @foreach ($prenda->fotos as $foto)
+                    <div class="miniature">
+                      <img class="min__img" src="/storage/{{$foto->fop_link}}">
+                    </div>
+                  @endforeach
+                  @for ($i=count($prenda->fotos); $i < 6; $i++)
+                    <div class="empty-miniature">
+                      <div class="min__text">
+                        <p><i class="fas fa-plus fa-lg"></i></p>
+                        <p>Añadir Foto</p>
+                      </div>
+
+
+                      <input type="file" class="cm-file-input" name="fotos[]">
+                      <input type="hidden" name="links[]" value="{{$foto->fop_link}}">
+                    </div>
+                  @endfor
+                @endif
+              </div>
+            </div>
+
+            {{-- <div class="form-group row">
               <label for="foto" class="col-md-4 col-form-label text-md-right">Fotos</label>
-              <div class="col-md-6">
+              <div class="col-md-6 empty-fotos">
                 <table border="1">
                   @foreach ($prenda->fotos as $foto)
                     <tr>
@@ -100,12 +184,12 @@
                   @endforeach
                 </table>
               </div>
-            </div>
+            </div> --}}
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
                     <button type="submit" class="btn btn-mod btn-primary">Enviar</button>
-                    <button type="submit" class="btn btn-danger"><a href="javascript:history.back()" class="btn-link-2">Cancelar</a></button>
+                    <a href="javascript:history.back()" class="btn-link-2"><button class="btn btn-danger">Cancelar</button></a>
                 </div>
             </div>
 

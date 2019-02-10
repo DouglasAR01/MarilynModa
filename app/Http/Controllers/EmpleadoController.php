@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Empleado;
 use App\Http\Requests\EmpleadoRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 
 class EmpleadoController extends Controller
 {
@@ -22,8 +23,10 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
+        // echo Route::currentRouteName();
         return view('empleados.indexEmpleado',[
           'empleados' => Empleado::all(),
+          'currentRouteName' => Route::currentRouteName(),
           'infoAdicional' => [
             'priv' => $this->privilegioParser(),
           ]

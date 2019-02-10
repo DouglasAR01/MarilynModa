@@ -81,3 +81,10 @@
         @endforeach
       </table> --}}
 @endsection
+
+@section('bottom')
+  <div class="bottom-container">
+    <a class="btn btn-mod btn-primary" href="/prendas/crear">Nueva Prenda</a>
+    <span> resultados</span>
+  </div>
+@endsection

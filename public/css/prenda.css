@@ -125,3 +125,14 @@
 .card-btns *{
   margin-right: .5rem;
 }
+
+.bottom-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: .5rem;
+}
+
+.bottom-container span{
+  font-size: 1.3rem;
+}

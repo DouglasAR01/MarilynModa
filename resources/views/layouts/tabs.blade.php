@@ -65,7 +65,5 @@
 
   </div>
 
-
-
-  </div>
+  @yield('bottom')
 @endsection
