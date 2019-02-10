@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 
 class PrendaController extends Controller
 {
-    protected $optimizacionActivada;
 
     function __construct()
     {
@@ -20,7 +19,6 @@ class PrendaController extends Controller
              ->only(['index']);
         $this->middleware('entran:admin,gerente')->except(['index','show','destroy']);
         $this->middleware('entran:admin')->only('destroy');
-        $this->optimizacionActivada = 1;
     }
     /**
      * Display a listing of the resource.
@@ -168,7 +166,7 @@ class PrendaController extends Controller
 
     private function optimizacionActivada()
     {
-        return $this->optimizacionActivada;
+        return config('services.tinypng.on');
     }
 
     private function optimizarImagen(String $imagen)

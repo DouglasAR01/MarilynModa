@@ -42,6 +42,7 @@ return [
 
     'tinypng' => [
         'key' => env('TINYPNG_KEY'),
+        'on' => env('TINYPNG_ON'),
     ],
 
 ];
