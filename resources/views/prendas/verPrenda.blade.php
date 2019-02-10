@@ -67,7 +67,11 @@
         <div class="card-btns">
            <a class="btn btn-info" href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a>
            <button class="btn btn-warning" href="#">Dar de baja</button>
-           <button class="btn btn-danger" href="#">Eliminar</button>
+           <form method="POST" action="/prendas/{{$prenda->pk_prenda}}">
+             {{ csrf_field() }}
+             {{ method_field('DELETE') }}
+             <input type="submit" class="btn btn-danger delete-row" value="Eliminar">
+           </form>
          </div>
       @endif
     </div>

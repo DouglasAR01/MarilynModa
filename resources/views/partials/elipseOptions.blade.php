@@ -7,7 +7,7 @@
     @switch($currentRouteName)
       {{-- @case('facturas.index')
         @break
-        
+
       @case('gastos.index')
         @break
 
@@ -17,15 +17,26 @@
         <a class="dropdown-item" href="/prendas/{{$prenda->pk_prenda}}">Expandir</a>
         @if (auth(session('cargo'))->user()->emp_privilegio == 'a')
           <a class="dropdown-item" href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a>
-          <a class="dropdown-item" href="#">Eliminar</a>
+          <form method="POST" action="/prendas/{{$prenda->pk_prenda}}">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <input type="submit" class="dropdown-item delete-row" value="Eliminar">
+          </form>
         @endif
         @break
 
       @case('empleados.index')
         <a class="dropdown-item" href="/empleados/{{$empleado->pk_emp_cedula}}">Expandir</a>
-        @if (auth(session('cargo'))->user()->emp_privilegio == 'a')
+        @if (auth(session('cargo'))->user()->emp_privilegio == 'a' ||
+            auth(session('cargo'))->user()->emp_privilegio == 'g')
           <a class="dropdown-item" href="/empleados/{{$empleado->pk_emp_cedula}}/editar">Editar</a>
-          <a class="dropdown-item" href="#">Eliminar</a>
+          @if (auth(session('cargo'))->user()->emp_privilegio == 'a')
+            <form method="POST" action="/empleados/{{$empleado->pk_emp_cedula}}">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
+              <input type="submit" class="dropdown-item delete-row" value="Eliminar">
+            </form>
+          @endif
         @endif
         @break
 

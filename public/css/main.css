@@ -159,6 +159,12 @@ button:focus{  outline:0;}
   font-size: 1.3em;
 }
 
+.saveAlert{
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
 .navbar{ box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); font-size: 1rem;}
 
 .navbar-brand{font-size: 1.4rem; color: var(--dark-purple); margin-right: 2rem;}

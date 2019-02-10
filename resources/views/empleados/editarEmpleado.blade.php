@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@extends('layouts.errors')
 
 @section('stylesheets')
   <link rel="stylesheet" href="/css/db-tables.css">
@@ -85,10 +86,6 @@
               </div>
             </div>
 
-
-
-
-
             @if (auth()->user()->emp_privilegio==='a')
               <div class="form-group row">
                 <label for="privilegio" class="col-md-4 col-form-label text-md-right">Cargo</label>
@@ -112,7 +109,6 @@
             @else
               <input type="hidden" name="privilegio" value="{{$empleado->emp_privilegio}}">
             @endif
-
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">

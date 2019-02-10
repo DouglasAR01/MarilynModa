@@ -1,4 +1,5 @@
 @extends('layouts.main')
+@extends('layouts.errors')
 
 @section('stylesheets')
   <link rel="stylesheet" href="/css/empleados.css">
@@ -62,8 +63,14 @@
       @if (auth(session('cargo'))->user()->emp_privilegio == 'a' ||
            auth(session('cargo'))->user()->emp_privilegio == 'g')
         <div class="card-btns">
-           <a class="btn btn-info" href="/empleados/{{$empleados[0]->pk_emp_cedula}}/editar">Editar</a>
-           <button class="btn btn-danger" href="#">Eliminar</button>
+          <a class="btn btn-info" href="/empleados/{{$empleados[0]->pk_emp_cedula}}/editar">Editar</a>
+          @if (auth(session('cargo'))->user()->emp_privilegio == 'a')
+          <form method="POST" action="/empleados/{{$empleados[0]->pk_emp_cedula}}">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <input type="submit" class="btn btn-danger delete-row" value="Borrar">
+          </form>
+          @endif
          </div>
       @endif
     </div>

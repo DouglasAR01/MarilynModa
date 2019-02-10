@@ -11,18 +11,17 @@
     flex-wrap: wrap;
   }
 
-  .miniature, .empty-miniature{
+  /* .miniature, .empty-miniature{
     display: block;
     height: 150px;
     width: 150px;
     margin: 5px;
-    overflow-x: hidden;
+    overflow-x: scroll;
     overflow-y: hidden;
     position: relative;
   }
 
   .empty-miniature{
-    /* background-color: rgba(4, 128, 142, 0.41); */
     border: 3px dashed #777;
   }
 
@@ -44,15 +43,14 @@
   }
   .min__text p{
     margin: 0;
-  }
+  } */
 
-  #bootstrap-overrides input[type="file" i]{
+  /* #bootstrap-overrides .empty-miniature input[type="file" i]{
 
     cursor: pointer !important;
     -webkit-cursor: pointer !important;
     align-self: stretch;
     display: block;
-    /* -webkit-writing-mode: horizontal-tb !important; */
     position: absolute;
     line-height: 150px;
     max-width: 150px;
@@ -61,7 +59,7 @@
     z-index: 105;
   }
 
-  #bootstrap-overrides input[type="button" i], input[type="file" i]::-webkit-file-upload-button, button { cursor: pointer !important;}
+  #bootstrap-overrides input[type="button" i], input[type="file" i]::-webkit-file-upload-button, button { cursor: pointer !important;} */
 
 </style>
 @endsection
@@ -138,7 +136,7 @@
               </div>
             </div>
 
-            <div class="form-group row">
+            {{-- <div class="form-group row">
               <label for="foto" class="col-md-3 col-form-label text-md-right">Fotos</label>
               <div class="col-md-8 empty-fotos">
                 @if(count($prenda->fotos) < 6)
@@ -161,20 +159,21 @@
                   @endfor
                 @endif
               </div>
-            </div>
+            </div> --}}
 
-            {{-- <div class="form-group row">
-              <label for="foto" class="col-md-4 col-form-label text-md-right">Fotos</label>
-              <div class="col-md-6 empty-fotos">
+            <div class="form-group row">
+              <label for="foto" class="col-md-3 col-form-label text-md-right">Fotos</label>
+              <div class="col-md-7 empty-fotos">
                 <table border="1">
-                  @foreach ($prenda->fotos as $foto)
+                  {{-- @foreach ($prenda->fotos as $foto)
                     <tr>
                       <td>
-                        <img src="/storage/{{$foto->fop_link}}" alt="" height="200" width="200"><br>
+                        <input type="file" name="fotos[]" value="{{$foto->fop_link}}">
+                        <!-- <input type="file" name="fotos[]" > -->
+                        <input type="hidden" name="links[]" value="{{$foto->fop_link}}">
                       </td>
                       <td>
-                        <input type="file" name="fotos[]"> </input>
-                        <input type="hidden" name="links[]" value="{{$foto->fop_link}}">
+                        <img src="/storage/{{$foto->fop_link}}" alt="" height="150" width="150">
                       </td>
                       <td>
                         <input type="radio" @if ($foto->fop_principal) checked
@@ -182,9 +181,47 @@
                       </td>
                     </tr>
                   @endforeach
+
+                  @if(count($prenda->fotos) < 6)
+                    @for ($i=count($prenda->fotos); $i < 6; $i++)
+                      <tr>
+                        <td>
+                          <input class="foto-selector" type="file" name="fotos[]" value="">
+                          <input class="foto-links" type="hidden" name="links[]" value="">
+                          <span class="link-selected"></span>
+
+                          <!-- <input type="file" name="fotos[]" >
+                          <input type="hidden" name="links[]" value="{{$foto->fop_link}}"> -->
+                        </td>
+                        <td>
+                          <!-- <span class="link-selected"></span> -->
+                          <img class="foto-selected" src="" alt="" height="150" width="150">
+                        </td>
+                        <td>
+                          <input type="radio" class="form-check" name="fotoPrincipal" value="{{$foto->fop_principal}}" autofocus>
+                          <!-- <input type="radio" @if ($foto->fop_principal) checked @endif name="fotoPrincipal" value="{{$foto->fop_link}}"> -->
+                        </td>
+                      </tr>
+                    @endfor
+                  @endif --}}
+                  @foreach ($prenda->fotos as $foto)
+                    <tr>
+                      <td>
+                        {{-- <img src="/storage/{{$foto->fop_link}}" alt="" height="150" width="150"><br> --}}
+                      </td>
+                      <td>
+                        <input type="file" name="fotos[]" value="">
+                        <input type="hidden" name="links[]" value="">
+                      </td>
+                      <td>
+                        <input type="checkbox" @if ($foto->fop_principal)checked
+                        @endif name="fotoPrincipal" value="{{$foto->fop_link}}">
+                      </td>
+                    </tr>
+                  @endforeach
                 </table>
               </div>
-            </div> --}}
+            </div>
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">

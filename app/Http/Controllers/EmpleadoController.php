@@ -7,6 +7,7 @@ use App\Empleado;
 use App\Http\Requests\EmpleadoRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Session;
 
 class EmpleadoController extends Controller
 {
@@ -62,9 +63,13 @@ class EmpleadoController extends Controller
         $nuevoEmp->emp_apellido = $request->apellido;
         $nuevoEmp->emp_privilegio = $request->privilegio;
         if ($nuevoEmp->save()) {
-          return 'Empleado guardado';
+          Session::flash('success', 'Empleado guardado');
+          return redirect()->route('empleados.index');
+          // return 'Empleado guardado';
         }
-        return 'Error';
+        Session::flash('error', 'Empleado no guardado');
+        return redirect()->route('empleados.index');
+        // return 'Error';
     }
 
     /**
@@ -85,7 +90,8 @@ class EmpleadoController extends Controller
               ]
             ]);
           }
-          return 'Usuario no encontrado';
+          Session::flash('error', 'Usuario no encontrado');
+          // return 'Usuario no encontrado';
         }
         return redirect('home');
     }
@@ -102,11 +108,16 @@ class EmpleadoController extends Controller
 
         //Verifica que se haya encontrado un empleado con esa cédula
         if (!$empleado) {
-          return 'Empleado no encontrado';
+
+          Session::flash('error', 'Empleado no encontrado');
+          // return 'Empleado no encontrado';
         }
         //Verifica que el empleado que se desea editar sea posible editarlo con
         //los privilegios actuales
+
+        //Gerente debería poder editar empleado, pero no el campo de privilegio!!!!
         if (!$this->verificarEmpleado($pk_emp_cedula)) {
+          Session::flash('error', 'No tiene permisos para modificar este empleado, pero gerente debería!!!!');
           return back();
         }
 
@@ -123,7 +134,9 @@ class EmpleadoController extends Controller
     public function update(EmpleadoRequest $request, $pk_emp_cedula)
     {
         if (!$this->verificarEmpleado($pk_emp_cedula)) {
-          return 'No tiene permisos para modificar este empleado';
+
+          Session::flash('error', 'No tiene permisos para modificar este empleado');
+          // return 'No tiene permisos para modificar este empleado';
         }
         $empleado = Empleado::find($pk_emp_cedula);
         $empleado->pk_emp_cedula = $request->cedula;
@@ -145,9 +158,14 @@ class EmpleadoController extends Controller
             session()->flush();
             return redirect('login');
           }
-          return 'Cambios guardados exitosamente';
+
+          Session::flash('success', 'Cambios guardados exitosamente');
+          return redirect()->route('empleados.index');
+          // return 'Cambios guardados exitosamente';
         }
-        return 'Error';
+        Session::flash('error', 'No tiene permisos para modificar este empleado');
+        return redirect()->route('empleados.index');
+        // return 'Error No tiene permisos para modificar este empleado';
     }
 
     /**
@@ -159,14 +177,21 @@ class EmpleadoController extends Controller
     public function destroy($pk_emp_cedula)
     {
         if ($pk_emp_cedula==auth()->user()->pk_emp_cedula) {
-          return 'No es posible eliminarse a sí mismo.';
+          Session::flash('error', 'No es posible eliminarse a sí mismo.');
+          return redirect()->route('empleados.index');
+          // return 'No es posible eliminarse a sí mismo.';
         }
         $empleado = Empleado::find($pk_emp_cedula);
         if($empleado){
           $empleado->delete();
-          return 'Empleado eliminado';
+
+          Session::flash('success', 'Empleado eliminado');
+          return redirect()->route('empleados.index');
+          // return 'Empleado eliminado';
         }
-        return 'Empleado no encontrado';
+        Session::flash('error', 'Empleado no encontrado');
+        return redirect()->route('empleados.index');
+        // return 'Empleado no encontrado';
     }
 
     private function verificarEmpleado($pk_emp_cedula)

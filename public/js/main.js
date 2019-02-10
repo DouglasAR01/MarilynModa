@@ -52,7 +52,6 @@ $(function(){
 });
 
 //Responsive tabs
-
 $(document).ready(function() {
   var stickyNavTop = $('.navbar').offset().top;
 
@@ -151,12 +150,29 @@ function openTab(evt, tabName) {
 }
 
 //Target image in prenda
-
 $(function(){
   $(".miniature").click(function(){
     let min = $(this).attr("src");
     $(".view-foto").html('<img src="' + min +'">');
   });
+});
+
+//Foto seleccionada
+// $(function(){
+//   $(".foto-selector").click(function(){
+//     let min = $(this).attr("value");
+//     // $(this).('.link-selected').html(min);
+//     // $(this).(".foto-links").attr("value", min);
+//   });
+// });
+
+//Eliminar elemento de la base de datos
+$('.delete-row').click(function(e){
+    e.preventDefault() // Don't post the form, unless confirmed
+    if (confirm('¿Desea borrar este registro?')) {
+        // Post the forms
+        $(e.target).closest('form').submit() // Post the surrounding form
+    }
 });
 
 //Tabs de prueba

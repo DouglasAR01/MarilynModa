@@ -1,4 +1,6 @@
 @extends('layouts.tabs')
+@extends('layouts.errors')
+
 
 @section('styles')
   <link rel="stylesheet" href="/css/prenda.css">

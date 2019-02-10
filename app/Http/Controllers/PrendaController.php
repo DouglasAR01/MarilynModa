@@ -9,6 +9,7 @@ use App\FotoPrenda;
 use App\Http\Controllers\SupraController as SC;
 use App\Http\Requests\PrendaRequest;
 use Illuminate\Support\Facades\Route;
+use Session;
 
 class PrendaController extends Controller
 {
@@ -27,6 +28,7 @@ class PrendaController extends Controller
      */
     public function index()
     {
+      // dd( Prenda::all());
         return view('prendas.indexPrendas', [
           'currentRouteName' => Route::currentRouteName(),
           'prendas' => Prenda::all()
@@ -62,7 +64,9 @@ class PrendaController extends Controller
         $nuevaPrenda->pre_fecha_compra = $request->fecha;
         $nuevaPrenda->pre_talla = $request->talla;
         if (!$nuevaPrenda->save()) {
-          return 'Error al guardar la prenda';
+          Session::flash('error', 'Prenda no guardada');
+          return redirect()->route('prendas.index');
+          // return 'Error al guardar la prenda';
         }
         $linkFotoSubida = SC::subirArchivo($request,'foto','prendas');
         if (!$linkFotoSubida) {
@@ -74,7 +78,10 @@ class PrendaController extends Controller
           'fop_principal' => true
         ]);
         $this->optimizar($linkFotoSubida);
-        return 'Prenda guardada con exito';
+
+        Session::flash('success', 'Prenda guardada con exito');
+        return redirect()->route('prendas.index');
+        // return 'Prenda guardada con exito';
     }
 
     /**
@@ -87,10 +94,13 @@ class PrendaController extends Controller
     {
         $prenda = Prenda::find($id);
         if (!$prenda) {
-          return 'Prenda no encontrada';
+          Session::flash('error', 'Prenda no encontrada');
+          return redirect()->route('prendas.index');
+          // return 'Prenda no encontrada';
         }
         //Si no es un empleado y la prenda no es visible al publico, retrocede
         if (empty(auth(session('cargo'))->user()) && $prenda->pre_visible==false) {
+          Session::flash('error', 'Prenda no disponible');
           return back();
         }
         return view('prendas.verPrenda',compact('prenda'));
@@ -127,13 +137,17 @@ class PrendaController extends Controller
         $prendaActualizada->pre_fecha_compra = $request->fecha;
         $prendaActualizada->pre_talla = $request->talla;
         if (!$prendaActualizada->save()) {
-          return 'Error al guardar la prenda';
+          Session::flash('error', 'Prenda no disponible');
+          return redirect()->route('prendas.index');
+          // return 'Error al guardar la prenda';
         }
         //Cambia la foto principal
         $fotoPrendaPrincipalActual = $prendaActualizada->getFotoPrincipal();
         if (!($fotoPrendaPrincipalActual->fop_link===$request->fotoPrincipal)) {
           if (!$fotoPrendaPrincipalActual->cambiarFotoPrincipal($request->fotoPrincipal)) {
-            return 'No se pudo cambiar la foto principal';
+            Session::flash('error', 'No se pudo cambiar la foto principal');
+            return redirect()->route('prendas.index');
+            // return 'No se pudo cambiar la foto principal';
           }
         }
 
@@ -149,7 +163,9 @@ class PrendaController extends Controller
             $this->optimizar($fotoACambiar->fop_link);
           }
         }
-        return 'Prenda actualizada con éxito';
+        Session::flash('success', 'Prenda actualizada con exito');
+        return redirect()->route('prendas.index');
+        // return 'Prenda actualizada con éxito';
     }
 
     /**
@@ -161,7 +177,9 @@ class PrendaController extends Controller
     public function destroy(Prenda $prenda)
     {
         $prenda->delete();
-        return 'eliminado';
+        Session::flash('success', 'Prenda eliminada');
+        return redirect()->route('prendas.index');
+        // return 'eliminado';
     }
 
     private function optimizacionActivada()

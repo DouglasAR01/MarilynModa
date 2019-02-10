@@ -7,6 +7,9 @@
 @endsection
 
 @section('content')
+  <div class="row">
+    @include('partials.messages')
+  </div>
   <div class="row" id="sh-row">
     @yield('search-head')
   </div>
