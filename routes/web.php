@@ -43,6 +43,7 @@ Route::resource('/empleados','EmpleadoController');
 */
 Route::get('/prendas/categorias/{pk_categoria}','PrendaController@metodo');
 Route::get('/prendas/filtrado','PrendaController@metodo');
+Route::post('/prendas/eliminarFoto','PrendaController@eliminarFoto')->name('prendas.eliminarFoto');
 Route::resource('/prendas','PrendaController');
 
 /**

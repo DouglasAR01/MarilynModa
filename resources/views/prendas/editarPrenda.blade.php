@@ -118,7 +118,7 @@
             <div class="form-group row">
               <label for="precio" class="col-md-4 col-form-label text-md-right">Precio Sugerido</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="precio" value="{{$prenda->pre_precio}}" autofocus>
+                <input type="text" class="form-control" name="precio" value="{{$prenda->pre_precio_sugerido}}" autofocus>
               </div>
             </div>
 
@@ -132,7 +132,7 @@
             <div class="form-group row">
               <label for="visible" class="col-md-4 col-form-label text-md-right">Disponible al público</label>
               <div class="col-md-6">
-                <input type="checkbox" class="form-check" name="visible" value="{{$prenda->pre_visible}}" autofocus>
+                <input type="checkbox" class="form-check" name="visible" @if ($prenda->pre_visible) checked @endif autofocus>
               </div>
             </div>
 
@@ -164,69 +164,14 @@
             <div class="form-group row">
               <label for="foto" class="col-md-3 col-form-label text-md-right">Fotos</label>
               <div class="col-md-7 empty-fotos">
-                <table border="1">
-                  {{-- @foreach ($prenda->fotos as $foto)
-                    <tr>
-                      <td>
-                        <input type="file" name="fotos[]" value="{{$foto->fop_link}}">
-                        <!-- <input type="file" name="fotos[]" > -->
-                        <input type="hidden" name="links[]" value="{{$foto->fop_link}}">
-                      </td>
-                      <td>
-                        <img src="/storage/{{$foto->fop_link}}" alt="" height="150" width="150">
-                      </td>
-                      <td>
-                        <input type="radio" @if ($foto->fop_principal) checked
-                        @endif name="fotoPrincipal" value="{{$foto->fop_link}}">
-                      </td>
-                    </tr>
-                  @endforeach
-
-                  @if(count($prenda->fotos) < 6)
-                    @for ($i=count($prenda->fotos); $i < 6; $i++)
-                      <tr>
-                        <td>
-                          <input class="foto-selector" type="file" name="fotos[]" value="">
-                          <input class="foto-links" type="hidden" name="links[]" value="">
-                          <span class="link-selected"></span>
-
-                          <!-- <input type="file" name="fotos[]" >
-                          <input type="hidden" name="links[]" value="{{$foto->fop_link}}"> -->
-                        </td>
-                        <td>
-                          <!-- <span class="link-selected"></span> -->
-                          <img class="foto-selected" src="" alt="" height="150" width="150">
-                        </td>
-                        <td>
-                          <input type="radio" class="form-check" name="fotoPrincipal" value="{{$foto->fop_principal}}" autofocus>
-                          <!-- <input type="radio" @if ($foto->fop_principal) checked @endif name="fotoPrincipal" value="{{$foto->fop_link}}"> -->
-                        </td>
-                      </tr>
-                    @endfor
-                  @endif --}}
-                  @foreach ($prenda->fotos as $foto)
-                    <tr>
-                      <td>
-                        {{-- <img src="/storage/{{$foto->fop_link}}" alt="" height="150" width="150"><br> --}}
-                      </td>
-                      <td>
-                        <input type="file" name="fotos[]" value="">
-                        <input type="hidden" name="links[]" value="">
-                      </td>
-                      <td>
-                        <input type="checkbox" @if ($foto->fop_principal)checked
-                        @endif name="fotoPrincipal" value="{{$foto->fop_link}}">
-                      </td>
-                    </tr>
-                  @endforeach
-                </table>
+                @include('prendas.fotos.fotos')
               </div>
             </div>
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
                     <button type="submit" class="btn btn-mod btn-primary">Enviar</button>
-                    <a href="javascript:history.back()" class="btn-link-2"><button class="btn btn-danger">Cancelar</button></a>
+                    <a href="/prendas" class="btn-link-2"><button class="btn btn-danger">Cancelar</button></a>
                 </div>
             </div>
 

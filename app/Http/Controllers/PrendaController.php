@@ -56,7 +56,7 @@ class PrendaController extends Controller
     {
         $nuevaPrenda = new Prenda();
         $nuevaPrenda->pre_fk_categoria = $request->categoria;
-        $nuevaPrenda->pre_visible = SC::chequearBooleano($request->pre_visible);
+        $nuevaPrenda->pre_visible = SC::string2Boolean($request->pre_visible);
         $nuevaPrenda->pre_nombre = $request->nombre;
         $nuevaPrenda->pre_descripcion = $request->descripcion;
         $nuevaPrenda->pre_cantidad = $request->cantidad;
@@ -129,7 +129,7 @@ class PrendaController extends Controller
     {
         $prendaActualizada= Prenda::find($id);
         $prendaActualizada->pre_fk_categoria = $request->categoria;
-        $prendaActualizada->pre_visible = SC::chequearBooleano($request->pre_visible);
+        $prendaActualizada->pre_visible = SC::string2Boolean($request->visible);
         $prendaActualizada->pre_nombre = $request->nombre;
         $prendaActualizada->pre_descripcion = $request->descripcion;
         $prendaActualizada->pre_cantidad = $request->cantidad;
@@ -152,15 +152,26 @@ class PrendaController extends Controller
         }
 
         //Cambia las demás fotos (incluída la principal) si se subió un archivo
-        foreach ($request->fotos as $llave => $foto) {
-          if(!empty($foto)){
-            $linkFotoSubida = $request->fotos[$llave]->store('prendas','public');
-            if (!$linkFotoSubida) {
-              return 'Error al guardar la foto';
+        if (!empty($request->fotos)) {
+          foreach ($request->fotos as $llave => $foto) {
+            if(!empty($foto)){
+              $fotoACambiar= FotoPrenda::find($request->links[$llave]);
+              $linkFotoSubida = $request->fotos[$llave]->store('prendas','public');
+              if (!$linkFotoSubida) {
+                return 'Error al guardar la foto';
+              }
+              //Si la foto no existía antes, crea una nueva
+              if (empty($fotoACambiar)) {
+                FotoPrenda::create([
+                  'fop_fk_prenda' => $prendaActualizada->pk_prenda,
+                  'fop_link' => $linkFotoSubida,
+                  'fop_principal' => false
+                ]);
+              }else{
+                $fotoACambiar->cambiarLinkFoto($linkFotoSubida);
+              }
+              $this->optimizar($linkFotoSubida);
             }
-            $fotoACambiar= FotoPrenda::find($request->links[$llave]);
-            $fotoACambiar->cambiarLinkFoto($linkFotoSubida);
-            $this->optimizar($fotoACambiar->fop_link);
           }
         }
         Session::flash('success', 'Prenda actualizada con exito');
@@ -180,6 +191,16 @@ class PrendaController extends Controller
         Session::flash('success', 'Prenda eliminada');
         return redirect()->route('prendas.index');
         // return 'eliminado';
+    }
+
+    public function eliminarFoto()
+    {
+        $foto = FotoPrenda::find($request->vic);
+        if(!empty($foto)){
+          $foto->delete();
+          $foto->eliminarFoto();
+        }
+        return back();
     }
 
     private function optimizacionActivada()

@@ -20,9 +20,14 @@ class FotoPrenda extends Model
      */
     public function cambiarLinkFoto(String $LinkFotoNueva)
     {
-        SC::eliminarArchivo($this->fop_link, 'public');
+        $this->eliminarFoto();
         $this->fop_link = $LinkFotoNueva;
         $this->save();
+    }
+
+    public function eliminarFoto()
+    {
+        SC::eliminarArchivo($this->fop_link, 'public');
     }
 
     /**

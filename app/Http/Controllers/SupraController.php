@@ -95,11 +95,11 @@ class SupraController
    * en caso de contener algo, se asume que es una variable de tipo booleano y devolverá true.
    * @author Douglas R.
    * @param $var Variable a verificar que sea booleano, lógicamente, se debería envíar un booleano.
-   * @version 1.0
+   * @version 1.1
    */
-  public static function chequearBooleano($var)
+  public static function string2Boolean($var)
   {
-      if ($var) {
+      if (is_string($var) and ($var==="1" or $var==="on")) {
         return 1;
       }
       return 0;
