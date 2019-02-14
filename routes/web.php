@@ -94,7 +94,7 @@ Route::resource('/control','PanelControlController');
  * Foto de prenda
  * @author Douglas R
  */
-Route::resource('/fotosprenda','FotoPrendaController');
+Route::resource('/fotosprenda','FotoPrendaController')->except('index','show','create','store');
 
 /**
  * Palabra clave

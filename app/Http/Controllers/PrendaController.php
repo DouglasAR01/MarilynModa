@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Prenda;
 use App\Categoria;
 use App\FotoPrenda;
-use App\Http\Controllers\SupraController as SC;
 use App\Http\Requests\PrendaRequest;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SupraController as SC;
 use Session;
 
 class PrendaController extends Controller
