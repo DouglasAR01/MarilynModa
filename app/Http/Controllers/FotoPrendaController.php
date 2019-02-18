@@ -47,7 +47,7 @@ class FotoPrendaController extends Controller
           foreach ($request->fotos as $llave => $foto) {
             if(!empty($foto)){
               $fotoACambiar= FotoPrenda::find($request->links[$llave]);
-              $linkFotoSubida = $request->fotos[$llave]->store('prendas','public');
+              $linkFotoSubida = $foto->store('prendas','public');
               if (!$linkFotoSubida) {
                 return 'Error al guardar la foto';
               }
