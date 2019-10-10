@@ -187,12 +187,7 @@ class PrendaController extends Controller
      */
     public function destroy(Prenda $prenda)
     {
-        $fotosPrenda = $prenda->fotos;
         $prenda->delete();
-        foreach ($fotosPrenda as $foto) {
-          $foto->delete();
-          $foto->eliminarFoto();
-        }
         Session::flash('success', 'Prenda eliminada');
         return redirect()->route('prendas.index');
         // return 'eliminado';
