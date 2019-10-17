@@ -174,7 +174,7 @@ class PrendaController extends Controller
             }
           }
         }
-        Session::flash('success', 'Prenda actualizada con exito');
+        Session::flash('success', 'Prenda actualizada con éxito');
         return redirect()->route('prendas.index');
         // return 'Prenda actualizada con éxito';
     }

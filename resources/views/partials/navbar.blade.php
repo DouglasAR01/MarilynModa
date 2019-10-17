@@ -40,11 +40,6 @@
 
     </ul>
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search">
-      <button class="btn btn-mod btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-
       <!-- Right Side Of Navbar -->
     <ul id="nav-right" class="navbar-nav mt-2 mt-lg-0">
         <!-- Authentication Links -->

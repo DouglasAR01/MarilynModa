@@ -33,7 +33,14 @@
             <div class="form-group row">
               <label for="talla" class="col-md-4 col-form-label text-md-right">Talla</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="talla" value="{{ old('talla') }}" required autofocus>
+                <select class="custom-select" name="talla" selected="{{old('talla')}}" required>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                </select>
               </div>
             </div>
 
@@ -59,7 +66,7 @@
             <div class="form-group row">
               <label for="precio" class="col-md-4 col-form-label text-md-right">Precio Sugerido</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="precio" value="{{ old('precio') }}" autofocus>
+                <input type="number" class="form-control" name="precio" value="{{ old('precio') }}" autofocus>
               </div>
             </div>
 

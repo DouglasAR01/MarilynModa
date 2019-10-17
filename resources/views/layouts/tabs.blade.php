@@ -7,12 +7,6 @@
 @endsection
 
 @section('content')
-  <div class="row">
-    @include('partials.messages')
-  </div>
-  <div class="row" id="sh-row">
-    @yield('search-head')
-  </div>
   <div class="tab-container" style="display:none;">
 
     <div class="tab">
@@ -23,6 +17,9 @@
 
     <!-- Tab content -->
     <div id="all-tab" class="tabcontent">
+      <div class="row" id="sh-row">
+        @yield('search-head')
+      </div>
       @yield('db-tab')
     </div>
 
