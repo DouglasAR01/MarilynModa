@@ -80,7 +80,7 @@
             <div class="form-group row">
               <label for="visible" class="col-md-4 col-form-label text-md-right">Disponible al público</label>
               <div class="col-md-6">
-                <input type="checkbox" class="form-check" name="visible" checked autofocus>
+                <input type="checkbox" class="form-check" name="visible"  value="" autofocus>
               </div>
             </div>
 
