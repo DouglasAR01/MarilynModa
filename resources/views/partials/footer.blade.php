@@ -1,7 +1,9 @@
 <div class="footer-grid">
   <ul class="footer-grid__item f_top f_row_ul">
     <li><a href="#" >Volver Arriba</a></li>
-    <li><a href="#" class="fa fa-facebook"></a><a href="#" class="fa fa-twitter"></a><a href="#" class="fa fa-instagram"></a></li>
+    <li><a href="https://www.facebook.com/amarilynmoda" class="fa fa-facebook"></a>
+      <a href="https://www.twitter.com/amarilynmoda" class="fa fa-twitter"></a>
+      <a href="https://www.instagram.com/amarilynmoda" class="fa fa-instagram"></a></li>
   </ul>
 
   <div class="footer-nav footer-grid__item f_left">
@@ -31,6 +33,6 @@
     </a>
   </div>
 
-  <div class="footer-grid__item f_bottom">© <span class="footer-creditos__year">2019 &nbsp</span>  Marilyn Moda S.A.</div>
+  <div class="footer-grid__item f_bottom">© <span class="footer-creditos__year">2019 &nbsp</span>  Marilyn Moda ltda.</div>
 
 </div> <!--END FOOTER-GRID-->

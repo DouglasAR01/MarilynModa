@@ -26,7 +26,7 @@
             <div class="form-group row">
               <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" autofocus>
+                <input type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" autofocus requiered>
               </div>
             </div>
 
@@ -59,14 +59,14 @@
             <div class="form-group row">
               <label for="cantidad" class="col-md-4 col-form-label text-md-right">Cantidad Inicial Disponible</label>
               <div class="col-md-6">
-                <input type="number" class="form-control" name="cantidad" value="{{ old('cantidad') }}" required autofocus>
+                <input type="number" class="form-control" name="cantidad" value="1" min="0" required autofocus>
               </div>
             </div>
 
             <div class="form-group row">
               <label for="precio" class="col-md-4 col-form-label text-md-right">Precio Sugerido</label>
               <div class="col-md-6">
-                <input type="number" class="form-control" name="precio" value="{{ old('precio') }}" autofocus>
+                <input type="number" class="form-control" name="precio" value="{{ old('precio') }}" min="0" autofocus>
               </div>
             </div>
 
@@ -80,7 +80,7 @@
             <div class="form-group row">
               <label for="visible" class="col-md-4 col-form-label text-md-right">Disponible al público</label>
               <div class="col-md-6">
-                <input type="checkbox" class="form-check" name="visible" value="" autofocus>
+                <input type="checkbox" class="form-check" name="visible" checked autofocus>
               </div>
             </div>
 

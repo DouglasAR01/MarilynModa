@@ -65,108 +65,15 @@
     </div><!--END OF FILTERS-CONTAINER-->
   </div><!--END OF FILTERS-->
 
-  <!--CAROUSEL-->
-  <div class="carousel-container container">
-    <div class="row">
-      <div class="carousel-wrap col-xs-15"> <!--<div class="col-sm-12">-->
+  <div class="jumbotron">
+      @foreach ($prendas as $prenda)
+        <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="" height="320" width="164">
+      @endforeach
+  </div>
+  <div class="filters">
+    {{ $prendas->render()}}
+  </div>
 
-        <div id="sliderPrendas" class="carousel slide" data-ride="carousel">
-          <!-- indicator dot nov -->
-          <!-- wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <div class="row">
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/200" alt="vestido 1" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/201" alt="vestido 2" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/202" alt="vestido 3" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/203" alt="vestido 4" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/204" alt="vestido 5" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row">
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/205" alt="vestido 6" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/206" alt="vestido 7" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/207" alt="vestido 8" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/208" alt="vestido 9" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-                <div class="card col-xs-3">
-                  <img class="card__img" src="https://picsum.photos/200/209" alt="vestido 10" />
-                  <p class="card__title">Vestido 1</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- controls or next and prev buttons -->
-          <a class="ctrl-left carousel-control-prev" href="#sliderPrendas" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="ctrl-right carousel-control-next" href="#sliderPrendas" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-
-      </div> <!-- END col-xs-15 -->
-    </div> <!-- END row -->
-  </div> <!-- END CAROUSEL -->
-
-  {{-- <div class="card-container">
-    <div class="card">
-      <img src="https://picsum.photos/500/500" alt="" class="card__img">
-      <h3 class="card__title">Vestidos de Novia</h3>
-    </div>
-    <div class="card">
-      <img src="https://picsum.photos/500/501" alt="" class="card__img">
-      <h3 class="card__title">Vestidos de Fiesta</h3>
-    </div>
-    <div class="card">
-      <img src="https://picsum.photos/501/500" alt="" class="card__img">
-      <h3 class="card__title">Vestidos de Gala</h3>
-    </div>
-    <div class="card">
-      <img src="https://picsum.photos/501/501" alt="" class="card__img">
-      <h3 class="card__title">Trajes de Caballero</h3>
-    </div>
-    <div class="card">
-      <img src="https://picsum.photos/502/500" alt="" class="card__img">
-      <h3 class="card__title">Trajes de Niño</h3>
-    </div>
-    <div class="card">
-      <img src="https://picsum.photos/502/501" alt="" class="card__img">
-      <h3 class="card__title">Accesorios</h3>
-    </div>
-
-  </div> --}}
 @endsection
 
 @section('scripts')

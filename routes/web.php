@@ -23,9 +23,7 @@ Auth::routes(['register' => false]);
 /**
  * Miscelanea
  */
-Route::get('catalogo', function(){
-  return view('pages.catalogo');
-});
+Route::get('catalogo','CatalogoController@index');
 Route::get('/', function (){
   return view('pages.index');
 });
