@@ -56,7 +56,7 @@ Route::get('/bajas/ver/{pk_baja}','BajaController@show');
  * Categoria
  * @author Douglas R
  */
-Route::resource('/categorias','CategoriasController');
+Route::resource('/categorias','CategoriaController');
 
 /**
  * Cliente
