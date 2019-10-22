@@ -10,7 +10,8 @@
     <div class="head__text text-center">
       <h1 id="head__title">Marylin Moda</h1>
       <hr id="head__line">
-      <h4 id="head__desc">Venta y alquiler de trajes.</h4>
+      <h4 id="head__desc">Alquiler de trajes y vestidos.</h4>
+      <img src="{{asset('images/scroll-down.gif')}}" alt="" width="100" height="100">
     </div>
   </div>
 @endsection

@@ -6,7 +6,8 @@
 @endsection
 
 @section('content')
-
+  <p>Nota: La búsqueda y filtros están en fase de desarrollo, por lo tanto,
+  actualmente no funcionan.</p>
   <form class="key-search">
       <input class="form-control" type="search" placeholder="Busca por palabra clave...">
       <button class="btn btn-mod btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -21,7 +22,7 @@
 
         <div class="checkbox"><label><input type="checkbox" rel=""/> Mujer</label></div>
         <div class="checkbox"><label><input type="checkbox" rel=""/> Hombre</label></div>
-        <div class="checkbox"><label><input type="checkbox" rel=""/> NIño</label></div>
+        <div class="checkbox"><label><input type="checkbox" rel=""/> Niño</label></div>
 
       </div>
       <div class="filter__column">
@@ -65,13 +66,31 @@
     </div><!--END OF FILTERS-CONTAINER-->
   </div><!--END OF FILTERS-->
 
-  <div class="jumbotron">
-      @foreach ($prendas as $prenda)
-        <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="" height="320" width="164">
-      @endforeach
-  </div>
-  <div class="filters">
-    {{ $prendas->render()}}
+  <div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+      @if (count($prendas)>0)
+        @foreach ($prendas as $prenda)
+          <div class="col-auto mb-3">
+            <div class="card" style="width: 18rem;">
+              <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">{{$prenda->pre_nombre}}</h5>
+                <p class="card-text">{{$prenda->pre_descripcion}}</p>
+                <a href="/prendas/{{$prenda->pk_prenda}}" class="btn btn-primary">Ir a detalles</a>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      @else
+        <div class="">
+          <p>No hay prendas disponibles en este momento.</p>
+        </div>
+      @endif
+
+    </div>
+    <div class="filters">
+      {{ $prendas->render()}}
+    </div>
   </div>
 
 @endsection

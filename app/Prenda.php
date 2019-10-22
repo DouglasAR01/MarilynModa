@@ -14,7 +14,7 @@ class Prenda extends Model
     'pre_fecha_compra',
     'pre_talla'
   ];
-  protected $with = ['fotos','palabrasClave']; //Activa el eager loading por defecto
+  protected $with = ['fotos','palabrasClave','categoria']; //Activa el eager loading por defecto
 
   public function getNombreCategoria()
   {

@@ -7,73 +7,74 @@
 
 @section('content')
   <div class="row justify-content-center">
-    <div class="col-md-9">
+    <div class="col">
       <div class="card">
         <div class="card-header">
-          <span>Creado: {{$prenda->updated_at}}</span><br>
+          <span>Disponible</span><br>
           <span>Mod. última vez: {{$prenda->updated_at}}</span>
           <h2>#{{$prenda->pk_prenda}}</h2>
         </div>
         <div class="card-body">
           <div class="view-foto">
             <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="">
-            {{-- <img src="https://picsum.photos/301/600/?random" alt=""> --}}
           </div>
           <ul class="prenda-info">
             <li><b>Nombre:</b> {{$prenda->pre_nombre}}</li>
             <li><b>Descripción:</b> {{$prenda->pre_descripcion}}</li>
             <li><b>Talla:</b> {{$prenda->pre_talla}}</li>
-            <li><b>Categoría:</b> {{$prenda->pre_fk_categoria}}</li>
-            <li><b>Precio Sugerido:</b> {{$prenda->pre_precio}}</li>
-            <li><b>Veces Alquilado:</b> {{$prenda->pre_veces_alquilado}}</li>
-            <li>
-              <b>Visible al público:</b>
-              @if (!$prenda->pre_visible)
-                NO
-              @else
-                SÍ
-              @endif
-            </li>
-            <li><b>Cantidad disponible:</b> {{$prenda->pre_cantidad}}</li>
-            <li><b>Fecha de Compra:</b> {{$prenda->pre_fecha_compra}}</li>
-            <li><b>Palabras Clave:</b>
-              @foreach ($prenda->palabrasClave as $palabra)
-                {{$palabra->pivot->pal_clave}}
-              @endforeach
-            </li>
+            <li><b>Categoría:</b> {{$prenda->categoria->cat_nombre}}</li>
+            @if (auth(session('cargo'))->user())
+              <li><b>Precio Sugerido:</b> ${{$prenda->pre_precio_sugerido}}</li>
+              <li><b>Veces Alquilado:</b> {{$prenda->pre_veces_alquilado}}</li>
+              <li>
+                <b>Visible al público:</b>
+                @if (!$prenda->pre_visible)
+                  NO
+                @else
+                  SÍ
+                @endif
+              </li>
+              <li><b>Cantidad disponible:</b> {{$prenda->pre_cantidad}}</li>
+              <li><b>Fecha de Compra:</b> {{$prenda->pre_fecha_compra}}</li>
+            @endif
+            @if (count($prenda->palabrasClave)>0)
+              <li><b>Palabras Clave:</b>
+                @foreach ($prenda->palabrasClave as $palabra)
+                  {{$palabra->pivot->pal_clave}}
+                @endforeach
+              </li>
+            @endif
+            <li><b>Fotos adicionales:</b></li>
           </ul>
-          <div class="fotos">
-            {{-- <img src="https://picsum.photos/300/600/?random" alt="" class="miniature">
-            <img src="https://picsum.photos/300/601/?random" alt="" class="miniature">
-            <img src="https://picsum.photos/300/602/?random" alt="" class="miniature">
-            <img src="https://picsum.photos/301/600/?random" alt="" class="miniature">
-            <img src="https://picsum.photos/301/601/?random" alt="" class="miniature"> --}}
-            <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="Foto_principal" class="miniature">
-            @if (count($prenda->fotos)>1)
+          @if (count($prenda->fotos)>1)
+            <div class="fotos">
+              <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" class="miniature">
               @foreach ($prenda->fotos as $foto)
-                @if (!$foto['fop_principal'])
+                @if (!$foto->fop_principal)
                   <img src="{{asset('storage/'.$foto['fop_link'])}}" alt="Foto_secundaria" class="miniature">
                 @endif
               @endforeach
-            @endif
-            <img src="https://picsum.photos/301/602/?random" alt="" class="miniature">
-            <img src="https://picsum.photos/302/600/?random" alt="" class="miniature">
-          </div>
+            </div>
+          @else
+            <p>Esta prenda no tiene fotos adicionales.</p>
+          @endif
         </div>
       </div>
-
-      @if (auth(session('cargo'))->user()->emp_privilegio == 'a' ||
-           auth(session('cargo'))->user()->emp_privilegio == 'g')
-        <div class="card-btns">
-           <a class="btn btn-info" href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a>
-           <button class="btn btn-warning" href="#">Dar de baja</button>
-           <form method="POST" action="/prendas/{{$prenda->pk_prenda}}">
-             {{ csrf_field() }}
-             {{ method_field('DELETE') }}
-             <input type="submit" class="btn btn-danger delete-row" value="Eliminar">
-           </form>
-         </div>
+      @if (auth(session('cargo'))->user())
+        @if (auth(session('cargo'))->user()->emp_privilegio == 'a' ||
+             auth(session('cargo'))->user()->emp_privilegio == 'g')
+          <div class="card-btns">
+             <a class="btn btn-info" href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a>
+             <button class="btn btn-warning" href="#">Dar de baja</button>
+             <form method="POST" action="/prendas/{{$prenda->pk_prenda}}">
+               {{ csrf_field() }}
+               {{ method_field('DELETE') }}
+               <input type="submit" class="btn btn-danger delete-row" value="Eliminar">
+             </form>
+           </div>
+        @endif
       @endif
+
     </div>
   </div>
 
