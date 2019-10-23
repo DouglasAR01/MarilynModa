@@ -16,8 +16,9 @@
       <li class="nav_item"><a href="/" class="nav_link">Inicio</a><div class="square"></div></li>
       <!--DROPDOWN-->
       <li class="nav_item">
-
-        <div class="dropdown">
+        <a href="/catalogo" class="nav_link">Catálogo</a><div class="square"></div>
+        {{-- Dropdown deshabilitado hasta que estén habilitados los filtros --}}
+        {{-- <div class="dropdown">
           <button class=" dropdown-toggle nav_btn_link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span>Catálogo</span>
           </button>
@@ -30,7 +31,7 @@
             <a class="dropdown-item drop__link" href="/catalogo">Trajes de Niño</a>
             <a class="dropdown-item drop__link" href="/catalogo">Accesorios</a>
           </div>
-        </div>
+        </div> --}}
         {{-- <div class="dpdwn">
           <button class="nav_link">Catálogo</button>
           @include('partials.navbarDropdown')

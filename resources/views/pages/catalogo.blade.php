@@ -10,7 +10,7 @@
   actualmente no funcionan.</p>
   <form class="key-search">
       <input class="form-control" type="search" placeholder="Busca por palabra clave...">
-      <button class="btn btn-mod btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-mod btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
   </form>
 
   <div class="filters">
