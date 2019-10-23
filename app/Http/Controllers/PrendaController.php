@@ -56,7 +56,7 @@ class PrendaController extends Controller
     {
         $nuevaPrenda = new Prenda();
         $nuevaPrenda->pre_fk_categoria = $request->categoria;
-        $nuevaPrenda->pre_visible = SC::string2Boolean($request->pre_visible);
+        $nuevaPrenda->pre_visible = $request->filled('visible');
         $nuevaPrenda->pre_nombre = $request->nombre;
         $nuevaPrenda->pre_descripcion = $request->descripcion;
         $nuevaPrenda->pre_cantidad = $request->cantidad;
@@ -129,7 +129,7 @@ class PrendaController extends Controller
     {
         $prendaActualizada= Prenda::find($id);
         $prendaActualizada->pre_fk_categoria = $request->categoria;
-        $prendaActualizada->pre_visible = SC::string2Boolean($request->visible);
+        $prendaActualizada->pre_visible = $request->filled('visible');
         $prendaActualizada->pre_nombre = $request->nombre;
         $prendaActualizada->pre_descripcion = $request->descripcion;
         $prendaActualizada->pre_cantidad = $request->cantidad;

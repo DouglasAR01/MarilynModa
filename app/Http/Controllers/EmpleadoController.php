@@ -117,7 +117,7 @@ class EmpleadoController extends Controller
 
         //Gerente debería poder editar empleado, pero no el campo de privilegio!!!!
         if (!$this->verificarEmpleado($pk_emp_cedula)) {
-          Session::flash('error', 'No tiene permisos para modificar este empleado, pero gerente debería!!!!');
+          Session::flash('error', 'No tiene permisos para modificar este empleado.');
           return back();
         }
 

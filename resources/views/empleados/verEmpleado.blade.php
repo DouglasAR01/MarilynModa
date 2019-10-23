@@ -53,7 +53,6 @@
                   Hacker
               @endswitch
             </li>
-            <li><b>Última Factura:</b></li>
 
           </ul>
 
