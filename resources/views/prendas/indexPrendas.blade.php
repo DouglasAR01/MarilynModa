@@ -1,5 +1,4 @@
 @extends('layouts.tabs')
-@extends('layouts.errors')
 
 
 @section('styles')
@@ -33,11 +32,6 @@
         <li><b>Categoría:</b> {{$prenda->pre_fk_categoria}}</li>
         <li><b>Cantidad:</b> {{$prenda->pre_cantidad}}</li>
         <li><b>Precio Sugerido:</b> {{$prenda->pre_precio_sugerido}}</li>
-        <li><b>Palabras Clave:</b>
-          @foreach ($prenda->palabrasClave as $palabra)
-            {{$palabra->pivot->pal_clave}}
-          @endforeach
-        </li>
       </ul>
     </div>
   @endforeach

@@ -1,5 +1,4 @@
 @extends('layouts.tabs')
-@extends('layouts.errors')
 
 @section('styles')
   <link rel="stylesheet" href="/css/db-tables.css">

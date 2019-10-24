@@ -24,7 +24,6 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        // echo Route::currentRouteName();
         return view('empleados.indexEmpleado',[
           'empleados' => Empleado::all(),
           'currentRouteName' => Route::currentRouteName(),
@@ -65,11 +64,9 @@ class EmpleadoController extends Controller
         if ($nuevoEmp->save()) {
           Session::flash('success', 'Empleado guardado');
           return redirect()->route('empleados.index');
-          // return 'Empleado guardado';
         }
         Session::flash('error', 'Empleado no guardado');
         return redirect()->route('empleados.index');
-        // return 'Error';
     }
 
     /**
@@ -91,7 +88,6 @@ class EmpleadoController extends Controller
             ]);
           }
           Session::flash('error', 'Usuario no encontrado');
-          // return 'Usuario no encontrado';
         }
         return redirect('home');
     }
@@ -136,7 +132,6 @@ class EmpleadoController extends Controller
         if (!$this->verificarEmpleado($pk_emp_cedula)) {
 
           Session::flash('error', 'No tiene permisos para modificar este empleado');
-          // return 'No tiene permisos para modificar este empleado';
         }
         $empleado = Empleado::find($pk_emp_cedula);
         $empleado->pk_emp_cedula = $request->cedula;
@@ -156,16 +151,16 @@ class EmpleadoController extends Controller
           //Verifica si el usuario a modificar era el usuario logeado
           if (auth()->user()->pk_emp_cedula==$pk_emp_cedula) {
             session()->flush();
+            Session::flash('success', 'Cambios guardados exitosamente,
+                            por favor, inicie sesión nuevamente.');
             return redirect('login');
           }
 
           Session::flash('success', 'Cambios guardados exitosamente');
           return redirect()->route('empleados.index');
-          // return 'Cambios guardados exitosamente';
         }
         Session::flash('error', 'No tiene permisos para modificar este empleado');
         return redirect()->route('empleados.index');
-        // return 'Error No tiene permisos para modificar este empleado';
     }
 
     /**
@@ -179,7 +174,6 @@ class EmpleadoController extends Controller
         if ($pk_emp_cedula==auth()->user()->pk_emp_cedula) {
           Session::flash('error', 'No es posible eliminarse a sí mismo.');
           return redirect()->route('empleados.index');
-          // return 'No es posible eliminarse a sí mismo.';
         }
         $empleado = Empleado::find($pk_emp_cedula);
         if($empleado){
@@ -187,11 +181,9 @@ class EmpleadoController extends Controller
 
           Session::flash('success', 'Empleado eliminado');
           return redirect()->route('empleados.index');
-          // return 'Empleado eliminado';
         }
         Session::flash('error', 'Empleado no encontrado');
         return redirect()->route('empleados.index');
-        // return 'Empleado no encontrado';
     }
 
     private function verificarEmpleado($pk_emp_cedula)

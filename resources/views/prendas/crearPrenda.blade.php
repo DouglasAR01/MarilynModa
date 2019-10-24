@@ -1,5 +1,4 @@
 @extends('layouts.main')
-@extends('layouts.errors')
 
 @section('stylesheets')
   <link rel="stylesheet" href="/css/db-tables.css">
@@ -19,16 +18,27 @@
             <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required autofocus>
+                <input type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}" required autofocus>
+                @if ($errors->has('nombre'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('nombre') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" autofocus requiered>
+                <input type="text" class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" name="descripcion" value="{{ old('descripcion') }}" autofocus requiered>
+                @if ($errors->has('descripcion'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('descripcion') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
+
 
             <div class="form-group row">
               <label for="talla" class="col-md-4 col-form-label text-md-right">Talla</label>
@@ -59,21 +69,36 @@
             <div class="form-group row">
               <label for="cantidad" class="col-md-4 col-form-label text-md-right">Cantidad Inicial Disponible</label>
               <div class="col-md-6">
-                <input type="number" class="form-control" name="cantidad" value="1" min="0" required autofocus>
+                <input type="number" class="form-control{{ $errors->has('cantidad') ? ' is-invalid' : '' }}" name="cantidad" value="1" min="0" required autofocus>
+                @if ($errors->has('cantidad'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('cantidad') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="precio" class="col-md-4 col-form-label text-md-right">Precio Sugerido</label>
               <div class="col-md-6">
-                <input type="number" class="form-control" name="precio" value="{{ old('precio') }}" min="0" autofocus>
+                <input type="number" class="form-control{{ $errors->has('precio') ? ' is-invalid' : '' }}" name="precio" value="{{ old('precio') }}" min="0" autofocus required>
+                @if ($errors->has('precio'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('precio') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="fecha" class="col-md-4 col-form-label text-md-right">Fecha de Compra</label>
               <div class="col-md-6">
-                <input type="date" class="form-control" name="fecha" value="{{old('fecha')}}" required autofocus>
+                <input type="date" class="form-control{{ $errors->has('fecha') ? ' is-invalid' : '' }}" name="fecha" value="{{old('fecha')}}" required autofocus>
+                @if ($errors->has('fecha'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('fecha') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
@@ -87,14 +112,19 @@
             <div class="form-group row">
               <label for="foto" class="col-md-4 col-form-label text-md-right">Foto Principal</label>
               <div class="col-md-6">
-                <input type="file" class="form-control" name="foto" value="" required autofocus>
+                <input type="file" class="form-control{{ $errors->has('foto') ? ' is-invalid' : '' }}" name="foto" value="" required autofocus>
+                @if ($errors->has('foto'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('foto') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
                     <button type="submit" class="btn btn-mod btn-primary">Enviar</button>
-                    <button type="submit" class="btn btn-danger"><a href="javascript:history.back()" class="btn-link-2">Cancelar</a></button>
+                    <button type="button" class="btn btn-danger"><a href="javascript:history.back()" class="btn-link-2">Cancelar</a></button>
                 </div>
             </div>
 

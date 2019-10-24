@@ -1,5 +1,4 @@
 @extends('layouts.main')
-@extends('layouts.errors')
 
 @section('stylesheets')
   <link rel="stylesheet" href="/css/db-tables.css">
@@ -19,28 +18,48 @@
             <div class="form-group row">
               <label for="cedula" class="col-md-4 col-form-label text-md-right">Cédula</label>
               <div class="col-md-6">
-                <input type="number" class="form-control" name="cedula" value="{{ old('cedula') }}" required autofocus>
+                <input type="number" class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }}" name="cedula" value="{{ old('cedula') }}" required autofocus>
+                @if ($errors->has('cedula'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('cedula') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="celular" class="col-md-4 col-form-label text-md-right">Celular</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="celular" value="{{ old('celular') }}" required autofocus>
+                <input type="text" class="form-control{{ $errors->has('celular') ? ' is-invalid' : '' }}" name="celular" value="{{ old('celular') }}" required autofocus>
+                @if ($errors->has('celular'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('celular') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required autofocus>
+                <input type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}" required autofocus>
+                @if ($errors->has('nombre'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('nombre') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="apellido" class="col-md-4 col-form-label text-md-right">Apellido</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="apellido" value="{{ old('apellido') }}" required autofocus>
+                <input type="text" class="form-control{{ $errors->has('apellido') ? ' is-invalid' : '' }}" name="apellido" value="{{ old('apellido') }}" required autofocus>
+                @if ($errors->has('apellido'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('apellido') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
@@ -58,28 +77,48 @@
             <div class="form-group row">
               <label for="direccion" class="col-md-4 col-form-label text-md-right">Dirección</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="direccion" value="{{ old('direccion') }}" required autofocus>
+                <input type="text" class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" name="direccion" value="{{ old('direccion') }}" required autofocus>
+                @if ($errors->has('direccion'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('direccion') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="clave" class="col-md-4 col-form-label text-md-right">Contraseña</label>
               <div class="col-md-6">
-                <input type="password" class="form-control" name="clave" value="" required autofocus>
+                <input type="password" class="form-control{{ $errors->has('clave') ? ' is-invalid' : '' }}" name="clave" value="" required autofocus>
+                @if ($errors->has('clave'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('clave') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 
             <div class="form-group row">
               <label for="clave" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
               <div class="col-md-6">
-                <input type="password" class="form-control" name="clave_confirmation" value="" required autofocus>
+                <input type="password" class="form-control{{ $errors->has('clave_confirmation') ? ' is-invalid' : '' }}" name="clave_confirmation" value="" required autofocus>
+                @if ($errors->has('clave_confirmation'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('clave_confirmation') }}</strong>
+                    </span>
+                @endif
               </div>
             </div>
 

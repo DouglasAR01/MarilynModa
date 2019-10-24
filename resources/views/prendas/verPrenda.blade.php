@@ -1,5 +1,4 @@
 @extends('layouts.main')
-@extends('layouts.errors')
 
 @section('stylesheets')
   <link rel="stylesheet" href="/css/prenda.css">
