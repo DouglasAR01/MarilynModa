@@ -1,25 +1,25 @@
 // Sticky navbar
-$(document).ready(function() {
-  var stickyNavTop = $('.navbar').offset().top;
-
-  var stickyNav = function(){
-    var scrollTop = $(window).scrollTop();
-
-    if (scrollTop > stickyNavTop) {
-        $('.navbar').addClass('sticky-top');
-        $('.content').css('margin-top','3em');
-    } else {
-        $('.navbar').removeClass('sticky-top');
-        $('.content').css('margin-top','0em');
-    }
-  };
-
-  stickyNav();
-
-  $(window).scroll(function() {
-      stickyNav();
-  });
-});
+// $(document).ready(function() {
+//   var stickyNavTop = $('.navbar').offset().top;
+//
+//   var stickyNav = function(){
+//     var scrollTop = $(window).scrollTop();
+//
+//     if (scrollTop > stickyNavTop) {
+//         $('.navbar').addClass('sticky-top');
+//         $('.content').css('margin-top','3em');
+//     } else {
+//         $('.navbar').removeClass('sticky-top');
+//         $('.content').css('margin-top','0em');
+//     }
+//   };
+//
+//   stickyNav();
+//
+//   $(window).scroll(function() {
+//       stickyNav();
+//   });
+// });
 
 //Catálogo Dropdown
 $(function(){
@@ -52,27 +52,27 @@ $(function(){
 });
 
 //Responsive tabs
-$(document).ready(function() {
-  var stickyNavTop = $('.navbar').offset().top;
-
-  var stickyNav = function(){
-    var scrollTop = $(window).scrollTop();
-
-    if (scrollTop > stickyNavTop) {
-        $('.navbar').addClass('sticky-top');
-        $('.content').css('margin-top','3em');
-    } else {
-        $('.navbar').removeClass('sticky-top');
-        $('.content').css('margin-top','0em');
-    }
-  };
-
-  stickyNav();
-
-  $(window).scroll(function() {
-      stickyNav();
-  });
-});
+// $(document).ready(function() {
+//   var stickyNavTop = $('.navbar').offset().top;
+//
+//   var stickyNav = function(){
+//     var scrollTop = $(window).scrollTop();
+//
+//     if (scrollTop > stickyNavTop) {
+//         $('.navbar').addClass('sticky-top');
+//         $('.content').css('margin-top','3em');
+//     } else {
+//         $('.navbar').removeClass('sticky-top');
+//         $('.content').css('margin-top','0em');
+//     }
+//   };
+//
+//   stickyNav();
+//
+//   $(window).scroll(function() {
+//       stickyNav();
+//   });
+// });
 
 //Barra de funciones de empleado
 $(function(){
@@ -117,8 +117,6 @@ $(function(){
   showAccordion();
 
   $(window).resize(function() {
-
-
     showAccordion();
   });
 });
@@ -131,25 +129,25 @@ $(function(){
 });
 
 //Botones de tabs en el dropdown en catálogo
-function openTab(evt, tabName) {
-  let i;
-  //Hides all tab cotent
-  let x = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  //Removes active class from all tabs
-  let z = document.getElementsByClassName("tablinks");
-  for (i = 0; i < z.length; i++) {
-    z[i].className = z[i].className.replace(" active", "");
-  }
+// function openTab(evt, tabName) {
+//   let i;
+//   //Hides all tab cotent
+//   let x = document.getElementsByClassName("tabcontent");
+//   for (i = 0; i < x.length; i++) {
+//     x[i].style.display = "none";
+//   }
+//   //Removes active class from all tabs
+//   let z = document.getElementsByClassName("tablinks");
+//   for (i = 0; i < z.length; i++) {
+//     z[i].className = z[i].className.replace(" active", "");
+//   }
+//
+//   document.getElementById(tabName).style.display = "block";
+//   evt.currentTarget.className += " active";
+//
+// }
 
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-
-}
-
-//Target image in prenda
+// Target image in prenda
 $(function(){
   $(".miniature").click(function(){
     let min = $(this).attr("src");
@@ -157,14 +155,14 @@ $(function(){
   });
 });
 
-//Foto seleccionada
-// $(function(){
-//   $(".foto-selector").click(function(){
-//     let min = $(this).attr("value");
-//     // $(this).('.link-selected').html(min);
-//     // $(this).(".foto-links").attr("value", min);
-//   });
-// });
+// Foto seleccionada
+$(function(){
+  $(".foto-selector").click(function(){
+    let min = $(this).attr("value");
+    // $(this).('.link-selected').html(min);
+    // $(this).(".foto-links").attr("value", min);
+  });
+});
 
 //Eliminar elemento de la base de datos
 $('.delete-row').click(function(e){
@@ -174,6 +172,55 @@ $('.delete-row').click(function(e){
         $(e.target).closest('form').submit() // Post the surrounding form
     }
 });
+
+
+$(function(){
+  zebraRows('.db-table tbody tr:odd td', 'odd');
+  //default each row to visible
+  $('thead').addClass('visible');
+  $('tbody tr').addClass('visible');
+
+  $('#filter').keyup(function(event) {
+    //if esc is pressed or nothing is entered
+    if (event.keyCode == 27 || $(this).val() == '') {
+      //if esc is pressed we want to clear the value of search box
+      $(this).val('');
+
+      //we want each row to be visible because if nothing
+      //is entered then all rows are matched.
+      $('tbody tr').removeClass('visible').show().addClass('visible');
+    }
+
+    //if there is text, lets filter
+    else {
+      filter('tbody tr', $(this).val());
+    }
+
+    //reapply zebra rows
+    $('.visible td').removeClass('odd');
+    zebraRows('.visible:odd td', 'odd');
+  });
+});
+
+//Zebra rows
+function zebraRows(selector, className)
+{
+  $(selector).addClass(className);
+}
+
+//Filters
+function filter(selector, query) {
+  query =   $.trim(query); //trim white space
+  query = query.replace(/ /gi, '|'); //add OR for regex query
+
+  $(selector).each(function() {
+    ($(this).text().search(new RegExp(query, "i")) < 0) ? $(this).hide().removeClass('visible') : $(this).show().addClass('visible');
+  });
+}
+
+$(document).ready( function () {
+    $('.db-table').DataTable();
+} );
 
 //Tabs de prueba
 // function openCity(evt, cityName) {
@@ -196,3 +243,11 @@ $('.delete-row').click(function(e){
 //   document.getElementById(cityName).style.display = "block";
 //   evt.currentTarget.className += " active";
 // }
+
+//Expand lightbox
+$(function(){
+  let div = $(".lb-content");
+  $('.elipse-op').click(function(){
+    console.log('hi');
+  });
+});

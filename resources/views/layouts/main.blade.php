@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    {{-- <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.bootstrap.min.js') }}"></script> --}}
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
+    {{-- <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+
+    <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script> --}}
 
     @yield('stylesheets')
     <title>Marilyn Moda</title>
@@ -27,9 +36,9 @@
       <!--NAVIGATION-->
       <div class="alerta text-center">Este sitio está en construcción &nbsp<i class="fas fa-clipboard-list"></i></div>
       <!--MESSAGES-->
-      <div class="row">
+      {{-- <div class="row">
         @include('partials.messages')
-      </div> <!--END OF MESSAGES-->
+      </div> <!--END OF MESSAGES--> --}}
       <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-laravel">
         @include('partials.navbar')
       </nav><!--END OF NAVIGATION-->
@@ -45,11 +54,24 @@
         @yield('content')
       </div> <!--END OF CONTENT-->
 
+
       <!--FOOTER-->
 
       <footer class="row text-center">
         @include('partials.footer')
       </footer>
+
+
+      <!--LIGHTBOX-->
+      <div class="lightbox">
+        <div class="lb-container">
+          <div class="lb-content">
+
+          </div>
+
+        </div>
+
+      </div><!--END OF LIGHTBOX-->
 
     </div> <!--END OF CONTAINER-FLUID-->
 

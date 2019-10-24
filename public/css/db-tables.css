@@ -17,6 +17,14 @@
   font-weight: 500;
 }
 
+.db-table tbody tr:hover{
+  background-color: rgb(197, 232, 238);
+}
+
+.odd{
+  background-color: rgba(244, 110, 111, .3);
+}
+
 .db-more{
   outline: 0;
   border: 0;

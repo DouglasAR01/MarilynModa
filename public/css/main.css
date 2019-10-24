@@ -165,7 +165,7 @@ button:focus{  outline:0;}
   font-size: 1.2rem;
 }
 
-.navbar{ box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); font-size: 1rem;}
+.navbar{ box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); font-size: 1rem; position: sticky; top: 0; z-index: 10;}
 
 .navbar-brand{font-size: 1.4rem; color: var(--dark-purple); margin-right: 2rem;}
 
@@ -288,6 +288,7 @@ button:focus{  outline:0;}
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: -1;
 }
 
 footer a {
@@ -532,4 +533,32 @@ footer pre{
   color: rgb(255,215,0);
   font-family: 'Nunito Sans';
   text-transform: uppercase;
+}
+
+.lightbox{
+  position: fixed;
+  display: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 101;
+}
+
+.lb-container{
+  position: absolute;
+  background-color: var(--white);
+  top:2rem;
+  right:7rem;
+  bottom:2rem;
+  left:7rem;
+}
+
+.lb-content{
+  display: block;
+  width: 90%
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

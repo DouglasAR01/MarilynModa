@@ -17,11 +17,19 @@
   margin: 0 5px 0 0;
   padding: 0 5px;
   height: 100%;
-}
-
-.orden-alfabeto{
-  border:0;
+  border: 1px solid var(--fucsia);
+  border-radius: 20px;
   background-color: transparent;
   outline: 0;
   box-shadow: 0;
+  color: var(--fucsia);
+  padding: 0 .6rem;
+}
+
+.orden-drop-btn:hover{
+  color: white;
+}
+
+#filter, #filter::placeholder{
+  color: var(--fucsia);
 }
