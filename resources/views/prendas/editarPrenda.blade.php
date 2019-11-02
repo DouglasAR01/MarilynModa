@@ -102,13 +102,13 @@
             <div class="form-group row">
               <label for="talla" class="col-md-4 col-form-label text-md-right">Talla</label>
               <div class="col-md-6">
-                <select class="custom-select" name="talla" selected="{{$prenda->pre_talla}}" required>
-                  <option value="XS">XS</option>
-                  <option value="S">S</option>
-                  <option value="M">M</option>
-                  <option value="L">L</option>
-                  <option value="XL">XL</option>
-                  <option value="XXL">XXL</option>
+                <select class="custom-select" name="talla" required>
+                  <option value="XS" {{ $prenda->pre_talla=='XS' ? 'selected': '' }}>XS</option>
+                  <option value="S" {{ $prenda->pre_talla=='S' ? 'selected': '' }}>S</option>
+                  <option value="M" {{ $prenda->pre_talla=='M' ? 'selected': '' }}>M</option>
+                  <option value="L" {{ $prenda->pre_talla=='L' ? 'selected': '' }}>L</option>
+                  <option value="XL" {{ $prenda->pre_talla=='XL' ? 'selected': '' }}>XL</option>
+                  <option value="XXL" {{ $prenda->pre_talla=='XXL' ? 'selected': '' }}>XXL</option>
                 </select>
               </div>
             </div>
@@ -137,7 +137,7 @@
             </div>
 
             <div class="form-group row">
-              <label for="precio" class="col-md-4 col-form-label text-md-right">Precio Sugerido</label>
+              <label for="precio" class="col-md-4 col-form-label text-md-right">Precio de alquiler sugerido</label>
               <div class="col-md-6">
                 <input type="text" class="form-control{{ $errors->has('precio') ? ' is-invalid' : '' }}" name="precio" value="{{$prenda->pre_precio_sugerido}}" autofocus required>
                 @if ($errors->has('precio'))
