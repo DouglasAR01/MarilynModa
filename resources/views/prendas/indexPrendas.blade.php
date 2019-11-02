@@ -29,14 +29,14 @@
           <img src="{{asset('storage/'.$prenda->getFotoPrincipal()->fop_link)}}" alt="" height="160" width="84">
         </div>
         <li><b>Talla:</b> {{$prenda->pre_talla}}</li>
-        <li><b>Categoría:</b> {{$prenda->pre_fk_categoria}}</li>
+        <li><b>Categoría:</b> {{$prenda->categoria->cat_nombre}}</li>
         <li><b>Cantidad:</b> {{$prenda->pre_cantidad}}</li>
-        <li><b>Precio Sugerido:</b> {{$prenda->pre_precio_sugerido}}</li>
+        <li><b>Precio de alquiler sugerido:</b> {{$prenda->pre_precio_sugerido}}</li>
       </ul>
     </div>
   @endforeach
-
 </div>
+
 
     {{-- Atributos
     -llave primaria -> pk_prenda
