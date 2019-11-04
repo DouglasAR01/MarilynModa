@@ -9,57 +9,6 @@
     justify-content: space-between;
     flex-wrap: wrap;
   }
-
-  /* .miniature, .empty-miniature{
-    display: block;
-    height: 150px;
-    width: 150px;
-    margin: 5px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    position: relative;
-  }
-
-  .empty-miniature{
-    border: 3px dashed #777;
-  }
-
-  .min__img{
-    min-width: 150px;
-    width: 150px;
-    height: 300px;
-  }
-
-  .min__text{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-  }
-  .min__text p{
-    margin: 0;
-  } */
-
-  /* #bootstrap-overrides .empty-miniature input[type="file" i]{
-
-    cursor: pointer !important;
-    -webkit-cursor: pointer !important;
-    align-self: stretch;
-    display: block;
-    position: absolute;
-    line-height: 150px;
-    max-width: 150px;
-    height: 100%;
-    opacity: 0;
-    z-index: 105;
-  }
-
-  #bootstrap-overrides input[type="button" i], input[type="file" i]::-webkit-file-upload-button, button { cursor: pointer !important;} */
-
 </style>
 @endsection
 
@@ -118,7 +67,7 @@
               <div class="col-md-6">
                 <select class="custom-select" value="{{$prenda->pre_fk_categoria}}" name="categoria">
                   @foreach ($categorias as $categoria)
-                    <option value="{{$categoria->pk_categoria}}" selected>{{$categoria->cat_nombre}}</option>
+                    <option value="{{$categoria->pk_categoria}}" {{ $prenda->pre_fk_categoria==$categoria->pk_categoria ? 'selected': '' }}>{{$categoria->cat_nombre}}</option>
                   @endforeach
                 </select>
               </div>

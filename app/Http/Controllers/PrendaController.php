@@ -31,7 +31,7 @@ class PrendaController extends Controller
       // dd( Prenda::all());
         return view('prendas.indexPrendas', [
           'currentRouteName' => Route::currentRouteName(),
-          'prendas' => Prenda::all()
+          'prendas' => Prenda::simplePaginate(20)
         ]);
     }
 
