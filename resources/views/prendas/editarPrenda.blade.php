@@ -117,6 +117,20 @@
             </div>
 
             <div class="form-group row">
+              <label for="visible" class="col-md-4 col-form-label text-md-right">Palabras clave, separadas por ";"</label>
+              <div class="col-md-6">
+                {{-- No tocar lo de abajo por más feo que se vea en el código porque Blade papea la vista horrible --}}
+                <textarea name="palabrasclave" rows="2" class="form-control {{ $errors->has('palabrasclave') ? ' is-invalid' : '' }}">
+@foreach ($prenda->palabrasClave as $palabra){{$palabra->pal_clave}};@endforeach</textarea>
+                @if ($errors->has('palabrasclave'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('palabrasclave') }}</strong>
+                    </span>
+                @endif
+              </div>
+            </div>
+
+            <div class="form-group row">
               <label for="foto" class="col-md-3 col-form-label text-md-right">Fotos</label>
               <div class="col-md-7 empty-fotos">
                 @include('prendas.fotos.fotos')

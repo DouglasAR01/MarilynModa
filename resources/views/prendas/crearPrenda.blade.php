@@ -121,6 +121,18 @@
               </div>
             </div>
 
+            <div class="form-group row">
+              <label for="visible" class="col-md-4 col-form-label text-md-right">Palabras clave, separadas por ";"</label>
+              <div class="col-md-6">
+                <textarea name="palabrasclave" rows="2" class="form-control {{ $errors->has('palabrasclave') ? ' is-invalid' : '' }}">{{ $errors->has('palabrasclave') ? old('palabrasclave'): 'fiesta;noche' }}</textarea>
+                @if ($errors->has('palabrasclave'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('palabrasclave') }}</strong>
+                    </span>
+                @endif
+              </div>
+            </div>
+
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
                     <button type="submit" class="btn btn-mod btn-primary">Enviar</button>

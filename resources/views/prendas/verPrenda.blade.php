@@ -39,7 +39,7 @@
             @if (count($prenda->palabrasClave)>0)
               <li><b>Palabras Clave:</b>
                 @foreach ($prenda->palabrasClave as $palabra)
-                  {{$palabra->pivot->pal_clave}}
+                  {{$palabra->pal_clave}},
                 @endforeach
               </li>
             @endif

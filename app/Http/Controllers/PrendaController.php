@@ -54,6 +54,7 @@ class PrendaController extends Controller
      */
     public function store(PrendaRequest $request)
     {
+        // Creación de la prenda
         $nuevaPrenda = new Prenda();
         $nuevaPrenda->pre_fk_categoria = $request->categoria;
         $nuevaPrenda->pre_visible = $request->filled('visible');
@@ -66,8 +67,12 @@ class PrendaController extends Controller
         if (!$nuevaPrenda->save()) {
           Session::flash('error', 'Prenda no guardada');
           return redirect()->route('prendas.index');
-          // return 'Error al guardar la prenda';
         }
+
+        // Asignación de las palabras clave
+        $nuevaPrenda->asociarPalabrasClave($request->palabrasclave);
+
+        // Subida y asignación de la foto principal
         $linkFotoSubida = SC::subirArchivo($request,'foto','prendas');
         if (!$linkFotoSubida) {
           return 'Error al guardar la foto';
@@ -81,7 +86,6 @@ class PrendaController extends Controller
 
         Session::flash('success', 'Prenda guardada con exito');
         return redirect()->route('prendas.index');
-        // return 'Prenda guardada con exito';
     }
 
     /**
@@ -141,6 +145,10 @@ class PrendaController extends Controller
           return redirect()->route('prendas.index');
           // return 'Error al guardar la prenda';
         }
+
+        // Asignación de las palabras clave
+        $prendaActualizada->asociarPalabrasClave($request->palabrasclave);
+
         //Cambia la foto principal
         $fotoPrendaPrincipalActual = $prendaActualizada->getFotoPrincipal();
         if (!($fotoPrendaPrincipalActual->fop_link===$request->fotoPrincipal)) {

@@ -93,10 +93,3 @@ Route::resource('/control','PanelControlController');
  * @author Douglas R
  */
 Route::resource('/fotosprenda','FotoPrendaController')->except('index','show','create','store');
-
-/**
- * Palabra clave
- * @author Douglas R
- */
- //Probablemente toque añadir endpoints adicionales para añadir palabras clave a un vestido
-Route::resource('/palabrasclave','PalabraClaveController');
