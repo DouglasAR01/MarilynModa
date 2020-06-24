@@ -15,8 +15,12 @@
        @break --}}
       @case('prendas.index')
         <a class="dropdown-item elipse-op" href="/prendas/{{$prenda->pk_prenda}}">Expandir</a>
-        @if (auth(session('cargo'))->user()->emp_privilegio == 'a')
+        @if (auth(session('cargo'))->user()->emp_privilegio == 'a'||
+            auth(session('cargo'))->user()->emp_privilegio == 'g')
           <a class="dropdown-item elipse-op" href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a>
+          <a class="dropdown-item elipse-op" href="/prendas/{{$prenda->pk_prenda}}/fotos">Cambiar fotos</a>
+        @endif
+        @if (auth(session('cargo'))->user()->emp_privilegio == 'a')
           <form method="POST" action="/prendas/{{$prenda->pk_prenda}}">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}

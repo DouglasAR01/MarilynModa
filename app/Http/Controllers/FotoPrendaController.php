@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Prenda;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupraController as SC;
+use App\Prenda;
 use App\FotoPrenda;
+use Session;
 
 class FotoPrendaController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('entran:admin,gerente')->except(['destroy']);
+        $this->middleware('entran:admin')->only('destroy');
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -32,14 +40,22 @@ class FotoPrendaController extends Controller
     public function update(Request $request, $pk_prenda)
     {
         $prenda = Prenda::find($pk_prenda);
-        //Cambia la foto principal
-        $fotoPrendaPrincipalActual = $prenda->getFotoPrincipal();
-        if (!($fotoPrendaPrincipalActual->fop_link===$request->fotoPrincipal)) {
-          if (!$fotoPrendaPrincipalActual->cambiarFotoPrincipal($request->fotoPrincipal)) {
-            Session::flash('error', 'No se pudo cambiar la foto principal');
-            return redirect()->route('prendas.index');
-            // return 'No se pudo cambiar la foto principal';
+        // Bandera que por defecto asume que no hay foto principal asignada
+        // False = NO HAY FOTO PRINCIPAL ASIGNADA
+        // True = SÍ HAY FOTO PRINCIPAL ASIGNADA
+        $banderaFotoPrincipal = false;
+        if(!empty($request->fotoPrincipal)){
+          $fotoPrendaPrincipalActual = $prenda->getFotoPrincipal();
+          if (!($fotoPrendaPrincipalActual->fop_link===$request->fotoPrincipal)) {
+            // Cambia la foto principal si la foto principal asignada no es la misma
+            // asignada anteriormente.
+            if (!$fotoPrendaPrincipalActual->cambiarFotoPrincipal($request->fotoPrincipal)) {
+              Session::flash('error', 'No se pudo cambiar la foto principal');
+              return redirect()->route('prendas.index');
+            }
           }
+          // Si hay foto principal asignada, por lo tanto, modifica la bandera
+          $banderaFotoPrincipal = true;
         }
 
         //Cambia las demás fotos (incluída la principal) si se subió un archivo
@@ -56,8 +72,10 @@ class FotoPrendaController extends Controller
                 FotoPrenda::create([
                   'fop_fk_prenda' => $prenda->pk_prenda,
                   'fop_link' => $linkFotoSubida,
-                  'fop_principal' => false
+                  // Si no había foto principal asignada, la primera foto se asigna
+                  'fop_principal' => ($banderaFotoPrincipal) ? false : true
                 ]);
+                $banderaFotoPrincipal = true;
               }else{
                 $fotoACambiar->cambiarLinkFoto($linkFotoSubida);
               }
@@ -65,19 +83,17 @@ class FotoPrendaController extends Controller
             }
           }
         }
-        //Session::flash('success', 'Fotos actualizadas con éxito');
+        Session::flash('success', 'Fotos actualizadas con éxito.');
         return redirect()->route('prendas.index');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($pk_prenda)
+    public function destroy(Request $request)
     {
-        $foto = FotoPrenda::find($pk_prenda);
+        $foto = FotoPrenda::find($request->id);
         if(!empty($foto)){
           $foto->delete();
           $foto->eliminarFoto();

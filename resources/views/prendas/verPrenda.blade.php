@@ -64,6 +64,7 @@
              auth(session('cargo'))->user()->emp_privilegio == 'g')
           <div class="card-btns">
              <a class="btn btn-info" href="/prendas/{{$prenda->pk_prenda}}/editar">Editar</a>
+             <a class="btn btn-info" href="/prendas/{{$prenda->pk_prenda}}/fotos">Cambiar fotos</a>
              <button class="btn btn-warning" href="#">Dar de baja</button>
              <form method="POST" action="/prendas/{{$prenda->pk_prenda}}">
                {{ csrf_field() }}

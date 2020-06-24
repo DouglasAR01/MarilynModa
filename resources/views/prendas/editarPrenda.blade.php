@@ -130,13 +130,6 @@
               </div>
             </div>
 
-            <div class="form-group row">
-              <label for="foto" class="col-md-3 col-form-label text-md-right">Fotos</label>
-              <div class="col-md-7 empty-fotos">
-                @include('prendas.fotos.fotos')
-              </div>
-            </div>
-
             <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
                     <button type="submit" class="btn btn-mod btn-primary">Enviar</button>

@@ -31,6 +31,10 @@ class Prenda extends Model
           return $foto;
         }
       }
+      // En caso de que no haya una foto principal definida por cualquier motivo.
+      $default = new FotoPrenda();
+      $default->fop_link = "prendas/default_dress.png";
+      return $default;
   }
 
   private function parsearPalabras(String $palabrasClave)

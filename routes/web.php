@@ -39,8 +39,8 @@ Route::resource('/empleados','EmpleadoController');
 * Prenda
 * @author Douglas R
 */
-Route::get('/prendas/categorias/{pk_categoria}','PrendaController@metodo');
-Route::get('/prendas/filtrado','PrendaController@metodo');
+//Route::get('/prendas/categorias/{pk_categoria}','PrendaController@metodo');
+//Route::get('/prendas/filtrado','PrendaController@metodo');
 Route::post('/prendas/eliminarFoto','PrendaController@eliminarFoto')->name('prendas.eliminarFoto');
 Route::resource('/prendas','PrendaController');
 
@@ -48,9 +48,9 @@ Route::resource('/prendas','PrendaController');
 * Baja
 * @author Douglas R
 */
-Route::resource('/bajas','BajaController')->except('index','show');
-Route::get('/bajas/{pk_categoria}','BajaController@metodo');
-Route::get('/bajas/ver/{pk_baja}','BajaController@show');
+// Route::resource('/bajas','BajaController')->except('index','show');
+// Route::get('/bajas/{pk_categoria}','BajaController@metodo');
+// Route::get('/bajas/ver/{pk_baja}','BajaController@show');
 
 /**
  * Categoria
@@ -62,34 +62,36 @@ Route::resource('/categorias','CategoriaController');
  * Cliente
  * @author Douglas R
  */
-Route::get('/clientes/{pk_cli_cedula}/facturas','ClienteController@metodo'); //Sujeto a cambios
-Route::get('/clientes/{pk_cli_cedula}/facturas/{estado}','ClienteController@metodo'); //Sujeto a cambios
-Route::resource('/clientes','ClienteController');
+// Route::get('/clientes/{pk_cli_cedula}/facturas','ClienteController@metodo'); //Sujeto a cambios
+// Route::get('/clientes/{pk_cli_cedula}/facturas/{estado}','ClienteController@metodo'); //Sujeto a cambios
+// Route::resource('/clientes','ClienteController');
 
 /**
  * Factura
  * @author Douglas R
  */
-Route::get('/facturas/{pk_emp_cedula}','FacturaController@index'); //Parametro puede ser null
-Route::get('/facturas/ver/{pk_factura}','FacturaController@show');
-Route::resource('/facturas','FacturaController')->except('index','show');
+// Route::get('/facturas/{pk_emp_cedula}','FacturaController@index'); //Parametro puede ser null
+// Route::get('/facturas/ver/{pk_factura}','FacturaController@show');
+// Route::resource('/facturas','FacturaController')->except('index','show');
 
 /**
  * Gasto
  * @author Douglas R
  */
-Route::get('/gastos/{pk_emp_cedula}','GastoController@index'); //Parametro puede ser null
-Route::get('/gastos/ver/{pk_emp_cedula}','GastoController@show');
-Route::resource('/gastos','GastoController')->except('index','show');
+// Route::get('/gastos/{pk_emp_cedula}','GastoController@index'); //Parametro puede ser null
+// Route::get('/gastos/ver/{pk_emp_cedula}','GastoController@show');
+// Route::resource('/gastos','GastoController')->except('index','show');
 
 /**
  * Panel de control
  * @author Douglas R
  */
-Route::resource('/control','PanelControlController');
+// Route::resource('/control','PanelControlController');
 
 /**
  * Foto de prenda
  * @author Douglas R
  */
-Route::resource('/fotosprenda','FotoPrendaController')->except('index','show','create','store');
+Route::get('/prendas/{pk_prenda}/fotos','FotoPrendaController@edit')->name('fotoprenda.edit');
+Route::put('/prendas/{pk_prenda}/fotos','FotoPrendaController@update')->name('fotoprenda.update');
+Route::delete('/prendas/fotos/eliminar','FotoPrendaController@destroy')->name('fotoprenda.destroy');

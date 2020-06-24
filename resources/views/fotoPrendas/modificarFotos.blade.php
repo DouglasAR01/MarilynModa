@@ -5,13 +5,9 @@
     <title>Formulario primitivo</title>
   </head>
   <body>
-    <form id="editar" action="{{route('fotosprenda.update',$prenda->pk_prenda)}}" method="post" enctype="multipart/form-data">
+    <form id="editar" action="{{route('fotoprenda.update',$prenda->pk_prenda)}}" method="post" enctype="multipart/form-data">
       @csrf
       {{ method_field('PUT')}}
-    </form>
-    <form id="eliminar" action="{{route('fotosprenda.destroy', $prenda->pk_prenda)}}" method = "post">
-        @csrf
-        @method("DELETE")
     </form>
     <table border="1">
       @for ($i=0; $i < 6; $i++)
@@ -28,11 +24,14 @@
               <input type="radio" form="editar" @if ($prenda->fotos[$i]->fop_principal)checked
               @endif name="fotoPrincipal" value="{{$prenda->fotos[$i]->fop_link}}">
             </td>
-            @if (!$prenda->fotos[$i]->fop_principal)
-              <td>
-                <button type="submit" form="eliminar" class="btn btn-outline-danger"><i class="fas fa-trash-alt" style="color:#c62828"></i></button>
-              </td>
-            @endif
+            <td>
+              <form method="POST" action="{{route('fotoprenda.destroy')}}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <input type="hidden" name="id" value="{{$prenda->fotos[$i]->fop_link}}">
+                <input type="submit" class="btn btn-outline-danger" value="Eliminar">
+              </form>
+            </td>
         @else
             <td><img src="/images/default.png" alt="" height="150" width="150"></td>
             <td>

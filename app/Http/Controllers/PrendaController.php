@@ -72,20 +72,8 @@ class PrendaController extends Controller
         // Asignación de las palabras clave
         $nuevaPrenda->asociarPalabrasClave($request->palabrasclave);
 
-        // Subida y asignación de la foto principal
-        $linkFotoSubida = SC::subirArchivo($request,'foto','prendas');
-        if (!$linkFotoSubida) {
-          return 'Error al guardar la foto';
-        }
-        FotoPrenda::create([
-          'fop_fk_prenda' => $nuevaPrenda->pk_prenda,
-          'fop_link' => $linkFotoSubida,
-          'fop_principal' => true
-        ]);
-        $this->optimizar($linkFotoSubida);
-
-        Session::flash('success', 'Prenda guardada con exito');
-        return redirect()->route('prendas.index');
+        Session::flash('success', 'Prenda creada con exito, ahora asigne las fotos que desea.');
+        return redirect()->route('fotoprenda.edit',$nuevaPrenda->pk_prenda);
     }
 
     /**
@@ -100,7 +88,6 @@ class PrendaController extends Controller
         if (!$prenda) {
           Session::flash('error', 'Prenda no encontrada');
           return redirect()->route('prendas.index');
-          // return 'Prenda no encontrada';
         }
         //Si no es un empleado y la prenda no es visible al publico, retrocede
         if (empty(auth(session('cargo'))->user()) && $prenda->pre_visible==false) {
@@ -143,48 +130,12 @@ class PrendaController extends Controller
         if (!$prendaActualizada->save()) {
           Session::flash('error', 'Prenda no disponible');
           return redirect()->route('prendas.index');
-          // return 'Error al guardar la prenda';
         }
 
         // Asignación de las palabras clave
         $prendaActualizada->asociarPalabrasClave($request->palabrasclave);
-
-        //Cambia la foto principal
-        $fotoPrendaPrincipalActual = $prendaActualizada->getFotoPrincipal();
-        if (!($fotoPrendaPrincipalActual->fop_link===$request->fotoPrincipal)) {
-          if (!$fotoPrendaPrincipalActual->cambiarFotoPrincipal($request->fotoPrincipal)) {
-            Session::flash('error', 'No se pudo cambiar la foto principal');
-            return redirect()->route('prendas.index');
-            // return 'No se pudo cambiar la foto principal';
-          }
-        }
-
-        //Cambia las demás fotos (incluída la principal) si se subió un archivo
-        if (!empty($request->fotos)) {
-          foreach ($request->fotos as $llave => $foto) {
-            if(!empty($foto)){
-              $fotoACambiar= FotoPrenda::find($request->links[$llave]);
-              $linkFotoSubida = $request->fotos[$llave]->store('prendas','public');
-              if (!$linkFotoSubida) {
-                return 'Error al guardar la foto';
-              }
-              //Si la foto no existía antes, crea una nueva
-              if (empty($fotoACambiar)) {
-                FotoPrenda::create([
-                  'fop_fk_prenda' => $prendaActualizada->pk_prenda,
-                  'fop_link' => $linkFotoSubida,
-                  'fop_principal' => false
-                ]);
-              }else{
-                $fotoACambiar->cambiarLinkFoto($linkFotoSubida);
-              }
-              $this->optimizar($linkFotoSubida);
-            }
-          }
-        }
         Session::flash('success', 'Prenda actualizada con éxito');
         return redirect()->route('prendas.index');
-        // return 'Prenda actualizada con éxito';
     }
 
     /**
@@ -203,35 +154,5 @@ class PrendaController extends Controller
         }
         Session::flash('success', 'Prenda eliminada');
         return redirect()->route('prendas.index');
-        // return 'eliminado';
-    }
-
-    public function eliminarFoto()
-    {
-        $foto = FotoPrenda::find($request->vic);
-        if(!empty($foto)){
-          $foto->delete();
-          $foto->eliminarFoto();
-        }
-        return back();
-    }
-
-    private function optimizacionActivada()
-    {
-        return config('services.tinypng.on');
-    }
-
-    private function optimizarImagen(String $imagen)
-    {
-        \Tinify\setKey(config('services.tinypng.key'));
-        $source = \Tinify\fromFile(SC::obtenerArchivo($imagen,'public'));
-        $source->toFile(SC::obtenerArchivo($imagen,'public'));
-    }
-
-    private function optimizar(String $imagen)
-    {
-        if ($this->optimizacionActivada()) {
-          $this->optimizarImagen($imagen);
-        }
     }
 }
