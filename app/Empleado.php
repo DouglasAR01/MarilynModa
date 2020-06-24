@@ -13,6 +13,7 @@ class Empleado extends Authenticatable
 
   protected $table = 'empleado';
   protected $primaryKey = 'pk_emp_cedula';
+  protected $keyType = 'string'; //Necesario para que Laravel no castee el valor a un entero
   protected $guard = 'empleado';
   protected $guarded = ['pk_emp_cedula','emp_clave','emp_celular','emp_email'];
   protected $hidden = ['emp_clave'];
