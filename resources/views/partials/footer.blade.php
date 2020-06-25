@@ -33,6 +33,6 @@
     </a>
   </div>
 
-  <div class="footer-grid__item f_bottom">© <span class="footer-creditos__year">2019 &nbsp</span>  Marilyn Moda ltda.</div>
+  <div class="footer-grid__item f_bottom">© <span class="footer-creditos__year">2020 &nbsp</span>  Marilyn Moda ltda.</div>
 
 </div> <!--END FOOTER-GRID-->

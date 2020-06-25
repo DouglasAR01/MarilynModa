@@ -218,9 +218,9 @@ function filter(selector, query) {
   });
 }
 
-$(document).ready( function () {
-    $('.db-table').DataTable();
-} );
+// $(document).ready( function () {
+//     $('.db-table').DataTable();
+// } );
 
 //Tabs de prueba
 // function openCity(evt, cityName) {

@@ -103,10 +103,9 @@ class EmpleadoController extends Controller
         $empleado = Empleado::find($pk_emp_cedula);
 
         //Verifica que se haya encontrado un empleado con esa cédula
-        if (!$empleado) {
-
+        if (empty($empleado)) {
           Session::flash('error', 'Empleado no encontrado');
-          // return 'Empleado no encontrado';
+          return back();
         }
         //Verifica que el empleado que se desea editar sea posible editarlo con
         //los privilegios actuales
