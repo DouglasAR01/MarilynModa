@@ -13,7 +13,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <!-- Left Side Of Navbar -->
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav_item"><a href="/" class="nav_link">Inicio</a><div class="square"></div></li>
+      <li class="nav_item"><a href="{{(auth(session('cargo'))->user()) ? route('home') : '/'}}" class="nav_link">Inicio</a><div class="square"></div></li>
       <!--DROPDOWN-->
       <li class="nav_item">
         <a href="/catalogo" class="nav_link">Catálogo</a><div class="square"></div>
