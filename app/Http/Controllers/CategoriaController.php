@@ -46,10 +46,10 @@ class CategoriaController extends Controller
         $nuevaCategoria->cat_descripcion = $request->descripcion;
         $nuevaCategoria->cat_tipo = $request->tipo;
         if (!$nuevaCategoria->save()) {
-          Session::flash('error', 'Categoria no guardada');
+          $request->session()->flash('error', 'Categoria no guardada');
           return redirect()->route('categorias.index');
         }
-        Session::flash('success', 'Categoria creada correctamente');
+        $request->session()->flash('success', 'Categoria creada correctamente');
         return redirect()->route('categorias.index');
     }
 
@@ -59,11 +59,11 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $categoria = Categoria::find($id);
         if (!$categoria) {
-          Session::flash('error', 'Categoria no encontrada');
+          $request->session()->flash('error', 'Categoria no encontrada');
           return redirect()->route('categorias.index');
         }
         return view('categorias.verCategoria',compact('categoria'));
@@ -75,11 +75,11 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
       $categoria = Categoria::find($id);
       if (!$categoria) {
-        Session::flash('error', 'Categoria no encontrada');
+        $request->session()->flash('error', 'Categoria no encontrada');
         return redirect()->route('categorias.index');
       }
       return view('categorias.editarCategoria',compact('categoria'));
@@ -99,10 +99,10 @@ class CategoriaController extends Controller
         $categoria->cat_descripcion = $request->descripcion;
         $categoria->cat_tipo = $request->tipo;
         if (!$categoria->save()) {
-          Session::flash('error', 'Error al modificar la categoria');
+          $request->session()->flash('error', 'Error al modificar la categoria');
           return redirect()->route('categorias.index');
         }
-        Session::flash('success','Categoria editada correctamente');
+        $request->session()->flash('success','Categoria editada correctamente');
         return redirect()->route('categorias.index');
     }
 
@@ -115,7 +115,7 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         $categoria->delete();
-        Session::flash('success', 'Categoria eliminada');
+        $request->session()->flash('success', 'Categoria eliminada');
         return redirect()->route('categorias.index');
     }
 }

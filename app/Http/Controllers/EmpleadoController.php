@@ -75,7 +75,7 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($pk_emp_cedula)
+    public function show(Request $request, $pk_emp_cedula)
     {
         if ($this->verificarEmpleado($pk_emp_cedula)) {
           $empleado = Empleado::find($pk_emp_cedula);
@@ -87,7 +87,7 @@ class EmpleadoController extends Controller
               ]
             ]);
           }
-          Session::flash('error', 'Usuario no encontrado');
+          $request->session()->flash('error', 'Usuario no encontrado');
         }
         return redirect('home');
     }
@@ -98,13 +98,13 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($pk_emp_cedula)
+    public function edit(Request $request, $pk_emp_cedula)
     {
         $empleado = Empleado::find($pk_emp_cedula);
 
         //Verifica que se haya encontrado un empleado con esa cédula
         if (empty($empleado)) {
-          Session::flash('error', 'Empleado no encontrado');
+          $request->session()->flash('error', 'Empleado no encontrado');
           return back();
         }
         //Verifica que el empleado que se desea editar sea posible editarlo con
@@ -112,7 +112,7 @@ class EmpleadoController extends Controller
 
         //Gerente debería poder editar empleado, pero no el campo de privilegio!!!!
         if (!$this->verificarEmpleado($pk_emp_cedula)) {
-          Session::flash('error', 'No tiene permisos para modificar este empleado.');
+          $request->session()->flash('error', 'No tiene permisos para modificar este empleado.');
           return back();
         }
 
@@ -129,8 +129,8 @@ class EmpleadoController extends Controller
     public function update(EmpleadoRequest $request, $pk_emp_cedula)
     {
         if (!$this->verificarEmpleado($pk_emp_cedula)) {
-
           Session::flash('error', 'No tiene permisos para modificar este empleado');
+          return redirect()->route('home');
         }
         $empleado = Empleado::find($pk_emp_cedula);
         $empleado->pk_emp_cedula = $request->cedula;
@@ -168,20 +168,20 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($pk_emp_cedula)
+    public function destroy(Request $request, $pk_emp_cedula)
     {
         if ($pk_emp_cedula==auth()->user()->pk_emp_cedula) {
-          Session::flash('error', 'No es posible eliminarse a sí mismo.');
+          $request->session()->flash('error', 'No es posible eliminarse a sí mismo.');
           return redirect()->route('empleados.index');
         }
         $empleado = Empleado::find($pk_emp_cedula);
         if($empleado){
           $empleado->delete();
 
-          Session::flash('success', 'Empleado eliminado');
+          $request->session()->flash('success', 'Empleado eliminado');
           return redirect()->route('empleados.index');
         }
-        Session::flash('error', 'Empleado no encontrado');
+        $request->session()->flash('error', 'Empleado no encontrado');
         return redirect()->route('empleados.index');
     }
 

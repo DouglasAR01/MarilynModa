@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SupraController as SC;
 use App\Prenda;
 use App\FotoPrenda;
-use Session;
 
 class FotoPrendaController extends Controller
 {
@@ -54,7 +53,7 @@ class FotoPrendaController extends Controller
             // Cambia la foto principal si la foto principal asignada no es la misma
             // asignada anteriormente.
             if (!$fotoPrendaPrincipalActual->cambiarFotoPrincipal($request->fotoPrincipal)) {
-              Session::flash('error', 'No se pudo cambiar la foto principal');
+              $request->session()->flash('error', 'No se pudo cambiar la foto principal');
               return redirect()->route('prendas.index');
             }
           }
@@ -68,8 +67,9 @@ class FotoPrendaController extends Controller
             if(!empty($foto)){
               $fotoACambiar= FotoPrenda::find($request->links[$llave]);
               $linkFotoSubida = $foto->store('prendas','public');
-              if (!$linkFotoSubida) {
-                return 'Error al guardar la foto';
+              if (empty($linkFotoSubida)) {
+                $request->session()->flash('error', 'Hubo un problema al subir la(s) foto(s)');
+                return redirect()->route('prendas.index');
               }
               //Si la foto no existía antes, crea una nueva
               if (empty($fotoACambiar)) {
@@ -87,7 +87,7 @@ class FotoPrendaController extends Controller
             }
           }
         }
-        Session::flash('success', 'Fotos actualizadas con éxito.');
+        $request->session()->flash('success', 'Fotos actualizadas con éxito.');
         return redirect()->route('prendas.index');
     }
 

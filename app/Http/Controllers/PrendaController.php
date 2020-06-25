@@ -82,16 +82,16 @@ class PrendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $prenda = Prenda::find($id);
         if (!$prenda) {
-          Session::flash('error', 'Prenda no encontrada');
+          $request->session()->flash('error', 'Prenda no encontrada');
           return redirect()->route('prendas.index');
         }
         //Si no es un empleado y la prenda no es visible al publico, retrocede
         if (empty(auth(session('cargo'))->user()) && $prenda->pre_visible==false) {
-          Session::flash('error', 'Prenda no disponible');
+          $request->session()->flash('error', 'Prenda no disponible');
           return back();
         }
         return view('prendas.verPrenda',compact('prenda'));
@@ -128,13 +128,13 @@ class PrendaController extends Controller
         $prendaActualizada->pre_fecha_compra = $request->fecha;
         $prendaActualizada->pre_talla = $request->talla;
         if (!$prendaActualizada->save()) {
-          Session::flash('error', 'Prenda no disponible');
+          $request->session()->flash('error', 'Prenda no disponible');
           return redirect()->route('prendas.index');
         }
 
         // Asignación de las palabras clave
         $prendaActualizada->asociarPalabrasClave($request->palabrasclave);
-        Session::flash('success', 'Prenda actualizada con éxito');
+        $request->session()->flash('success', 'Prenda actualizada con éxito');
         return redirect()->route('prendas.index');
     }
 
