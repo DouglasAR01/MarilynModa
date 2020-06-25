@@ -35,13 +35,15 @@
 
       <!--NAVIGATION-->
       <div class="alerta text-center">Este sitio está en construcción &nbsp<i class="fas fa-clipboard-list"></i></div>
-      <!--MESSAGES-->
-      {{-- <div class="row">
-        @include('partials.messages')
-      </div> <!--END OF MESSAGES--> --}}
+
       <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-laravel">
         @include('partials.navbar')
       </nav><!--END OF NAVIGATION-->
+
+      <!--MESSAGES-->
+      <div class="row">
+        @include('partials.messages')
+      </div> <!--END OF MESSAGES-->
 
 
         @if(auth(session('cargo'))->user())

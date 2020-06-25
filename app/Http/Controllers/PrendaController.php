@@ -72,7 +72,7 @@ class PrendaController extends Controller
         // Asignación de las palabras clave
         $nuevaPrenda->asociarPalabrasClave($request->palabrasclave);
 
-        Session::flash('success', 'Prenda creada con exito, ahora asigne las fotos que desea.');
+        Session::flash('success', 'Prenda creada con exito.');
         return redirect()->route('fotoprenda.edit',$nuevaPrenda->pk_prenda);
     }
 

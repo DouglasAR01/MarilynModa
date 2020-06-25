@@ -24,9 +24,13 @@ class FotoPrendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($pk_prenda)
+    public function edit(Request $request, $pk_prenda)
     {
         $prenda = Prenda::find($pk_prenda);
+        if (count($prenda->fotos)<1) {
+          $request->session()->now('warning','Esta prenda no tiene fotos.
+            La primera foto que guarde se asignará como foto principal.');
+        }
         return view('fotoPrendas.modificarFotos',['prenda' => $prenda]);
     }
 
