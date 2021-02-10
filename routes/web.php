@@ -86,7 +86,8 @@ Route::resource('/categorias','CategoriaController');
  * Panel de control
  * @author Douglas R
  */
-// Route::resource('/control','PanelControlController');
+Route::get('/panel','PanelControlController@index')->name('panelcontrol.index');
+Route::post('/panel','PanelControlController@create')->name('panelcontrol.create');
 
 /**
  * Foto de prenda
